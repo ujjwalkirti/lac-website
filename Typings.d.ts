@@ -5,7 +5,7 @@ type Blog = {
   about: string;
   content: string;
   illustration: string;
-  date: string;
+  date: Date;
 };
 
 type Book = {};
