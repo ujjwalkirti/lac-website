@@ -1,4 +1,5 @@
 type Blog = {
+  [key: string]: string | number;
   name: string;
   author: string;
   designation: string;
