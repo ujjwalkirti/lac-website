@@ -18,6 +18,11 @@ import {
 import Image from "next/image";
 import TimeAgo from "react-timeago";
 
+type post = {
+  blog: Blog;
+  id: string;
+};
+
 const BlogForm = () => {
   const [blogs, setBlogs] = useState([]);
   const [showBlogs, setShowBlogs] = useState(false);
@@ -128,7 +133,7 @@ const BlogForm = () => {
         <p className="mb-3 text-xl font-semibold">List of all the blogs:</p>
         <div className="flex flex-col items-center">
           {blogs.length !== 0 &&
-            blogs.map((post, index) => (
+            blogs.map((post: post, index) => (
               <Blog id={post.id} blog={post.blog} key={index} />
             ))}
           <button
