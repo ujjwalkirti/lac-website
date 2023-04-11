@@ -1,4 +1,4 @@
-export const books : Book[] = [
+export const local_books : Book[] = [
     {
         name: "The Thousand Splendid Suns",
         author: "Khalid Hosseini",

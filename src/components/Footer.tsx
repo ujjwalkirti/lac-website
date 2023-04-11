@@ -11,8 +11,8 @@ import {
 const Footer = () => {
   const { systemTheme, theme, setTheme } = useTheme();
   return (
-    <div>
-      <div className="h-[72px] w-[72px] relative">
+    <section className="flex flex-col items-center">
+      <div className="h-[72px] w-[72px] relative mt-[51px]">
         <Image
           className="rounded-full"
           src={theme === "dark" ? "/logo-black.jpeg" : "/logo-white.png"}
@@ -20,13 +20,15 @@ const Footer = () => {
           fill
         />
       </div>
-      <p>Literary Affairs Committee</p>
-      <p>
+      <p className="mt-[50px] font-[500] text-[48px] leading-[57.6px]">
+        Literary Affairs Committee
+      </p>
+      <p className="mt-[16px] w-[406px] mb-[59px] text-[20px] font-[400] leading-[24.38px] text-center">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum ab,
         fugit beatae quia voluptatem voluptatum nesciunt doloremque excepturi
         autem, vitae tenetur veniam quos vel et id neque accusamus delectus nam.
       </p>
-      <div>
+      <div className="flex gap-[50px] items-center justify-center mb-[84px]">
         <Link href={`/`}>HOME</Link>
         <Link href={`/events`}>EVENTS</Link>
         <Link href={`/blogs`}>BLOGS</Link>
@@ -34,15 +36,15 @@ const Footer = () => {
         <Link href={`/committee`}>TEAM</Link>
         <Link href={`/contact`}>CONTACT</Link>
       </div>
-      <div>
+      <div className="flex justify-between items-center mb-[26px] w-full">
         <p>CopyRight 2023 LAC, All Rights Reserved</p>
-        <div>
+        <div className="flex space-x-[29px] text-[46px]">
           <AiFillFacebook />
           <AiFillInstagram />
           <AiFillLinkedin />
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
