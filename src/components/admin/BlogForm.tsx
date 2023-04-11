@@ -1,4 +1,4 @@
-import { adminButton, inputStyle, trimString } from "@/utils";
+import { adminButton, formats, inputStyle, modules, trimString } from "@/utils";
 import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import {
@@ -14,9 +14,15 @@ import {
   AiOutlineDelete,
   AiOutlineDownCircle,
   AiOutlineEdit,
+  AiOutlineUpCircle,
 } from "react-icons/ai";
 import Image from "next/image";
 import TimeAgo from "react-timeago";
+import { DotSpinner, DotWave } from "@uiball/loaders";
+
+import "react-quill/dist/quill.snow.css";
+import dynamic from "next/dynamic";
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 type post = {
   blog: Blog;
@@ -26,6 +32,7 @@ type post = {
 const BlogForm = () => {
   const [blogs, setBlogs] = useState([]);
   const [showBlogs, setShowBlogs] = useState(false);
+  const [content, setContent] = useState("");
   const {
     register,
     handleSubmit,
@@ -60,7 +67,7 @@ const BlogForm = () => {
       <p className="text-center font-bold text-2xl mt-2">Add blogs</p>
       <form
         onSubmit={handleSubmit(onBlogFormSubmit)}
-        className="flex flex-col space-y-2 px-2"
+        className="flex flex-col gap-4 px-2"
       >
         <input
           className={inputStyle}
@@ -82,10 +89,20 @@ const BlogForm = () => {
             This field is required
           </span>
         )}
-        <textarea
-          className={inputStyle + " h-[200px]"}
+        <ReactQuill
+          value={content}
+          style={{ height: "400px" }}
+          className="mb-32 md:mb-16"
+          onChange={(e) => {
+            setContent(e);
+          }}
+          modules={modules}
+          formats={formats}
+        />
+        <input
+          hidden
           {...register("content", { required: true })}
-          placeholder="Content"
+          value={content}
         />
         {errors.content && (
           <span className="text-center text-red-500">
@@ -132,10 +149,16 @@ const BlogForm = () => {
       <div className="my-5 px-2">
         <p className="mb-3 text-xl font-semibold">List of all the blogs:</p>
         <div className="flex flex-col items-center">
-          {blogs.length !== 0 &&
+          {showBlogs &&
+            blogs.length !== 0 &&
             blogs.map((post: post, index) => (
               <Blog id={post.id} blog={post.blog} key={index} />
             ))}
+          {showBlogs && blogs.length === 0 && (
+            <div>
+              <DotSpinner size={40} speed={0.9} color="purple" />
+            </div>
+          )}
           <button
             className={"flex items-center gap-3 " + adminButton}
             onClick={() => {
@@ -146,7 +169,11 @@ const BlogForm = () => {
             }}
           >
             {showBlogs ? "Hide" : "Show"} All{" "}
-            <AiOutlineDownCircle className="text-2xl" />
+            {showBlogs ? (
+              <AiOutlineUpCircle className="text-2xl" />
+            ) : (
+              <AiOutlineDownCircle className="text-2xl" />
+            )}
           </button>
         </div>
       </div>
@@ -160,8 +187,14 @@ type props = {
   blog: Blog;
   id: string;
 };
+
+// component which shows the already existing blogs
+
 function Blog({ blog, id }: props) {
   const [showEditForm, setShowEditForm] = useState(false);
+  const [formSubmitting, setFormSubmitting] = useState(false);
+  const [content, setContent] = useState(blog.content);
+
   const {
     register,
     handleSubmit,
@@ -169,8 +202,11 @@ function Blog({ blog, id }: props) {
     formState: { errors },
   } = useForm<Blog>();
   const onEditBlogFormSubmit: SubmitHandler<Blog> = async (data) => {
-    data.date = !data.date ? Date.now() : data.date;
+    data.content = content;
+    console.log(data);
 
+    // data.date = !data.date ? Date.now() : data.date;
+    setFormSubmitting(true);
     try {
       const updatedFields: { [key: string]: string | number } = {};
 
@@ -190,12 +226,22 @@ function Blog({ blog, id }: props) {
         await updateDoc(frankDocRef, updatedFields);
       }
       alert("blog updated successfully!");
+      setShowEditForm(false);
+      setFormSubmitting(false);
     } catch (error: any) {
       alert(error.message + " Please try again");
+      setFormSubmitting(false);
     }
   };
+  if (typeof blog === "undefined") {
+    return (
+      <div className="flex justify-center items-center">
+        <DotSpinner size={40} speed={0.9} color="purple" />
+      </div>
+    );
+  }
   return (
-    <div className="w-full flex flex-col justify-evenly  shadow-lg px-3 py-3 rounded-lg">
+    <div className="w-full flex flex-col justify-evenly  shadow-lg px-3 py-3 rounded-lg my-3">
       <div className="space-y-3">
         <div className="flex justify-between">
           <div className="font-semibold flex justify-center w-full text-3xl text-center">
@@ -213,7 +259,11 @@ function Blog({ blog, id }: props) {
         </div>
         <p className="text-lg">{blog.about}</p>
         <p>{blog.designation}</p>
-        <p className="text-sm">{trimString(blog.content)}</p>
+        <div
+          className="text-sm"
+          id="blog-content"
+          dangerouslySetInnerHTML={{ __html: content }}
+        ></div>
         <p className="text-xs text-gray-400">
           <TimeAgo date={blog.date} /> by {blog.author}
         </p>
@@ -249,11 +299,18 @@ function Blog({ blog, id }: props) {
               This field is required
             </span>
           )}
-          <textarea
-            className={"h-[400px] " + inputStyle}
+          <ReactQuill
+            value={content}
+            onChange={(e) => {
+              setContent(e);
+            }}
+            modules={modules}
+            formats={formats}
+          />
+          <input
+            hidden
             {...register("content", { required: true })}
-            placeholder="Content"
-            defaultValue={blog.content}
+            value={content}
           />
           {errors.content && (
             <span className="text-center text-red-500">
@@ -294,10 +351,14 @@ function Blog({ blog, id }: props) {
             </span>
           )}
           <button
-            className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded w-3/5 mx-auto"
+            className="shadow flex justify-center bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded w-3/5 mx-auto"
             type="submit"
           >
-            Edit Blog
+            {formSubmitting ? (
+              <DotWave size={47} speed={1} color="white" />
+            ) : (
+              "Edit Blog"
+            )}
           </button>
         </form>
       )}

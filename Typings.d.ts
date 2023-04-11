@@ -9,8 +9,20 @@ type Blog = {
   date: number;
 };
 
-type Book = {};
+type Book = {
+  name: string;
+  author: string;
+  image: string;
+  genre: string[];
+  rating: number;
+};
 
 type LAC_Event = {};
 
-type Team_Member = {};
+type Team_Member = {
+  [key: string]: string;
+  picture:string;
+  name:string;
+  post:string;
+  desc:string;
+};
