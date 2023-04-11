@@ -9,7 +9,13 @@ type Blog = {
   date: number;
 };
 
-type Book = {};
+type Book = {
+  name: string;
+  author: string;
+  image: string;
+  genre: string[];
+  rating: number;
+};
 
 type LAC_Event = {};
 
