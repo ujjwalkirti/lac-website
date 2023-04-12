@@ -4,32 +4,32 @@ import React from "react";
 
 const Page2 = () => {
   return (
-    <div className="flex items-center mt-[169px]">
-      <div className="w-3/4 flex gap-[48px]">
-        <div className="h-[686px] w-[347px] px-[21px] py-[19px] border border-black dark:border-white rounded-md">
-          <div className="relative h-[397px] w-[304px]">
+    <div className="flex items-center my-[169px]">
+      <div className="w-3/4 flex gap-[24px]">
+        <div className="h-[686px] w-1/3 px-[21px] py-[19px] border border-black dark:border-white rounded-md">
+          <div className="relative h-[397px] w-1/3">
             <Image src={`/some-image.png`} alt="blog's image" fill />
           </div>
         </div>
-        
-        <div className="h-[686px] w-[347px] px-[21px] py-[19px] border border-black dark:border-white rounded-md">
-          <div className="relative h-[397px] w-[304px]">
+
+        <div className="h-[686px] w-1/3 px-[21px] py-[19px] border border-black dark:border-white rounded-md">
+          <div className="relative h-[397px] w-1/3">
             <Image src={`/some-image.png`} alt="blog's image" fill />
           </div>
         </div>
-        <div className="h-[686px] w-[347px] px-[21px] py-[19px] border border-black dark:border-white rounded-md">
-          <div className="relative h-[397px] w-[304px]">
+        <div className="h-[686px] w-1/3 px-[21px] py-[19px] border border-black dark:border-white rounded-md">
+          <div className="relative h-[397px] w-1/3">
             <Image src={`/some-image.png`} alt="blog's image" fill />
           </div>
         </div>
-        <Image
-          src={`/right.svg`}
-          width={70}
-          height={70}
-          alt="right pointing svg"
-        />
       </div>
-      <div className="w-1/5 flex flex-col items-start justify-between">
+      <Image
+        src={`/right.svg`}
+        width={70}
+        height={70}
+        alt="right pointing svg"
+      />
+      <div className="w-1/4 flex flex-col items-start justify-between">
         <p className="font-[500] text-[96px] leading-[100px] mb-[50px]">
           Featured <br />
           Blogs

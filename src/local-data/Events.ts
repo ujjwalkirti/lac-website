@@ -1,1 +1,1 @@
-export const events: LAC_Event[] = [];
+export const local_events: LAC_Event[] = [];

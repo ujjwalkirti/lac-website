@@ -41,6 +41,10 @@ const BlogForm = () => {
   } = useForm<Blog>();
   const onBlogFormSubmit: SubmitHandler<Blog> = async (data) => {
     data.date = Date.now();
+    data.content = content;
+    //@ts-ignore
+    data.isVerified = JSON.parse(data.isVerified);
+
     // Add a new document with a generated id.
     // const docRef = ;
     try {
@@ -99,12 +103,7 @@ const BlogForm = () => {
           modules={modules}
           formats={formats}
         />
-        <input
-          hidden
-          {...register("content", { required: true })}
-          value={content}
-        />
-        {errors.content && (
+        {content.length === 0 && (
           <span className="text-center text-red-500">
             This field is required
           </span>
@@ -139,6 +138,36 @@ const BlogForm = () => {
             This field is required
           </span>
         )}
+        <div>
+          <label htmlFor="isVerified">
+            Do you want to publish the blog directly?
+          </label>
+          <div className="flex space-x-4 items-center" id="isVerified">
+            <div className="flex items-center space-x-2">
+              <input
+                type="radio"
+                id="isVerifiedTrue"
+                value={"true"}
+                {...register("isVerified", { required: true })}
+              />
+              <label htmlFor="isVerifiedTrue">Yes</label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <input
+                id="isVerifiedFalse"
+                type="radio"
+                value={"false"}
+                {...register("isVerified", { required: true })}
+              />
+              <label htmlFor="isVerifiedFalse">No</label>
+            </div>
+          </div>
+          {errors.isVerified && (
+            <span className="text-center text-red-500">
+              This field is required
+            </span>
+          )}
+        </div>
         <button
           className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded w-3/5 mx-auto"
           type="submit"
@@ -208,7 +237,7 @@ function Blog({ blog, id }: props) {
     // data.date = !data.date ? Date.now() : data.date;
     setFormSubmitting(true);
     try {
-      const updatedFields: { [key: string]: string | number } = {};
+      const updatedFields: { [key: string]: string | number | boolean } = {};
 
       // loop through form data and compare with defaultValues to detect changes
 
@@ -235,7 +264,7 @@ function Blog({ blog, id }: props) {
   };
   if (typeof blog === "undefined") {
     return (
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center my-10">
         <DotSpinner size={40} speed={0.9} color="purple" />
       </div>
     );
@@ -264,9 +293,15 @@ function Blog({ blog, id }: props) {
           id="blog-content"
           dangerouslySetInnerHTML={{ __html: content }}
         ></div>
-        <p className="text-xs text-gray-400">
-          <TimeAgo date={blog.date} /> by {blog.author}
-        </p>
+        <hr />
+        <div className="flex items-center justify-between">
+          <p className="text-xs text-gray-400">
+            <TimeAgo date={blog.date} /> by {blog.author}
+          </p>
+          <p className="text-xs">
+            {blog.isVerified ? "Published" : "Not Published, under review."}
+          </p>
+        </div>
         <div className="h-[300px] w-full relative object-contain mt-4">
           <Image src={blog.illustration || " "} fill alt="blogs image" />
         </div>

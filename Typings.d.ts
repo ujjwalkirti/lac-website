@@ -1,5 +1,6 @@
 type Blog = {
-  [key: string]: string | number;
+  [key: string]: string | number | boolean;
+  isVerified: boolean;
   name: string;
   author: string;
   designation: string;
@@ -21,8 +22,8 @@ type LAC_Event = {};
 
 type Team_Member = {
   [key: string]: string;
-  picture:string;
-  name:string;
-  post:string;
-  desc:string;
+  picture: string;
+  name: string;
+  post: string;
+  desc: string;
 };
