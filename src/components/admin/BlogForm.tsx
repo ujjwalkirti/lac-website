@@ -208,7 +208,7 @@ function Blog({ blog, id }: props) {
     // data.date = !data.date ? Date.now() : data.date;
     setFormSubmitting(true);
     try {
-      const updatedFields: { [key: string]: string | number } = {};
+      const updatedFields: { [key: string]: string | number | boolean } = {};
 
       // loop through form data and compare with defaultValues to detect changes
 
