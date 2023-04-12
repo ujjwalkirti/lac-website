@@ -1,6 +1,6 @@
 type Blog = {
-  [key: string]: string | number;
-  isVerified: string;
+  [key: string]: string | number | boolean;
+  isVerified: boolean;
   name: string;
   author: string;
   designation: string;
