@@ -1,5 +1,6 @@
 type Blog = {
   [key: string]: string | number;
+  isVerified: string,
   name: string;
   author: string;
   designation: string;
