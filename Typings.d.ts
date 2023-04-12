@@ -22,8 +22,8 @@ type LAC_Event = {};
 
 type Team_Member = {
   [key: string]: string;
-  picture:string;
-  name:string;
-  post:string;
-  desc:string;
+  picture: string;
+  name: string;
+  post: string;
+  desc: string;
 };
