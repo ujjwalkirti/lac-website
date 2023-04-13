@@ -11,7 +11,7 @@ import {
 const Footer = () => {
   const { systemTheme, theme, setTheme } = useTheme();
   return (
-    <section className="flex flex-col items-center">
+    <section className="w-11/12 mx-auto flex flex-col items-center">
       <div className="h-[72px] w-[72px] relative mt-[51px]">
         <Image
           className="rounded-full"

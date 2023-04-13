@@ -11,12 +11,8 @@ const RecentEventDialogueBox = ({ isFirst, isLast }: props) => {
   return (
     <div
       className={
-        "px-[32px] pb-[42px] h-[517px] flex flex-col justify-between items-end border border-black dark:border-white rounded-md " +
-        `${
-          isFirst
-            ? "flex-grow hover:flex-grow-0  transition duration-500 ease-in-out bg-red-500"
-            : "w-1/4 hover:w-1/4 transition duration-500 ease-in-out bg-blue-500"
-        }`
+        "pb-[42px] h-[517px] flex flex-col justify-between items-end border border-black dark:border-white rounded-md " +
+        `${isFirst ? "flex-grow-2" : "w-1/4 hover:w-1/2"}`
       }
     >
       <div className="mt-[24px] mr-[32px] font-[600] text-[24px] leading-[24.38px] flex items-center gap-2 ">

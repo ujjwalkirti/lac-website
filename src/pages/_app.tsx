@@ -40,7 +40,7 @@ export default function App({
     <SessionProvider session={session}>
       <ThemeProvider enableSystem={true} attribute="class">
         {loading && <Loader />}
-        <div className={"w-11/12 mx-auto " + monsterrat.className}>
+        <div className={"bg-[#F8F3ED] " + monsterrat.className}>
           <Navbar />
           <Component {...pageProps} />
           <Footer />

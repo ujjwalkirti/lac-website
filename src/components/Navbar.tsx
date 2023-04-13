@@ -2,10 +2,11 @@ import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { AiFillIeSquare, AiFillPlaySquare } from "react-icons/ai";
+import { AiFillPlaySquare } from "react-icons/ai";
+import { BsFillSunFill, BsMoonFill } from "react-icons/bs";
 
 const Navbar = () => {
-  const { systemTheme, theme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
@@ -14,7 +15,7 @@ const Navbar = () => {
     return null;
   }
   return (
-    <section className="flex justify-between items-center mt-[32px]">
+    <section className="flex justify-between items-center w-11/12 mx-auto pt-[32px] text-[#2C1810] font-medium">
       <div className="h-[72px] w-[72px] relative">
         <Image
           className="rounded-full"
@@ -32,14 +33,22 @@ const Navbar = () => {
         <Link href={`/committee`}>TEAM</Link>
       </div>
       {/* Theme toggle button */}
-      <div className="w-[66px] h-[34px] bg-black dark:bg-white relative flex items-center rounded-md">
-        <AiFillPlaySquare
-          className="text-[33px] cursor-pointer text-white dark:text-black absolute dark:right-0"
-          onClick={() => {
-            console.log("button clicked");
-            setTheme(theme === "light" ? "dark" : "light");
-          }}
-        />
+      <div
+        className="w-[86px] h-[36px] relative rounded-full shadow-slate-400 shadow-inner cursor-pointer"
+        onClick={() => {
+          setTheme(theme === "dark" ? "light" : "dark");
+        }}
+      >
+        <span className="h-[40px] w-[40px] rounded-full bg-[#DA8E63] absolute -top-0.5 dark:right-0"></span>
+        {theme === "light" ? (
+          <span className=" absolute right-2 text-[19px] text-[#DA8E63] h-full flex items-center">
+            <BsMoonFill />
+          </span>
+        ) : (
+          <span className=" absolute left-2 text-[19px] text-[#DA8E63] h-full flex items-center">
+            <BsFillSunFill />
+          </span>
+        )}
       </div>
     </section>
   );

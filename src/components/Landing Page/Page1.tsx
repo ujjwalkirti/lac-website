@@ -1,58 +1,53 @@
-import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-import { AiFillCiCircle, AiOutlineArrowRight } from "react-icons/ai";
+import React, { useState } from "react";
+import { FiArrowRight } from "react-icons/fi";
 import RecentEventDialogueBox from "./RecentEventDialogueBox";
+import { Libre_Caslon_Text } from "next/font/google";
+import BookClubIndicator from "./BookClubIndicator";
+import FirstLetterCapital from "./FirstLetterCapital";
+import Typewriter from "./Typewriter";
 
+const libre_caslon_text = Libre_Caslon_Text({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  display: "swap",
+});
 const Page1 = () => {
   return (
-    <div className="mt-[69px]">
-      <p className=" font-[500] text-[96px] leading-[115.2px]">
-        Literary Affairs Committee
+    <div className="mt-[29px] text-[#2C1810]">
+      <p
+        className={
+          "font-[500] text-[96px] leading-[115.2px] mb-[19px] " +
+          libre_caslon_text.className
+        }
+      >
+        <span className="font-bold text-[#DA8E63]">L</span>
+        iterary <span className="font-bold text-[#DA8E63]">A</span>
+        ffairs <span className="font-bold text-[#DA8E63]">C</span>ommittee
       </p>
-      <p className="font-[400] text-[20px] leading-[24.38px]">
+      <p className="font-[400] text-[20px] leading-[24.38px] text-[#8D4B31]">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
         repudiandae ab nam molestias officiis mollitia voluptate illo nemo
         tenetur, nihil, vero odio sapiente, dolorum quidem itaque optio magnam
         debitis atque!
       </p>
-      <div className="flex items-end mt-[39px]">
-        <div className="flex flex-col w-[30%] h-[517px] justify-between">
-          <div className="flex flex-col w-[75%] h-[70%]  mx-auto pb-4 items-center justify-between border border-black dark:border-white rounded-md px-8">
-            {" "}
-            <Image
-              src={`/book.svg`}
-              alt="Book svg"
-              height={200}
-              width={200}
-              className="w-[140px] h-[108.18px] mx-auto"
-            />
-            <p className="font-[400] text-[16px] leading-[21.01px] text-center">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur
-              facere iure exercitationem assumenda aliquid accusamus blanditiis,
-              id saepe? Corrupti magni illo non deserunt ut consequatur quae
-              dolore expedita itaque. Iusto.
-            </p>
-            <Link
-              href={`/book_club`}
-              className="h-[40px] w-[137px] text-[14px] font-[600] leading-[17.07px] py-[12px] px-[23px] bg-gray-400"
-            >
-              BOOK CLUB
-            </Link>
-          </div>
-          <div className="text-[96px] font-[400] leading-[115.2px]  mx-auto">
-            <p className="flex justify-end items-center">
-              Events{" "}
-              <Image
-                src={`/right-arrow.svg`}
-                height={100}
-                width={80}
-                alt="right pointing svg"
-              />
-            </p>
-          </div>
+      <div className="flex items-end justify-between gap-4 mt-[39px]">
+        <div className="w-[36%] h-[517px] flex flex-col justify-between">
+          <BookClubIndicator />
+          <p
+            className={
+              "flex justify-between items-center text-[96px] font-[400] leading-[115.2px] w-11/12  mx-auto text-black " +
+              libre_caslon_text.className
+            }
+          >
+            <span>
+              <FirstLetterCapital letter="E" />
+              vents{" "}
+            </span>
+            <FiArrowRight />
+          </p>
         </div>
-        <div className="w-[70%] flex justify-between gap-[40px] ml-[66px]">
+        <div className="w-[60%] flex justify-between gap-[20px]">
           <RecentEventDialogueBox isFirst={true} isLast={false} />
           <RecentEventDialogueBox isFirst={false} isLast={false} />
           <RecentEventDialogueBox isFirst={false} isLast={true} />
