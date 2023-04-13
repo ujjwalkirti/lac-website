@@ -1,27 +1,15 @@
 import React from "react";
 
-type props = {
-  words: string[];
-};
+const texts = ["Literary", "Affairs", "Committee"];
 
-const Typewriter = ({ words }: props) => {
+const Typewriter = () => {
   return (
     <div>
-      {words.map((word, index) => (
-        <MainEffect key={index} word={word} />
+      {texts.map((text, index) => (
+        <p key={index}>{}</p>
       ))}
     </div>
   );
 };
 
 export default Typewriter;
-
-type secondaryProps = {
-  word: string;
-};
-
-function MainEffect({ word }: secondaryProps) {
-  return <span>
-    
-  </span>;
-}

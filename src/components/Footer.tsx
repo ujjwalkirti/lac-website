@@ -1,3 +1,4 @@
+import { libre_caslon_text } from "@/utils";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,25 +21,47 @@ const Footer = () => {
           fill
         />
       </div>
-      <p className="mt-[50px] font-[500] text-[48px] leading-[57.6px]">
+      <p
+        className={
+          "mt-[25px] font-[500] text-[38px] leading-[57.6px] " +
+          libre_caslon_text.className
+        }
+      >
         Literary Affairs Committee
       </p>
-      <p className="mt-[16px] w-[406px] mb-[59px] text-[20px] font-[400] leading-[24.38px] text-center">
+      <p className="mt-[16px] w-[75vw] mb-[20px] text-[20px] font-[400] leading-[24.38px] text-center">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum ab,
         fugit beatae quia voluptatem voluptatum nesciunt doloremque excepturi
         autem, vitae tenetur veniam quos vel et id neque accusamus delectus nam.
       </p>
-      <div className="flex gap-[50px] items-center justify-center mb-[84px]">
-        <Link href={`/`}>HOME</Link>
-        <Link href={`/events`}>EVENTS</Link>
-        <Link href={`/blogs`}>BLOGS</Link>
-        <Link href={`/about_us`}>ABOUT US</Link>
-        <Link href={`/committee`}>TEAM</Link>
-        <Link href={`/contact`}>CONTACT</Link>
+      <div
+        className={
+          "flex gap-[50px] items-center justify-center mb-[34px] " +
+          libre_caslon_text.className
+        }
+      >
+        <Link className="hover:underline" href={`/`}>
+          HOME
+        </Link>
+        <Link className="hover:underline" href={`/events`}>
+          EVENTS
+        </Link>
+        <Link className="hover:underline" href={`/blogs`}>
+          BLOGS
+        </Link>
+        <Link className="hover:underline" href={`/about_us`}>
+          ABOUT US
+        </Link>
+        <Link className="hover:underline" href={`/committee`}>
+          TEAM
+        </Link>
+        <Link className="hover:underline" href={`/contact`}>
+          CONTACT
+        </Link>
       </div>
-      <div className="flex justify-between items-center mb-[26px] w-full">
+      <div className="flex justify-between items-center mb-[20px] w-full">
         <p>CopyRight 2023 LAC, All Rights Reserved</p>
-        <div className="flex space-x-[29px] text-[46px]">
+        <div className="flex space-x-8 text-[36px]">
           <AiFillFacebook />
           <AiFillInstagram />
           <AiFillLinkedin />

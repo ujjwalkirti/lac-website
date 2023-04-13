@@ -1,12 +1,6 @@
-import { Libre_Caslon_Text } from "next/font/google";
+import { libre_caslon_text } from "@/utils";
 import Image from "next/image";
 import React from "react";
-
-const libre_caslon_text = Libre_Caslon_Text({
-  weight: ["400", "700"],
-  subsets: ["latin"],
-  display: "swap",
-});
 
 const ThreeValuesOfLac = () => {
   return (

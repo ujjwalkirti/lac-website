@@ -39,7 +39,7 @@ const Navbar = () => {
           setTheme(theme === "dark" ? "light" : "dark");
         }}
       >
-        <span className="h-[40px] w-[40px] rounded-full bg-[#DA8E63] absolute -top-0.5 dark:right-0"></span>
+        <span className="h-[40px] w-[40px] rounded-full bg-[#DA8E63] absolute -top-0.5 dark:right-0 transition-all duration-500 ease-in-out"></span>
         {theme === "light" ? (
           <span className=" absolute right-2 text-[19px] text-[#DA8E63] h-full flex items-center">
             <BsMoonFill />
