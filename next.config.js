@@ -6,6 +6,7 @@ const nextConfig = {
       "images.lifestyleasia.com",
       "api.time.com",
       "imgs.search.brave.com",
+      "links.papareact.com"
     ],
   },
 };

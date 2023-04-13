@@ -1,5 +1,6 @@
 type Blog = {
   [key: string]: string | number | boolean;
+  isFeatured: boolean;
   isVerified: boolean;
   name: string;
   author: string;

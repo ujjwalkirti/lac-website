@@ -1,6 +1,7 @@
 export const local_blogs: Blog[] = [
   {
     name: "Nextjs - The React Framework for the Web",
+    isFeatured: true,
     isVerified: true,
     author: "Ujjwal Kirti",
     designation: "10x Developer",
@@ -13,6 +14,7 @@ export const local_blogs: Blog[] = [
   },
   {
     name: "Nextjs - The React Framework for the Web",
+    isFeatured: true,
     isVerified: true,
     author: "Ujjwal Kirti",
     designation: "10x Developer",
@@ -25,6 +27,7 @@ export const local_blogs: Blog[] = [
   },
   {
     name: "Nextjs - The React Framework for the Web",
+    isFeatured: true,
     isVerified: true,
     author: "Ujjwal Kirti",
     designation: "10x Developer",
@@ -37,6 +40,7 @@ export const local_blogs: Blog[] = [
   },
   {
     name: "Nextjs - The React Framework for the Web",
+    isFeatured: false,
     isVerified: false,
     author: "Ujjwal Kirti",
     designation: "10x Developer",
@@ -49,6 +53,7 @@ export const local_blogs: Blog[] = [
   },
   {
     name: "Nextjs - The React Framework for the Web",
+    isFeatured: false,
     isVerified: true,
     author: "Ujjwal Kirti",
     designation: "10x Developer",
@@ -61,6 +66,7 @@ export const local_blogs: Blog[] = [
   },
   {
     name: "Nextjs - The React Framework for the Web",
+    isFeatured: false,
     isVerified: true,
     author: "Ujjwal Kirti",
     designation: "10x Developer",
