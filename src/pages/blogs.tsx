@@ -3,6 +3,8 @@ import NormalBlog from "@/components/Blogs/NormalBlog";
 import { local_blogs } from "@/local-data/Blogs";
 import Head from "next/head";
 import React from "react";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from "../Firebase.js";
 
 type props = {
   blogs: Blog[];
@@ -20,7 +22,7 @@ const Blogs = ({ blogs }: props) => {
         <FeaturedBlog blog={local_blogs[0]} />
         {/* remaining blogs paginated with 6 blogs divided across 3 columns and 2 rows */}
         <div className="grid grid-cols-3 gap-8">
-          {local_blogs.map((blog, index) => {
+          {blogs.map((blog, index) => {
             if (index !== 0) {
               return <NormalBlog blog={blog} key={index} />;
             }
@@ -34,11 +36,25 @@ const Blogs = ({ blogs }: props) => {
 export default Blogs;
 
 export async function getServerSideProps(context: any) {
-  let blogs: any = [];
+  let blogs: any[] = [];
   /* get only those blogs from firestore database whose isVerified value is true.
 
-  You will get more details about it in the firestore documentation
+  You will get more details abo=ut it in the firestore documentation
   */
+
+  const q = query(collection(db, "blogs"), where("isVerified", "==", true));
+
+  const localblogs = await getDocs(q);
+  localblogs.forEach((doc: { id: any; data: () => any }) => {
+    // doc.data() is never undefined for query doc snapshots
+    console.log(doc.id, " => ", doc.data());
+    blogs.push(doc.data());
+  });
+
+  /*const q = query(collection(db, "blogs"), where("isVerified", "==", true));
+  blogs = await getDocs(q);
+  blogs = JSON.parse(JSON.stringify(blogs));*/
+
   return {
     props: {
       blogs,
