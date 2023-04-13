@@ -18,7 +18,9 @@ type Book = {
   rating: number;
 };
 
-type LAC_Event = {};
+type LAC_Event = {
+  
+};
 
 type Team_Member = {
   [key: string]: string;
