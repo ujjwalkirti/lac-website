@@ -19,11 +19,11 @@ const Blogs = ({ blogs }: props) => {
       <div className="min-h-screen px-8">
         <p className="font-[600] text-[96px] mt-[48px] mb-[27px]">LAC Blog</p>
         {/* featured blog */}
-        <FeaturedBlog blog={local_blogs[0]} />
+        <FeaturedBlog blog={blogs[0]} />
         {/* remaining blogs paginated with 6 blogs divided across 3 columns and 2 rows */}
         <div className="grid grid-cols-3 gap-8">
           {blogs.map((blog, index) => {
-            if (index !== 0) {
+            if (index !== 0 && blog.isFeatured != true) {
               return <NormalBlog blog={blog} key={index} />;
             }
           })}
@@ -42,14 +42,26 @@ export async function getServerSideProps(context: any) {
   You will get more details abo=ut it in the firestore documentation
   */
 
+  let featuredBlog: any[] = [];
+  blogs.push({});
+
   const q = query(collection(db, "blogs"), where("isVerified", "==", true));
 
   const localblogs = await getDocs(q);
   localblogs.forEach((doc: { id: any; data: () => any }) => {
     // doc.data() is never undefined for query doc snapshots
-    console.log(doc.id, " => ", doc.data());
-    blogs.push(doc.data());
+    if (doc.data().isFeatured) {
+      featuredBlog.push(doc.data());
+    } else {
+      blogs.push(doc.data());
+    }
   });
+
+  const sortedData = [...featuredBlog].sort(
+    //@ts-ignore
+    (a: number, b: number) => new Date(a.date) - new Date(b.date)
+  );
+  blogs[0] = sortedData[sortedData.length - 1];
 
   /*const q = query(collection(db, "blogs"), where("isVerified", "==", true));
   blogs = await getDocs(q);
