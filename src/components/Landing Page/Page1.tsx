@@ -5,8 +5,9 @@ import BookClubIndicator from "./BookClubIndicator";
 import FirstLetterCapital from "./FirstLetterCapital";
 import Typewriter from "./Typewriter";
 import { CgLivePhoto } from "react-icons/cg";
-import { libre_caslon_text } from "@/utils";
+import { libre_caslon_text, monsterrat } from "@/utils";
 import Image from "next/image";
+import EventsSwiper from "./EventsSwiper";
 
 const Page1 = () => {
   const [isOtherHovered, setIsOtherHovered] = useState(false);
@@ -16,7 +17,7 @@ const Page1 = () => {
     <div className="mt-[29px] text-[#2C1810]">
       <p
         className={
-          "font-[500] text-[76px] leading-[75.2px] mb-[19px] " +
+          "font-[700] lg:font-[500] text-[24px] md:text-[56px] lg:text-[76px] lg:leading-[75.2px] mb-[19px] " +
           libre_caslon_text.className
         }
       >
@@ -25,18 +26,23 @@ const Page1 = () => {
         ffairs <span className="font-bold text-[#DA8E63]">C</span>ommittee
       </p>
       <Typewriter />
-      <p className="font-[400] text-[20px] leading-[24.38px] text-[#8D4B31]">
+      <p
+        className={
+          "font-[400] text-[13px] lg:text-[20px] leading-[17px] lg:leading-[24.38px] text-[#8D4B31] text-center " +
+          monsterrat.className
+        }
+      >
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
         repudiandae ab nam molestias officiis mollitia voluptate illo nemo
         tenetur, nihil, vero odio sapiente, dolorum quidem itaque optio magnam
         debitis atque!
       </p>
-      <div className="flex items-end justify-between gap-4 mt-[30px]">
-        <div className="w-[30vw] flex flex-col justify-between">
+      <div className="flex flex-col lg:flex-row  lg:items-end items-center lg:justify-between gap-4 mt-[30px]">
+        <div className="lg:w-[30vw] flex flex-col lg:justify-between">
           <BookClubIndicator />
           <p
             className={
-              "flex justify-between items-center text-[76px] font-[400] leading-[115.2px] w-9/12  mx-auto text-black " +
+              "flex justify-center lg:justify-between items-center text-[39px] lg:text-[76px] font-[400] lg:leading-[115.2px] w-9/12  mx-auto text-[#2C1810] mt-10 lg:mt-0 " +
               libre_caslon_text.className
             }
           >
@@ -44,10 +50,13 @@ const Page1 = () => {
               <FirstLetterCapital letter="E" />
               vents{" "}
             </span>
-            <FiArrowRight />
+            <FiArrowRight className="hidden lg:flex" />
           </p>
+          <Link href={`/events`} className="w-[80px] mx-auto lg:hidden">
+            View all
+          </Link>
         </div>
-        <div className="w-[60%] flex justify-between gap-[20px] h-[420px]">
+        <div className="hidden w-[60%] lg:flex justify-between gap-[20px] h-[420px]">
           {/* div for major latest upcoming event */}
           <div
             className={
@@ -57,10 +66,12 @@ const Page1 = () => {
           >
             {" "}
             <div className="relative h-full">
-              <div className="absolute top-3 right-3 z-20 text-white flex items-center gap-3">
-                <CgLivePhoto />
-                <p>Upcoming</p>
-              </div>
+              {!isOtherHovered && (
+                <div className="absolute top-3 right-3 z-20 text-white flex items-center gap-3 text-xl font-semibold">
+                  <CgLivePhoto />
+                  <p>Upcoming</p>
+                </div>
+              )}
               <Image
                 src="/events-card/image-1.png"
                 fill
@@ -84,7 +95,7 @@ const Page1 = () => {
                 </p>
                 {!isOtherHovered && (
                   <Link
-                    className="bg-[#DA8E63] text-sm px-3 py-2 rounded-lg"
+                    className="bg-[#DA8E63] text-lg px-3 py-2 rounded-lg "
                     href="/event/register/:event_id"
                   >
                     View / Register
@@ -107,6 +118,12 @@ const Page1 = () => {
           >
             {" "}
             <div className="relative h-full">
+              {isOtherHovered && isSecondDivHovered && (
+                <div className="absolute top-3 right-3 z-20 text-white flex items-center gap-3 text-xl font-semibold">
+                  <CgLivePhoto />
+                  <p>Upcoming</p>
+                </div>
+              )}
               <Image
                 src="/events-card/image 2.png"
                 fill
@@ -151,6 +168,12 @@ const Page1 = () => {
           >
             {" "}
             <div className="relative h-full">
+              {isOtherHovered && !isSecondDivHovered && (
+                <div className="absolute top-3 right-3 z-20 text-white flex items-center gap-3 text-xl font-semibold">
+                  <CgLivePhoto />
+                  <p>Past</p>
+                </div>
+              )}
               <Image
                 src="/events-card/image 3.png"
                 fill
@@ -184,8 +207,10 @@ const Page1 = () => {
             </div>
           </div>
         </div>
+
+        <EventsSwiper />
       </div>
-      <div className="font-[600] text-[24px] leading-[29.26px] text-end my-4">
+      <div className="hidden lg:flex font-[600] text-[24px] leading-[29.26px] justify-end my-4">
         <Link href={`/events`}>View all</Link>
       </div>
     </div>

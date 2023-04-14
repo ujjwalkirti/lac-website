@@ -23,48 +23,56 @@ const Footer = () => {
       </div>
       <p
         className={
-          "mt-[25px] font-[500] text-[38px] leading-[57.6px] " +
+          "lg:mt-[25px] font-[500] text-[24px] lg:text-[38px] leading-[57.6px] " +
           libre_caslon_text.className
         }
       >
         Literary Affairs Committee
       </p>
-      <p className="mt-[16px] w-[75vw] mb-[20px] text-[20px] font-[400] leading-[24.38px] text-center">
+      <p className="mt-[16px] lg:w-[75vw] mb-[20px] text-[16px] lg:text-[20px] font-[400] leading-[24.38px] text-center">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum ab,
         fugit beatae quia voluptatem voluptatum nesciunt doloremque excepturi
         autem, vitae tenetur veniam quos vel et id neque accusamus delectus nam.
       </p>
       <div
         className={
-          "flex gap-[50px] items-center justify-center mb-[34px] " +
+          "grid grid-cols-3 gap-4 lg:grid-cols-6 lg:gap-[50px] mb-[34px] " +
           libre_caslon_text.className
         }
       >
-        <Link className="hover:underline" href={`/`}>
+        <Link className="hover:underline  text-center" href={`/`}>
           HOME
         </Link>
-        <Link className="hover:underline" href={`/events`}>
+        <Link className="hover:underline  text-center" href={`/events`}>
           EVENTS
         </Link>
-        <Link className="hover:underline" href={`/blogs`}>
+        <Link className="hover:underline  text-center" href={`/blogs`}>
           BLOGS
         </Link>
-        <Link className="hover:underline" href={`/about_us`}>
+        <Link className="hover:underline  text-center" href={`/about_us`}>
           ABOUT US
         </Link>
-        <Link className="hover:underline" href={`/committee`}>
+        <Link className="hover:underline  text-center" href={`/committee`}>
           TEAM
         </Link>
-        <Link className="hover:underline" href={`/contact`}>
+        <Link className="hover:underline  text-center" href={`/contact`}>
           CONTACT
         </Link>
       </div>
-      <div className="flex justify-between items-center mb-[20px] w-full">
+      <div className="flex flex-col lg:flex-row justify-between items-center mb-[20px] w-full gap-5">
         <p>CopyRight 2023 LAC, All Rights Reserved</p>
         <div className="flex space-x-8 text-[36px]">
-          <AiFillFacebook />
-          <AiFillInstagram />
-          <AiFillLinkedin />
+          <Link href={`https://www.facebook.com/LACSVNIT/`}>
+            <AiFillFacebook />
+          </Link>
+          <Link href={`https://www.instagram.com/lacsvnit/?hl=en`}>
+            <AiFillInstagram />
+          </Link>
+          <Link
+            href={`https://www.linkedin.com/company/lacsvnit/?originalSubdomain=in`}
+          >
+            <AiFillLinkedin />
+          </Link>
         </div>
       </div>
     </section>
