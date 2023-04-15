@@ -30,3 +30,9 @@ type Team_Member = {
   post: string;
   desc: string;
 };
+
+type Litevent = {
+  [key:string]: string;
+  img: string;
+  title: string;
+}

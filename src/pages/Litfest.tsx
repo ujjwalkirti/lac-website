@@ -2,11 +2,7 @@ import Event from '@/components/Litfest/Event';
 import React from 'react';
 import { Libre_Caslon_Text } from 'next/font/google';
 import Eventinfo from '@/components/Litfest/Eventinfo';
-import axios from 'axios';
-
-type props={
-    eventData: any;
-}
+import { eventData } from '@/local-data/Litfest';
 
 const libre_caslon_text = Libre_Caslon_Text({
     weight: ["400", "700"],
@@ -14,7 +10,7 @@ const libre_caslon_text = Libre_Caslon_Text({
     display: "swap",
 });
 
-const litfest = ({eventData}:props) => {
+const litfest = () => {
   return (
     <div className="w-11/12 md:w-10/12 mx-auto">
         <section>
@@ -43,16 +39,3 @@ const litfest = ({eventData}:props) => {
 }
 
 export default litfest;
-
-export async function getServerSideProps(){
-    let eventData:any = [];
-    const URL = process.env.PORT ? `${process.env.PORT}/hello` : "/api/hello";
-    await axios(URL).
-    then(res=>{eventData = res.data});
-
-    return {
-        props:{
-            eventData: eventData.cards,
-        }
-    };
-}
