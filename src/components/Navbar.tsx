@@ -57,8 +57,8 @@ const Navbar = () => {
         <Link className="hover:underline" href={`/about_us`}>
           ABOUT US
         </Link>
-        <Link className="hover:underline" href={`/committee`}>
-          TEAM
+        <Link className="hover:underline" href={`/Litfest`}>
+          LITFEST
         </Link>
       </div>
       {/* 

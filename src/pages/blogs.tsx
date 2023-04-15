@@ -1,6 +1,5 @@
 import FeaturedBlog from "@/components/Blogs/FeaturedBlog";
 import NormalBlog from "@/components/Blogs/NormalBlog";
-import { local_blogs } from "@/local-data/Blogs";
 import Head from "next/head";
 import React from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
