@@ -13,25 +13,25 @@ const libre_caslon_text = Libre_Caslon_Text({
     display: "swap",
 });
 
-const Litfest = ({eventData}:props) => {
+const litfest = ({eventData}:props) => {
   return (
-    <div className="md:w-10/12 mx-auto">
+    <div className="w-11/12 md:w-10/12 mx-auto">
         <section>
           <h2 className={"text-4xl py-8 text-[#2C1810] " + libre_caslon_text.className}>Lit Fest</h2>
           <div className="flex space-x-3 overflow-scroll scrollbar-hide p-3 mx-auto">
-                {eventData?.map(function(item:any){
+                {eventData?.map(function(item:any,index:number){
                     return(
                     // eslint-disable-next-line react/jsx-key
-                    <Event key={item.img} img={item.img} title={item.title}/>
+                    <Event key={index} img={item.img} title={item.title}/>
                     );
                 })}
           </div>
           <div className="mt-10 mx-10">
-            {eventData?.map(function(item:any){
+            {eventData?.map(function(item:any,index:number){
                     return(
                         // eslint-disable-next-line react/jsx-key
-                        <div className="flex flex-col col-span-1 min-w-100">
-                            <Eventinfo key={item.img} img={item.img} title={item.title}/>
+                        <div className="flex flex-col col-span-1 min-w-100" key={index} >
+                            <Eventinfo img={item.img} title={item.title}/>
                         </div>
                     );
                 })}
@@ -41,7 +41,7 @@ const Litfest = ({eventData}:props) => {
   )
 }
 
-export default Litfest;
+export default litfest;
 
 export async function getServerSideProps(){
     const eventData = await fetch("http://localhost:3000/api/hello").
