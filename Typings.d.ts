@@ -1,5 +1,6 @@
 type Blog = {
   [key: string]: string | number | boolean;
+  isFeatured: boolean;
   isVerified: boolean;
   name: string;
   author: string;
@@ -16,9 +17,19 @@ type Book = {
   image: string;
   genre: string[];
   rating: number;
+  reviewLink: string;
 };
 
-type LAC_Event = {};
+type LAC_Event = {
+  [key: string]: string | number | boolean;
+  completed: boolean;
+  img: string;
+  title: string;
+  description: string;
+  teamMembers: number;
+  date: string;
+  reglink: string;
+};
 
 type Team_Member = {
   [key: string]: string;
@@ -26,4 +37,12 @@ type Team_Member = {
   name: string;
   post: string;
   desc: string;
+};
+
+type Litevent = {
+  [key: string]: string;
+  img: string;
+  title: string;
+  description: string;
+  date: string;
 };

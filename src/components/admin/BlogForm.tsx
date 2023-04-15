@@ -9,7 +9,6 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { db } from "@/Firebase";
-
 import {
   AiOutlineDelete,
   AiOutlineDownCircle,
@@ -22,6 +21,8 @@ import { DotSpinner, DotWave } from "@uiball/loaders";
 
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
+
+//@ts-ignore
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 type post = {
@@ -94,10 +95,11 @@ const BlogForm = () => {
           </span>
         )}
         <ReactQuill
+          //@ts-ignore
           value={content}
           style={{ height: "400px" }}
           className="mb-32 md:mb-16"
-          onChange={(e) => {
+          onChange={(e: React.SetStateAction<string>) => {
             setContent(e);
           }}
           modules={modules}
@@ -335,8 +337,9 @@ function Blog({ blog, id }: props) {
             </span>
           )}
           <ReactQuill
+            //@ts-ignore
             value={content}
-            onChange={(e) => {
+            onChange={(e: React.SetStateAction<string>) => {
               setContent(e);
             }}
             modules={modules}

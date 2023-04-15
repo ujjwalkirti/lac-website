@@ -5,11 +5,28 @@ import React from "react";
 const Loader = () => {
   const { theme } = useTheme();
   return (
-    <div className="fixed z-50 h-screen w-screen flex justify-center items-center">
+    <div
+      className={
+        "fixed z-50 h-screen w-screen flex justify-center items-center " +
+        `${theme === "dark" ? "bg-[#2C1810]" : "bg-white"}`
+      }
+    >
       {theme === "dark" ? (
-        <Image src={`/logo-black.jpeg`} height={60} width={60} alt="LAC logo" className="rounded-full"/>
+        <Image
+          src={`/logo-black.png`}
+          height={260}
+          width={260}
+          alt="LAC logo"
+          className="rounded-full border-4 border-gray-300 animate-spin"
+        />
       ) : (
-        <Image src={`/logo-white.png`} height={60} width={60} alt="LAC logo" className="rounded-full"/>
+        <Image
+          src={`/logo-white.png`}
+          height={260}
+          width={260}
+          alt="LAC logo"
+          className="border-4 border-[#2C1810] rounded-full animate-spin"
+        />
       )}
     </div>
   );

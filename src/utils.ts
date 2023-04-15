@@ -1,3 +1,5 @@
+import { Libre_Caslon_Text, Montserrat } from "next/font/google";
+
 const inputStyle = "flex-1 rounded-md p-2 pl-5 outline-none h-22 bg-gray-200";
 const adminButton =
   "shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded";
@@ -52,4 +54,25 @@ const formats = [
   "align",
   "clean",
 ];
-export { inputStyle, adminButton, trimString, modules, formats };
+
+const libre_caslon_text = Libre_Caslon_Text({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const monsterrat = Montserrat({
+  weight: ["300", "400", "500", "600", "700", "800"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
+export {
+  inputStyle,
+  adminButton,
+  trimString,
+  monsterrat,
+  modules,
+  formats,
+  libre_caslon_text,
+};
