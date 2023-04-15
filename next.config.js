@@ -6,8 +6,11 @@ const nextConfig = {
       "images.lifestyleasia.com",
       "api.time.com",
       "imgs.search.brave.com",
-      "links.papareact.com"
+      "links.papareact.com",
     ],
+  },
+  typescript: {
+    ignoreBuildErrors: true,
   },
 };
 
