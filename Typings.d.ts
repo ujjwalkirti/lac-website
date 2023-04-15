@@ -17,6 +17,7 @@ type Book = {
   image: string;
   genre: string[];
   rating: number;
+  reviewLink: string;
 };
 
 type LAC_Event = {
