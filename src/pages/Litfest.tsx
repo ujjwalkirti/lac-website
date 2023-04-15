@@ -2,6 +2,7 @@ import Event from '@/components/Litfest/Event';
 import React from 'react';
 import { Libre_Caslon_Text } from 'next/font/google';
 import Eventinfo from '@/components/Litfest/Eventinfo';
+import axios from 'axios';
 
 type props={
     eventData: any;
@@ -44,9 +45,10 @@ const litfest = ({eventData}:props) => {
 export default litfest;
 
 export async function getServerSideProps(){
-    const URL = process.env.PORT ? `${process.env.PORT}/hello`: "/api/hello";
-    const eventData = await fetch(URL).
-    then(res=>res.json());
+    let eventData:any = [];
+    const URL = process.env.PORT ? `${process.env.PORT}/hello` : "/api/hello";
+    await axios(URL).
+    then(res=>{eventData = res.data});
 
     return {
         props:{
