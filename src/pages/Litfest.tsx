@@ -3,16 +3,11 @@ import React from 'react';
 import { Libre_Caslon_Text } from 'next/font/google';
 import { eventData } from '@/local-data/Litfest';
 import Timeline from '@/components/Litfest/Timeline';
-
-const libre_caslon_text = Libre_Caslon_Text({
-    weight: ["400", "700"],
-    subsets: ["latin"],
-    display: "swap",
-});
+import { libre_caslon_text } from '@/utils';
 
 const litfest = () => {
   return (
-    <div className="w-11/12 md:w-10/12 mx-auto">
+    <div className="w-full md:w-10/12 mx-auto">
         <section>
           <h2 className={"text-4xl py-8 pl-3 text-[#2C1810] dark:bg-[#2C1810] dark:text-[#dfa437] " + libre_caslon_text.className}>Lit Fest</h2>
           <div className="flex space-x-3 overflow-scroll scrollbar-hide p-3 mx-auto">
@@ -23,7 +18,7 @@ const litfest = () => {
                     );
                 })}
           </div>
-          <div className="mt-10 mx-10">
+          <div className="mt-10 md:mx-10">
             <Timeline/>
           </div>
         </section>
