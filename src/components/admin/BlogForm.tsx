@@ -22,6 +22,9 @@ import { DotSpinner, DotWave } from "@uiball/loaders";
 
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
+
+
+//@ts-ignore
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 type post = {
