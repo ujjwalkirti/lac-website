@@ -12,13 +12,13 @@ const Events = () => {
         <title>Upcoming Events</title>
       </Head>
       <p className={"text-[60px] " + libre_caslon_text.className}>
-        <FirstLetterCapital letter="U" bgColor="#DA8E63" />
-        pcoming <FirstLetterCapital letter="E" bgColor="#DA8E63" />
+        <FirstLetterCapital letter="E" bgColor="#DA8E63" />
         vents
       </p>
       {/* Event 1 */}
       <div className="grid grid-cols-1 gap-5 items-center lg:grid-cols-3 ">
         <EventBox
+          finished={false}
           img="https://links.papareact.com/2io"
           title="Murder Mystery"
           description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
@@ -30,6 +30,7 @@ const Events = () => {
           reglink="https://docs.google.com/forms/d/e/1FAIpQLSckhc9sO0DCnf3BD9Gt3pKBLinFfp8qF0h-ZH761nU0MzpNEQ/viewform"
         />
         <EventBox
+          finished={true}
           img="https://links.papareact.com/2io"
           title="Murder Mystery"
           description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
@@ -41,6 +42,7 @@ const Events = () => {
           reglink="https://docs.google.com/forms/d/e/1FAIpQLSckhc9sO0DCnf3BD9Gt3pKBLinFfp8qF0h-ZH761nU0MzpNEQ/viewform"
         />
         <EventBox
+          finished={true}
           img="https://links.papareact.com/2io"
           title="Murder Mystery"
           description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
