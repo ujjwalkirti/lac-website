@@ -5,7 +5,7 @@ import { eventData } from '@/local-data/Litfest';
 import Timeline from '@/components/Litfest/Timeline';
 import { libre_caslon_text } from '@/utils';
 
-const litfest = () => {
+const Litfest = () => {
   return (
     <div className="w-full md:w-10/12 mx-auto">
         <section>
@@ -26,4 +26,4 @@ const litfest = () => {
   )
 }
 
-export default litfest;
+export default Litfest;
