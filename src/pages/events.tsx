@@ -18,7 +18,7 @@ const Events = () => {
       {/* Event 1 */}
       <div className="grid grid-cols-1 gap-5 items-center lg:grid-cols-3 ">
         <EventBox
-          finished={false}
+          completed={false}
           img="https://links.papareact.com/2io"
           title="Murder Mystery"
           description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
@@ -30,7 +30,7 @@ const Events = () => {
           reglink="https://docs.google.com/forms/d/e/1FAIpQLSckhc9sO0DCnf3BD9Gt3pKBLinFfp8qF0h-ZH761nU0MzpNEQ/viewform"
         />
         <EventBox
-          finished={true}
+          completed={true}
           img="https://links.papareact.com/2io"
           title="Murder Mystery"
           description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
@@ -42,7 +42,7 @@ const Events = () => {
           reglink="https://docs.google.com/forms/d/e/1FAIpQLSckhc9sO0DCnf3BD9Gt3pKBLinFfp8qF0h-ZH761nU0MzpNEQ/viewform"
         />
         <EventBox
-          finished={true}
+          completed={true}
           img="https://links.papareact.com/2io"
           title="Murder Mystery"
           description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
