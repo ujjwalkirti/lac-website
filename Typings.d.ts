@@ -22,7 +22,7 @@ type Book = {
 
 type LAC_Event = {
   [key: string]: string | number | boolean;
-  finished: boolean;
+  completed: boolean;
   img: string;
   title: string;
   description: string;

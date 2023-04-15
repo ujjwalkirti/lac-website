@@ -3,7 +3,7 @@ import FirstLetterCapital from "../Landing Page/FirstLetterCapital";
 import Image from "next/image";
 
 type props = {
-  finished?: boolean;
+  completed?: boolean;
   img: string;
   title: string;
   description: string;
@@ -13,7 +13,7 @@ type props = {
 };
 
 const EventBox = ({
-  finished,
+  completed,
   img,
   title,
   description,
@@ -28,12 +28,12 @@ const EventBox = ({
         <Image src={img} fill alt="Event poster" />
       </div>
       <p className="text-[30px] text-center font-bold">{title}</p>
-      {finished && (
+      {completed && (
         <div className="text-[15px] text-center font-semibold text-[#DA8E63]">
           <p>Registrations Over</p>
         </div>
       )}
-      {!finished && (
+      {!completed && (
         <div className="text-[15px] text-center font-semibold text-[#DA8E63]">
           <p>Registrations Ongoing</p>
         </div>
@@ -47,7 +47,7 @@ const EventBox = ({
       <div>
         <p className="text-left font-semibold">Date: {date}</p>
       </div>
-      {!finished && (
+      {!completed && (
         <a
           href={reglink}
           className="bg-[#dfa437] w-full rounded-lg text-center font-semibold dark:text-[#000000] py-3"
@@ -55,7 +55,7 @@ const EventBox = ({
           <button>Register</button>
         </a>
       )}
-      {finished && (
+      {completed && (
         <button
           className="bg-[#e3bc74] w-full rounded-lg text-center dark:text-[#858383] py-3 "
           disabled

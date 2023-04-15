@@ -1,6 +1,6 @@
 export const local_events: LAC_Event[] = [
   {
-    finished: false,
+    completed: false,
     img: "https://links.papareact.com/2io",
     title: "Murder Mystery",
     description:
@@ -11,7 +11,7 @@ export const local_events: LAC_Event[] = [
       "https://docs.google.com/forms/d/e/1FAIpQLSckhc9sO0DCnf3BD9Gt3pKBLinFfp8qF0h-ZH761nU0MzpNEQ/viewform",
   },
   {
-    finished: true,
+    completed: true,
     img: "https://links.papareact.com/2io",
     title: "Murder Mystery",
     description:
@@ -22,7 +22,7 @@ export const local_events: LAC_Event[] = [
       "https://docs.google.com/forms/d/e/1FAIpQLSckhc9sO0DCnf3BD9Gt3pKBLinFfp8qF0h-ZH761nU0MzpNEQ/viewform",
   },
   {
-    finished: true,
+    completed: true,
     img: "https://links.papareact.com/2io",
     title: "Murder Mystery",
     description:
@@ -33,7 +33,7 @@ export const local_events: LAC_Event[] = [
       "https://docs.google.com/forms/d/e/1FAIpQLSckhc9sO0DCnf3BD9Gt3pKBLinFfp8qF0h-ZH761nU0MzpNEQ/viewform",
   },
   {
-    finished: true,
+    completed: true,
     img: "https://links.papareact.com/2io",
     title: "Murder Mystery",
     description:
@@ -44,7 +44,7 @@ export const local_events: LAC_Event[] = [
       "https://docs.google.com/forms/d/e/1FAIpQLSckhc9sO0DCnf3BD9Gt3pKBLinFfp8qF0h-ZH761nU0MzpNEQ/viewform",
   },
   {
-    finished: true,
+    completed: true,
     img: "https://links.papareact.com/2io",
     title: "Murder Mystery",
     description:
