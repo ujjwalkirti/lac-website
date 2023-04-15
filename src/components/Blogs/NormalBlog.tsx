@@ -5,7 +5,7 @@ type props = {
 };
 const NormalBlog = ({ blog }: props) => {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 dark:bg-[#603726]">
       <div className="relative h-[200px] w-full">
         <Image
           src={blog.illustration}

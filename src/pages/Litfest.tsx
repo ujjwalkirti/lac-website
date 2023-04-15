@@ -14,7 +14,7 @@ const litfest = () => {
   return (
     <div className="w-11/12 md:w-10/12 mx-auto">
         <section>
-          <h2 className={"text-4xl py-8 pl-3 text-[#2C1810] " + libre_caslon_text.className}>Lit Fest</h2>
+          <h2 className={"text-4xl py-8 pl-3 text-[#2C1810] dark:bg-[#2C1810] dark:text-[#dfa437] " + libre_caslon_text.className}>Lit Fest</h2>
           <div className="flex space-x-3 overflow-scroll scrollbar-hide p-3 mx-auto">
                 {eventData?.map(function(item:any,index:number){
                     return(
