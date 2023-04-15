@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React from "react";
 import FirstLetterCapital from "@/components/Landing Page/FirstLetterCapital";
-import { local_books } from "@/local-data/Books";
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "@/Firebase";
 import { libre_caslon_text } from "@/utils";
@@ -29,7 +28,7 @@ const BookClub = ({ books }: props) => {
       </p>
       {books.map((book: Book, index: number) => {
         return (
-          <div className="flex flex-col lg:flex-row items-center bg-white shadow-md w-full lg:w-[70vw] mx-auto my-4 lg:hover:scale-110 transition-transform duration-300 rounded-lg dark:bg-[#603726] ">
+          <div className="flex flex-col lg:flex-row items-center bg-white shadow-md w-full lg:w-[70vw] mx-auto my-4 lg:hover:scale-110 transition-transform duration-300 rounded-lg dark:bg-[#603726] " key={index}>
             {/* div for image */}
 
             <div className="relative h-[50vh] w-full">
