@@ -20,7 +20,12 @@ type Book = {
 };
 
 type LAC_Event = {
-  
+  [key:string]: string | number;
+  img: string;
+  title: string;
+  description: string;
+  teamMembers: number;
+  date: string;
 };
 
 type Team_Member = {

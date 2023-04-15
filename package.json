@@ -22,7 +22,7 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.9",
     "react-icons": "^4.8.0",
-    "react-quill": "^0.0.2",
+    "react-quill": "^2.0.0",
     "react-timeago": "^7.1.0",
     "react-vertical-timeline-component": "^3.6.0",
     "tailwind-scrollbar-hide": "^1.1.7",
