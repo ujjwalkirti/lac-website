@@ -48,6 +48,11 @@ const BookClub = ({ books }: props) => {
             <div className="w-full lg:w-2/3 p-6 ">
               <h2 className="text-3xl mb-4">{book.name}</h2>
               <h6 className="text-lg mb-4">{book.author}</h6>
+              <div className="text-lg">
+                {book.genre.map((genre, index) => {
+                  return <span className="mr-2 bg-gray-200 px-1 py-1 rounded-md" key={index}>{genre}</span>;
+                })}
+              </div>
               <h5 className="text-lg mb-4">{book.rating}</h5>
               <Link
                 href={book.reviewLink}
