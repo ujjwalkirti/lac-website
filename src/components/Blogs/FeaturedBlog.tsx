@@ -7,7 +7,7 @@ type props = {
 
 const FeaturedBlog = ({ blog }: props) => {
   return (
-    <div className="flex items-center gap-[44px] mb-[47px]">
+    <div className="flex items-center gap-[44px] mb-[47px] dark:bg-[#603726]">
       <div className="relative w-1/2 h-[400px]">
         <Image
           src={blog.illustration}

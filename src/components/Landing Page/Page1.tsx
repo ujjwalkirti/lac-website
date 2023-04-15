@@ -17,13 +17,13 @@ const Page1 = () => {
     <div className="mt-[29px] text-[#2C1810]">
       <p
         className={
-          "font-[700] lg:font-[500] text-[24px] md:text-[56px] lg:text-[76px] lg:leading-[75.2px] mb-[19px] " +
+          "font-[700] lg:font-[500] text-[24px] md:text-[56px] lg:text-[76px] lg:leading-[75.2px] dark:text-[#dfa437] mb-[19px] " +
           libre_caslon_text.className
         }
       >
-        <span className="font-bold text-[#DA8E63]">L</span>
+        <span className="font-bold text-[#DA8E63] ">L</span>
         iterary <span className="font-bold text-[#DA8E63]">A</span>
-        ffairs <span className="font-bold text-[#DA8E63]">C</span>ommittee
+        ffairs <span className="font-bold text-[#DA8E63] ">C</span>ommittee
       </p>
       <Typewriter />
       <p

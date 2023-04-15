@@ -9,7 +9,7 @@ import { libre_caslon_text } from '@/utils';
 function Timline() {
   return (
     <div className="mt-10">
-        <h1 className={"m-auto text-4xl text-center pb-10 " + libre_caslon_text.className}>Timline</h1>
+        <h1 className={"m-auto text-4xl text-center pb-10 " + libre_caslon_text.className}>Timeline</h1>
         <VerticalTimeline>
             {eventData?.map(function(item:any,index:number){
                 return(
@@ -18,7 +18,7 @@ function Timline() {
                         contentStyle={{ background: '#FFE1BC', color: '#000' ,borderRadius:'1rem'}}
                         contentArrowStyle={{ borderRight: '7px solid  #DA8E63' }}
                         date={item.date}
-                        dateClassName="relative w-full text-center lg:text-left"
+                        dateClassName="relative w-full text-center lg:text-left dark:bg-[#2C1810] dark:text-[#dfa437]"
                         key ={index}
                         iconStyle={{ background: '#DA8E63', color: '#fff' }}
                         icon={<FaCircle />}

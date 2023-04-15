@@ -9,7 +9,7 @@ import { MdOutlineClose } from "react-icons/md";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(false); 
   const [showMenu, setShowMenu] = useState(false);
   useEffect(() => {
     setMounted(true);
@@ -18,7 +18,7 @@ const Navbar = () => {
     return null;
   }
   return (
-    <section className="flex justify-between items-center w-11/12 mx-auto pt-[32px] text-[#2C1810] font-medium">
+    <section className="flex justify-between items-center w-11/12 mx-auto pt-[32px] dark:bg-[#2C1810] dark:text-[#dfa437] text-[#2C1810] font-medium">
       <GiHamburgerMenu
         className="text-[32px] md:hidden cursor-pointer"
         onClick={() => {

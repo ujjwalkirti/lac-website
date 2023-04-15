@@ -16,20 +16,22 @@ const AboutUs = () => {
         bout <FirstLetterCapital letter="U" bgColor="#DA8E63" />s
       </p>
       {/* Faculty Advisor */}
-      <InformationHolder
-        name="Mr Some Random Name"
-        position="Professor, Dept of XYZ Engineering"
-        message="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum fuga
-        debitis, quos dolores sint, architecto amet tempore maxime quibusdam rem
-        tempora doloribus vitae facilis numquam atque ex ad voluptatibus sequi.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero quas ab,
-        magnam aperiam, error magni iure voluptate at ad quos dolorum sit
-        placeat, non saepe rem distinctio exercitationem. Sit, fugit?"
-        img="/placeholder-man.png"
-        designation="Faculty Advisor"
-      />
+      <div className="lg:w-10/12">
+        <InformationHolder
+          name="Mr Some Random Name"
+          position="Professor, Dept of XYZ Engineering"
+          message="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum fuga
+          debitis, quos dolores sint, architecto amet tempore maxime quibusdam rem
+          tempora doloribus vitae facilis numquam atque ex ad voluptatibus sequi.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero quas ab,
+          magnam aperiam, error magni iure voluptate at ad quos dolorum sit
+          placeat, non saepe rem distinctio exercitationem. Sit, fugit?"
+          img="/placeholder-man.png"
+          designation="Faculty Advisor"
+        />
+      </div>
       {/* Chairmans */}
-      <div className="flex flex-col items-center gap-5">
+      <div className="flex flex-col items-center gap-5 lg:w-10/12">
         {/* Chairman 1 */}
         <InformationHolder
           name="Mr Some Random Name"
