@@ -35,4 +35,6 @@ type Litevent = {
   [key:string]: string;
   img: string;
   title: string;
+  description: string;
+  date: string;
 }
