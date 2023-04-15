@@ -61,11 +61,11 @@ const Navbar = () => {
         <Link className="hover:underline" href={`/blogs`}>
           BLOGS
         </Link>
-        <Link className="hover:underline" href={`/about_us`}>
-          ABOUT US
-        </Link>
         <Link className="hover:underline" href={`/Litfest`}>
           LITFEST
+        </Link>
+        <Link className="hover:underline" href={`/about_us`}>
+          ABOUT US
         </Link>
       </div>
       {/* 
@@ -104,11 +104,11 @@ const Navbar = () => {
               <Link className="hover:underline" href={`/blogs`}>
                 BLOGS
               </Link>
+              <Link className="hover:underline" href={`/litfest`}>
+                LITFEST
+              </Link>
               <Link className="hover:underline" href={`/about_us`}>
                 ABOUT US
-              </Link>
-              <Link className="hover:underline" href={`/committee`}>
-                TEAM
               </Link>
             </div>
           </div>

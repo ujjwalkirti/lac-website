@@ -25,7 +25,7 @@ const Page1 = () => {
         iterary <span className="font-bold text-[#DA8E63]">A</span>
         ffairs <span className="font-bold text-[#DA8E63] ">C</span>ommittee
       </p>
-      <Typewriter />
+      
       <p
         className={
           "font-[400] text-[13px] lg:text-[20px] leading-[17px] lg:leading-[24.38px] text-[#8D4B31] text-center " +
@@ -42,7 +42,7 @@ const Page1 = () => {
           <BookClubIndicator />
           <p
             className={
-              "flex justify-center lg:justify-between items-center text-[39px] lg:text-[76px] font-[400] lg:leading-[115.2px] w-9/12  mx-auto text-[#2C1810] mt-10 lg:mt-0 " +
+              "flex justify-center lg:justify-end items-center text-[39px] lg:text-[56px] font-[400] lg:leading-[115.2px] w-9/12  mx-auto text-[#2C1810] mt-10 lg:mt-0 " +
               libre_caslon_text.className
             }
           >
@@ -59,7 +59,7 @@ const Page1 = () => {
             View all
           </Link>
         </div>
-        <div className="hidden w-[60%] lg:flex justify-between gap-[20px] h-[420px]">
+        <div className="hidden w-[70%] lg:flex justify-between gap-[20px] h-[512px]">
           {/* div for major latest upcoming event */}
           <div
             className={

@@ -13,8 +13,11 @@ const FeaturedBlog = ({ blog }: props) => {
           src={blog.illustration}
           fill
           alt="Featured blogs's image"
-          className="rounded-t-lg"
+          className="rounded-t-lg lg:rounded-r-none lg:rounded-l-lg"
         />
+        <p className="absolute top-2 right-2 font-semibold leading-6 text-2xl text-white dark:text-[#dfa437]">
+          Featured Blog
+        </p>
       </div>
       <div className="w-full lg:w-1/2 flex  flex-col h-auto lg:h-[400px] justify-between items-start py-6 px-3">
         <p className="text-gray-500 dark:text-white text-sm">March 16, 2023</p>

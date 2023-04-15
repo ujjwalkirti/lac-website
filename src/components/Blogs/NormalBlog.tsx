@@ -12,7 +12,7 @@ const NormalBlog = ({ blog }: props) => {
         monsterrat.className
       }
     >
-      <div className="relative h-[200px] w-full">
+      <div className="relative h-[400px] lg:h-[200px] w-full">
         <Image
           src={blog.illustration}
           fill

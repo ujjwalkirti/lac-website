@@ -16,7 +16,7 @@ const Blogs = ({ blogs }: props) => {
         <title>LAC - Blogs</title>
       </Head>
       <div className="min-h-screen px-3 lg:px-8">
-        <p className="font-[600] text-[48px] text-center lg:text-left lg:text-[96px] mt-[48px] mb-[27px]">
+        <p className="font-[600] text-[48px] text-center lg:text-left lg:text-[96px] mt-[18px] mb-[27px]">
           LAC Blog
         </p>
         {/* featured blog */}
@@ -62,7 +62,9 @@ export async function getServerSideProps(context: any) {
     //@ts-ignore
     (a: number, b: number) => new Date(a.date) - new Date(b.date)
   );
-  blogs[0] = sortedData[sortedData.length - 1];
+  if (sortedData.length > 0) {
+    blogs[0] = sortedData[sortedData.length - 1];
+  }
 
   /*const q = query(collection(db, "blogs"), where("isVerified", "==", true));
   blogs = await getDocs(q);

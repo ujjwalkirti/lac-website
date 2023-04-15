@@ -11,10 +11,7 @@ const AboutUs = () => {
       <Head>
         <title>About Us</title>
       </Head>
-      <p className={"text-[60px] " + libre_caslon_text.className}>
-        <FirstLetterCapital letter="A" bgColor="#DA8E63" />
-        bout <FirstLetterCapital letter="U" bgColor="#DA8E63" />s
-      </p>
+      <p className={"text-[60px] " + libre_caslon_text.className}>About Us</p>
       {/* Faculty Advisor */}
       <div className="lg:w-10/12">
         <InformationHolder
@@ -31,39 +28,27 @@ const AboutUs = () => {
         />
       </div>
       {/* Chairmans */}
-      <div className="flex flex-col items-center gap-5 lg:w-10/12">
+      <div className="flex flex-col lg:flex-row items-center gap-5 lg:w-10/12">
         {/* Chairman 1 */}
         <InformationHolder
           name="Mr Some Random Name"
           position="Professor, Dept of XYZ Engineering"
-          message="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum fuga
-        debitis, quos dolores sint, architecto amet tempore maxime quibusdam rem
-        tempora doloribus vitae facilis numquam atque ex ad voluptatibus sequi.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero quas ab,
-        magnam aperiam, error magni iure voluptate at ad quos dolorum sit
-        placeat, non saepe rem distinctio exercitationem. Sit, fugit?"
           img="/placeholder-man.png"
           designation="Chairman"
+          socials={["dummy", "dummy", "dummy"]}
         />
         {/* Chairman 2 */}
         <InformationHolder
           name="Mr Some Random Name"
           position="Professor, Dept of XYZ Engineering"
-          message="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum fuga
-        debitis, quos dolores sint, architecto amet tempore maxime quibusdam rem
-        tempora doloribus vitae facilis numquam atque ex ad voluptatibus sequi.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero quas ab,
-        magnam aperiam, error magni iure voluptate at ad quos dolorum sit
-        placeat, non saepe rem distinctio exercitationem. Sit, fugit?"
           img="/placeholder-man.png"
           designation="Co-Chairman"
+          socials={["dummy", "dummy", "dummy"]}
         />
       </div>
       {/* Students in-charge */}
-      <p className="text-[30px] lg:text-[50px] text-center underline">
-        <FirstLetterCapital letter="S" />
-        tudent <FirstLetterCapital letter="R" />
-        epresentatives
+      <p className="text-[30px] lg:text-[50px] text-center">
+        Student Representatives
       </p>
       <div className="flex flex-col items-center gap-10">
         {/* Secretary */}
@@ -73,16 +58,20 @@ const AboutUs = () => {
             position="BTech N-Year, Dept of XYZ Engineering"
             img="/placeholder-man.png"
             designation="Secretary"
+            contact={[9876543210, 9876543210]}
+            socials={["dummy", "dummy", "dummy"]}
           />
         </div>
         {/* 3 Joint Secretaries */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* Joint Secretary 1 */}
           <InformationHolder
             name="Mr Some Random Name"
             position="BTech N-Year, Dept of XYZ Engineering"
             img="/placeholder-man.png"
             designation="Joint Secretary"
+            contact={[9876543210, 9876543210]}
+            socials={["dummy", "dummy", "dummy"]}
           />
           {/* Joint Secretary 2 */}
           <InformationHolder
@@ -90,13 +79,8 @@ const AboutUs = () => {
             position="BTech N-Year, Dept of XYZ Engineering"
             img="/placeholder-man.png"
             designation="Joint Secretary"
-          />
-          {/* Joint Secretary 3 */}
-          <InformationHolder
-            name="Mr Some Random Name"
-            position="BTech N-Year, Dept of XYZ Engineering"
-            img="/placeholder-man.png"
-            designation="Joint Secretary"
+            contact={[9876543210, 9876543210]}
+            socials={["dummy", "dummy", "dummy", "dummy", "dummy"]}
           />
         </div>
       </div>

@@ -8,9 +8,10 @@ import {
   AiFillInstagram,
   AiFillLinkedin,
 } from "react-icons/ai";
+import { SiGmail } from "react-icons/si";
 
 const Footer = () => {
-  const { systemTheme, theme, setTheme } = useTheme();
+  const { theme } = useTheme();
   return (
     <section className="w-11/12 mx-auto flex flex-col items-center">
       <div className="h-[72px] w-[72px] relative mt-[51px]">
@@ -52,11 +53,8 @@ const Footer = () => {
         <Link className="hover:underline  text-center" href={`/about_us`}>
           ABOUT US
         </Link>
-        <Link className="hover:underline  text-center" href={`/committee`}>
-          TEAM
-        </Link>
-        <Link className="hover:underline  text-center" href={`/contact`}>
-          CONTACT
+        <Link className="hover:underline  text-center" href={`/developers`}>
+          DEVELOPERS 💻
         </Link>
       </div>
       <div className="flex flex-col lg:flex-row justify-between items-center mb-[20px] w-full gap-5">
@@ -72,6 +70,9 @@ const Footer = () => {
             href={`https://www.linkedin.com/company/lacsvnit/?originalSubdomain=in`}
           >
             <AiFillLinkedin />
+          </Link>
+          <Link href={`mailto:ujjwalkirti2000@gmail.com`}>
+            <SiGmail />
           </Link>
         </div>
       </div>
