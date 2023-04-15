@@ -2,16 +2,19 @@ import React from 'react';
 import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
 import { FaCircle } from 'react-icons/fa';
-import { eventData } from '@/local-data/Litfest';
 import Image from 'next/legacy/image';
 import { libre_caslon_text } from '@/utils';
 
-function Timline() {
+type props = {
+    events: Litevent[];
+};
+
+const Timline = ({events}:props) => {
   return (
     <div className="mt-10">
         <h1 className={"m-auto text-4xl text-center pb-10 " + libre_caslon_text.className}>Timeline</h1>
         <VerticalTimeline className="w-full">
-            {eventData?.map(function(item:any,index:number){
+            {events?.map(function(item:any,index:number){
                 return(
                     <VerticalTimelineElement
                         className="vertical-timeline-element--work p-0"
@@ -23,11 +26,6 @@ function Timline() {
                         iconStyle={{ background: '#DA8E63', color: '#fff' }}
                         icon={<FaCircle />}
                     >
-                        {/* <h3 className="vertical-timeline-element-title">{item.title}</h3>
-                        <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4>
-                        <p>
-                            {item.description}
-                        </p> */}
                         <div id={`${item.title}`} className="flex-col m-0 gap-y-11 cursor-pointer transition transform duration-300 ease-oute w-full rounded-xl">
                             <div className="relative h-80 w-full flex-shrink-0 m-auto">
                                 <Image src={item.img} layout="fill" alt="" className="rounded-xl"/>
@@ -43,7 +41,8 @@ function Timline() {
             })}
         </VerticalTimeline>
     </div>
-  )
-}
+  );
+};
 
-export default Timline
+export default Timline;
+  
