@@ -2,7 +2,6 @@ import FirstLetterCapital from "@/components/Landing Page/FirstLetterCapital";
 import EventBox from "@/components/Events/EventBox";
 import { libre_caslon_text } from "@/utils";
 import Head from "next/head";
-import Image from "next/image";
 import React from "react";
 
 const Events = () => {
@@ -11,10 +10,7 @@ const Events = () => {
       <Head>
         <title>Upcoming Events</title>
       </Head>
-      <p className={"text-[60px] " + libre_caslon_text.className}>
-        <FirstLetterCapital letter="E" bgColor="#DA8E63" />
-        vents
-      </p>
+      <p className={"text-[60px] " + libre_caslon_text.className}>Events</p>
       {/* Event 1 */}
       <div className="grid grid-cols-1 gap-5 items-center lg:grid-cols-3 ">
         <EventBox

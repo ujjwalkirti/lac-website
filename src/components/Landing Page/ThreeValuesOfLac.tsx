@@ -20,10 +20,10 @@ const ThreeValuesOfLac = () => {
           alt="a cartoon of a man speaking with mic"
         />
       </div>
-      <div className="lg:w-1/2 h-full flex flex-col justify-evenly">
+      <div className="lg:w-1/2 h-full flex flex-col justify-center">
         <p
           className={
-            "hidden lg:flex font-[700] text-[64px] leading-[78.72px] text-[#DA8E63] " +
+            "hidden lg:flex font-[700] text-[54px] leading-[78.72px] text-[#DA8E63] " +
             libre_caslon_text.className
           }
         >

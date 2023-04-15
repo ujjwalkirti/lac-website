@@ -3,7 +3,7 @@ import React from "react";
 
 const Page3 = () => {
   return (
-    <div className="lg:h-[60vh] py-5 lg:my-0 flex flex-col lg:flex-row lg:items-center">
+    <div className="lg:h-[80vh] py-5 lg:my-0 flex flex-col lg:flex-row lg:items-center">
       <div className="lg:hidden relative my-5 h-[200px] w-[200px] mx-auto shadow-xl rounded-full">
         <Image
           src={`/litfest-logo.png`}

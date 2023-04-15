@@ -1,10 +1,8 @@
-import Image from "next/image";
 import React from "react";
 import FirstLetterCapital from "@/components/Landing Page/FirstLetterCapital";
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "@/Firebase";
 import { libre_caslon_text } from "@/utils";
-import Link from "next/link";
 import Head from "next/head";
 import BookDisplayBox from "@/components/Book Club/BookDisplayBox";
 
