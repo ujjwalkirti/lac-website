@@ -44,7 +44,8 @@ const litfest = ({eventData}:props) => {
 export default litfest;
 
 export async function getServerSideProps(){
-    const eventData = await fetch((process.env.PORT + "/hello") || ("/api/hello")).
+    const URL = process.env.PORT ? `${process.env.PORT}/hello`: "/api/hello";
+    const eventData = await fetch(URL).
     then(res=>res.json());
 
     return {
