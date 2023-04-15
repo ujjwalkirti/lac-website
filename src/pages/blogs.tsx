@@ -15,12 +15,14 @@ const Blogs = ({ blogs }: props) => {
       <Head>
         <title>LAC - Blogs</title>
       </Head>
-      <div className="min-h-screen px-8">
-        <p className="font-[600] text-[96px] mt-[48px] mb-[27px]">LAC Blog</p>
+      <div className="min-h-screen px-3 lg:px-8">
+        <p className="font-[600] text-[48px] text-center lg:text-left lg:text-[96px] mt-[48px] mb-[27px]">
+          LAC Blog
+        </p>
         {/* featured blog */}
-        <FeaturedBlog blog={blogs[0]} />
+        {Object.keys(blogs[0]).length !== 0 && <FeaturedBlog blog={blogs[0]} />}
         {/* remaining blogs paginated with 6 blogs divided across 3 columns and 2 rows */}
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {blogs.map((blog, index) => {
             if (index !== 0 && blog.isFeatured != true) {
               return <NormalBlog blog={blog} key={index} />;

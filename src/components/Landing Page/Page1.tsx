@@ -14,7 +14,7 @@ const Page1 = () => {
   const [isSecondDivHovered, setIsSecondDivHovered] = useState(false);
 
   return (
-    <div className="mt-[29px] text-[#2C1810]">
+    <div className={"mt-[29px] text-[#2C1810]"}>
       <p
         className={
           "font-[700] lg:font-[500] text-[24px] md:text-[56px] lg:text-[76px] lg:leading-[75.2px] dark:text-[#dfa437] mb-[19px] " +
@@ -46,13 +46,16 @@ const Page1 = () => {
               libre_caslon_text.className
             }
           >
-            <span>
+            <span className="dark:text-[#dfa437]">
               <FirstLetterCapital letter="E" />
               vents{" "}
             </span>
-            <FiArrowRight className="hidden lg:flex" />
+            <FiArrowRight className="hidden lg:flex dark:text-[#dfa437]" />
           </p>
-          <Link href={`/events`} className="w-[80px] mx-auto lg:hidden">
+          <Link
+            href={`/events`}
+            className="w-[80px] mx-auto lg:hidden dark:text-[#dfa437]"
+          >
             View all
           </Link>
         </div>

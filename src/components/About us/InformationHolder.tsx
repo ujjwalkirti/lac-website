@@ -20,7 +20,9 @@ const InformationHolder = ({
   return (
     <div className="flex flex-col lg:flex-row gap-2 shadow-xl py-3 px-2 rounded-lg bg-white w-11/12 dark:bg-[#603726] dark:text-[#dfa437] lg:w-full mx-auto">
       <div
-        className={"flex flex-col  lg:gap-3 " + `${message ? "lg:w-1/3 mx-auto " : ""}`}
+        className={
+          "flex flex-col mx-auto  lg:gap-3 " + `${message ? "lg:w-1/3 " : ""}`
+        }
       >
         <p className="text-[30px] text-center font-semibold">{name}</p>
         <p className="text-[18px] text-center ">{position}</p>

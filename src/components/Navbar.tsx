@@ -1,4 +1,4 @@
-import { libre_caslon_text } from "@/utils";
+import { libre_caslon_text, monsterrat } from "@/utils";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,16 +9,23 @@ import { MdOutlineClose } from "react-icons/md";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false); 
+  const [mounted, setMounted] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+
   useEffect(() => {
     setMounted(true);
   }, []);
+
   if (!mounted) {
     return null;
   }
   return (
-    <section className="flex justify-between items-center w-11/12 mx-auto pt-[32px] dark:bg-[#2C1810] dark:text-[#dfa437] text-[#2C1810] font-medium">
+    <section
+      className={
+        "flex justify-between items-center w-11/12 mx-auto pt-[32px] dark:bg-[#2C1810] dark:text-[#dfa437] text-[#2C1810] font-medium " +
+        monsterrat.className
+      }
+    >
       <GiHamburgerMenu
         className="text-[32px] md:hidden cursor-pointer"
         onClick={() => {
@@ -28,7 +35,7 @@ const Navbar = () => {
       <Link href={`/`} className="h-[82px] w-[82px] relative">
         <Image
           className="rounded-full"
-          src={theme === "dark" ? "/logo-black.jpeg" : "/logo-white.png"}
+          src={theme === "dark" ? "/logo-black.png" : "/logo-white.png"}
           alt="Literary Affairs Committee, SVNIT Surat logo"
           fill
         />
@@ -72,11 +79,11 @@ const Navbar = () => {
         >
           <div
             className={
-              "w-2/3 px-[15px] md:w-[56%] h-screen bg-[#2C1810] text-white pt-10 grayish-text flex flex-col " +
+              "w-[40%] px-[15px] h-screen bg-[#2C1810] text-white pt-10 grayish-text flex flex-col items-center " +
               libre_caslon_text.className
             }
           >
-            <div className="flex justify-end h-1/8">
+            <div className="flex justify-end w-full h-1/8">
               <MdOutlineClose
                 className="text-[40px] aqua cursor-pointer transition-all transform-gpu hover:rotate-180 duration-300"
                 onClick={() => {

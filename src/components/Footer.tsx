@@ -16,7 +16,7 @@ const Footer = () => {
       <div className="h-[72px] w-[72px] relative mt-[51px]">
         <Image
           className="rounded-full"
-          src={theme === "dark" ? "/logo-black.jpeg" : "/logo-white.png"}
+          src={theme === "dark" ? "/logo-black.png" : "/logo-white.png"}
           alt="Literary Affairs Committee, SVNIT Surat logo"
           fill
         />
