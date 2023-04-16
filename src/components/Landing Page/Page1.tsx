@@ -9,15 +9,25 @@ import { libre_caslon_text, monsterrat } from "@/utils";
 import Image from "next/image";
 import EventsSwiper from "./EventsSwiper";
 
-const Page1 = () => {
+type props = {
+  yetToHappenEvents: LAC_Event[];
+  happenedEvent: LAC_Event;
+};
+
+const Page1 = ({ yetToHappenEvents, happenedEvent }: props) => {
   const [isOtherHovered, setIsOtherHovered] = useState(false);
   const [isSecondDivHovered, setIsSecondDivHovered] = useState(false);
-
+  const [yetToHappenEventsCount, setYetToHappenEventsCount] = useState(
+    yetToHappenEvents.length
+  );
+  const [happenedEventsCount, setHappenedEventsCount] = useState(
+    Object.keys(happenedEvent).length
+  );
   return (
-    <div className={"mt-[29px] text-[#2C1810]"}>
+    <div className={"mt-[29px] text-[#2C1810] dark:text-[#fffbf7]"}>
       <p
         className={
-          "font-[700] lg:font-[500] text-[24px] md:text-[56px] lg:text-[76px] lg:leading-[75.2px] dark:text-[#dfa437] mb-[19px] " +
+          "font-[500] text-[48px] md:text-[56px] lg:text-[76px] leading-[57px] lg:leading-[75.2px] text-center lg:text-left mb-[19px] " +
           libre_caslon_text.className
         }
       >
@@ -25,10 +35,10 @@ const Page1 = () => {
         iterary <span className="font-bold text-[#DA8E63]">A</span>
         ffairs <span className="font-bold text-[#DA8E63] ">C</span>ommittee
       </p>
-      
+
       <p
         className={
-          "font-[400] text-[13px] lg:text-[20px] leading-[17px] lg:leading-[24.38px] text-[#8D4B31] text-center " +
+          "font-[400] text-[15px] lg:text-[20px] leading-[19px] lg:leading-[24.38px] text-center lg:text-left " +
           monsterrat.className
         }
       >
@@ -38,19 +48,19 @@ const Page1 = () => {
         debitis atque!
       </p>
       <div className="flex flex-col lg:flex-row  lg:items-end items-center lg:justify-between gap-4 mt-[30px]">
-        <div className="lg:w-[30vw] flex flex-col lg:justify-between">
+        <div className="lg:w-[30vw] flex flex-col lg:justify-between lg:h-[432px]">
           <BookClubIndicator />
           <p
             className={
-              "flex justify-center lg:justify-end items-center text-[39px] lg:text-[56px] font-[400] lg:leading-[115.2px] w-9/12  mx-auto text-[#2C1810] mt-10 lg:mt-0 " +
+              "flex justify-center lg:justify-end items-center text-[36px] lg:text-[56px] font-[400] lg:leading-[115.2px] w-9/12  mx-auto mt-10 lg:mt-0 " +
               libre_caslon_text.className
             }
           >
-            <span className="dark:text-[#dfa437]">
+            <span className="">
               <FirstLetterCapital letter="E" />
               vents{" "}
             </span>
-            <FiArrowRight className="hidden lg:flex dark:text-[#dfa437]" />
+            <FiArrowRight className="hidden lg:flex dark:text-[#fffbf7]" />
           </p>
           <Link
             href={`/events`}
@@ -59,12 +69,12 @@ const Page1 = () => {
             View all
           </Link>
         </div>
-        <div className="hidden w-[70%] lg:flex justify-between gap-[20px] h-[512px]">
+        <div className="hidden w-[70%] lg:flex justify-between gap-[20px] h-[432px]">
           {/* div for major latest upcoming event */}
           <div
             className={
-              " transition-all duration-200 " +
-              `${isOtherHovered ? "w-1/4 hover:w-1/2" : "w-1/2"}`
+              " transition-all duration-700 " +
+              `${isOtherHovered ? "w-[22%] hover:w-[56%]" : "w-full"}`
             }
           >
             {" "}
@@ -76,30 +86,30 @@ const Page1 = () => {
                 </div>
               )}
               <Image
-                src="/events-card/image-1.png"
+                src={yetToHappenEvents[0].img}
                 fill
                 alt="LAC's most recent event poster"
-                className="rounded-md"
+                className="rounded-md object-cover"
               />
               <div className="absolute h-full w-full z-10 bg-gradient-to-t from-black to-transparent  rounded-md"></div>
               <div className="absolute flex flex-col items-end bottom-7 right-3 z-20 text-white">
                 <p
                   className={
-                    "text-2xl mb-3 " +
+                    "text-2xl mb-3 animate-fade-in " +
                     `${
                       isOtherHovered
-                        ? "transform-gpu duration-200 hidden transition-opacity "
+                        ? "transform-gpu duration-700 hidden transition-opacity "
                         : " "
                     }` +
                     libre_caslon_text.className
                   }
                 >
-                  Event's Name
+                  {yetToHappenEvents[0].title}
                 </p>
                 {!isOtherHovered && (
                   <Link
                     className="bg-[#DA8E63] text-lg px-3 py-2 rounded-lg "
-                    href="/event/register/:event_id"
+                    href={`/events`}
                   >
                     View / Register
                   </Link>
@@ -117,7 +127,7 @@ const Page1 = () => {
               setIsOtherHovered(false);
               setIsSecondDivHovered(false);
             }}
-            className=" transition-all duration-200 w-1/4 hover:w-1/2"
+            className=" transition-all duration-700 w-[22%] hover:w-[56%]"
           >
             {" "}
             <div className="relative h-full">
@@ -128,16 +138,16 @@ const Page1 = () => {
                 </div>
               )}
               <Image
-                src="/events-card/image 2.png"
+                src={yetToHappenEvents[1].img}
                 fill
                 alt="LAC's most recent event poster"
-                className="rounded-md"
+                className="rounded-md object-cover"
               />
               <div className="absolute h-full w-full z-10 bg-gradient-to-t from-black to-transparent  rounded-md"></div>
               <div className="absolute flex flex-col items-end bottom-7 right-3 z-20 text-white">
                 <p
                   className={
-                    "text-2xl mb-3 " +
+                    "text-2xl mb-3 animate-fade-in " +
                     `${
                       isOtherHovered && isSecondDivHovered
                         ? "transform-gpu duration-200 opacity-100 "
@@ -146,12 +156,12 @@ const Page1 = () => {
                     libre_caslon_text.className
                   }
                 >
-                  Event's Name
+                  {yetToHappenEvents[1].title}
                 </p>
                 {isSecondDivHovered && (
                   <Link
                     className="bg-[#DA8E63] px-3 py-2 rounded-lg"
-                    href="/event/register/:event_id"
+                    href="/events"
                   >
                     View / Register
                   </Link>
@@ -167,7 +177,7 @@ const Page1 = () => {
             onMouseLeave={() => {
               setIsOtherHovered(false);
             }}
-            className=" transition-all duration-200 w-1/4 hover:w-1/2"
+            className=" transition-all duration-700 w-[22%] hover:w-[56%]"
           >
             {" "}
             <div className="relative h-full">
@@ -178,16 +188,16 @@ const Page1 = () => {
                 </div>
               )}
               <Image
-                src="/events-card/image 3.png"
+                src={happenedEvent.img}
                 fill
                 alt="LAC's most recent event poster"
-                className="rounded-md"
+                className="rounded-md object-cover"
               />
               <div className="absolute h-full w-full z-10 bg-gradient-to-t from-black to-transparent  rounded-md"></div>
               <div className="absolute flex flex-col items-end bottom-7 right-3 z-20 text-white">
                 <p
                   className={
-                    "text-2xl mb-3 " +
+                    "text-2xl mb-3 animate-fade-in " +
                     `${
                       isOtherHovered && !isSecondDivHovered
                         ? "transform-gpu duration-200 "
@@ -196,12 +206,12 @@ const Page1 = () => {
                     libre_caslon_text.className
                   }
                 >
-                  Event's Name
+                  {happenedEvent.title}
                 </p>
                 {isOtherHovered && !isSecondDivHovered && (
                   <Link
                     className="bg-[#DA8E63] px-3 py-2 rounded-lg"
-                    href="/event/register/:event_id"
+                    href="/events"
                   >
                     View
                   </Link>
@@ -211,9 +221,12 @@ const Page1 = () => {
           </div>
         </div>
 
-        <EventsSwiper />
+        <EventsSwiper
+          happenedEvent={happenedEvent}
+          yetToHappenEvents={yetToHappenEvents}
+        />
       </div>
-      <div className="hidden lg:flex font-[600] text-[24px] leading-[29.26px] justify-end my-4">
+      <div className="hidden lg:flex font-[600] text-[24px] leading-[29.26px] text-[#ba9871] justify-end my-4">
         <Link href={`/events`}>View all</Link>
       </div>
     </div>

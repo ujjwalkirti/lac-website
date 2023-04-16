@@ -22,7 +22,7 @@ const Navbar = () => {
   return (
     <section
       className={
-        "flex justify-between items-center w-11/12 mx-auto pt-[32px] dark:bg-[#2C1810] dark:text-[#dfa437] text-[#2C1810] font-medium " +
+        "flex justify-between items-center w-11/12 mx-auto pt-4 lg:pt-[32px] font-medium " +
         monsterrat.className
       }
     >
@@ -42,8 +42,7 @@ const Navbar = () => {
       </Link>{" "}
       <div
         className={
-          "hidden w-full md:flex justify-start space-x-[48px] text-[14px] leading-[17.07px] " +
-          libre_caslon_text.className
+          "hidden w-full md:flex justify-start space-x-[48px] text-[14px] leading-[17.07px] "
         }
       >
         {" "}
@@ -74,13 +73,13 @@ const Navbar = () => {
       {showMenu && (
         <div
           className={
-            "absolute md:hidden top-0 left-0  w-screen min-h-screen z-40 flex filter backdrop-filter backdrop-blur-sm "
+            "absolute md:hidden top-0 left-0  w-screen min-h-screen z-40 flex filter backdrop-filter backdrop-blur-sm " +
+            `${showMenu ? "animate-fade-in" : ""}`
           }
         >
           <div
             className={
-              "w-[40%] px-[15px] h-screen bg-[#2C1810] text-white pt-10 grayish-text flex flex-col items-center " +
-              libre_caslon_text.className
+              "w-[40%] px-[15px] h-screen bg-[#2C1810] text-white pt-10 grayish-text flex flex-col items-center"
             }
           >
             <div className="flex justify-end w-full h-1/8">
@@ -104,7 +103,7 @@ const Navbar = () => {
               <Link className="hover:underline" href={`/blogs`}>
                 BLOGS
               </Link>
-              <Link className="hover:underline" href={`/litfest`}>
+              <Link className="hover:underline" href={`/Litfest`}>
                 LITFEST
               </Link>
               <Link className="hover:underline" href={`/about_us`}>

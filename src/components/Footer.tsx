@@ -37,8 +37,7 @@ const Footer = () => {
       </p>
       <div
         className={
-          "grid grid-cols-3 gap-4 lg:grid-cols-6 lg:gap-[50px] mb-[34px] " +
-          libre_caslon_text.className
+          "grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-[50px] mb-[34px] "
         }
       >
         <Link className="hover:underline  text-center" href={`/`}>
@@ -53,10 +52,10 @@ const Footer = () => {
         <Link className="hover:underline  text-center" href={`/about_us`}>
           ABOUT US
         </Link>
-        <Link className="hover:underline  text-center" href={`/developers`}>
-          DEVELOPERS 💻
-        </Link>
       </div>
+      <Link className="hover:underline mb-4  text-center" href={`/developers`}>
+        DEVELOPERS 💻
+      </Link>
       <div className="flex flex-col lg:flex-row justify-between items-center mb-[20px] w-full gap-5">
         <p>CopyRight 2023 LAC, All Rights Reserved</p>
         <div className="flex space-x-8 text-[36px]">
