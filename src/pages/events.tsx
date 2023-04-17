@@ -1,6 +1,8 @@
 import FirstLetterCapital from "@/components/Landing Page/FirstLetterCapital";
 import EventBox from "@/components/Events/EventBox";
 import { libre_caslon_text } from "@/utils";
+import { collection, getDocs, query } from "firebase/firestore";
+import { db } from "@/Firebase";
 import Head from "next/head";
 import React from "react";
 
@@ -8,7 +10,7 @@ const Events = () => {
   return (
     <section className="min-h-screen flex flex-col items-center gap-5 px-2 py-5 mx-5 my-auto">
       <Head>
-        <title>Upcoming Events</title>
+        <title>Events</title>
       </Head>
       <p className={"text-[60px] " + libre_caslon_text.className}>Events</p>
       {/* Event 1 */}
@@ -55,3 +57,18 @@ const Events = () => {
 };
 
 export default Events;
+
+export async function getServerSideProps(context: any) {
+  let events: any[] = [];
+  const qe = query(collection(db, "events"));
+  const localEvents = await getDocs(qe);
+  localEvents.forEach((doc: { id: any; data: () => any }) => {
+    events.push(doc.data());
+  });
+
+  return {
+    props: {
+      events,
+    },
+  };
+}
