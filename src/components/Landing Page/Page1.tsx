@@ -42,10 +42,11 @@ const Page1 = ({ yetToHappenEvents, happenedEvent }: props) => {
           monsterrat.className
         }
       >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
-        repudiandae ab nam molestias officiis mollitia voluptate illo nemo
-        tenetur, nihil, vero odio sapiente, dolorum quidem itaque optio magnam
-        debitis atque!
+        Literary Affairs Committee is a place where people share their passion
+        for the art of speaking, reading, and writing. It includes fierce
+        debaters, bold orators, quirky quizzers, avid readers, and literature
+        enthusiasts. LAC nurtures budding writers, Quiz Masters, and bold
+        speakers who are not afraid to put their opinion out in the public.
       </p>
       <div className="flex flex-col lg:flex-row  lg:items-end items-center lg:justify-between gap-4 mt-[30px]">
         <div className="lg:w-[30vw] flex flex-col lg:justify-between lg:h-[432px]">

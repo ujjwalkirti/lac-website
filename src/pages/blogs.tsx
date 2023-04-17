@@ -88,6 +88,12 @@ export async function getServerSideProps(context: any) {
   if (sortedData.length > 0) {
     blogs[0] = sortedData[sortedData.length - 1];
   }
+  sortedData.map((blog, index) => {
+    if (index < sortedData.length - 1) {
+      blogs.push(blog);
+      console.log(blog)
+    }
+  });
 
   return {
     props: {

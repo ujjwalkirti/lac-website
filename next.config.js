@@ -7,6 +7,7 @@ const nextConfig = {
       "api.time.com",
       "imgs.search.brave.com",
       "links.papareact.com",
+      "firebasestorage.googleapis.com",
     ],
   },
   typescript: {

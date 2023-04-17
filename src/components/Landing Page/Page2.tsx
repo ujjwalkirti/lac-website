@@ -34,11 +34,15 @@ const Page2 = ({ featuredBlogs }: props) => {
         {/* 1st featured blog */}
         <Link
           href={`/blogs/read/${featuredBlogs[0].id}`}
-          className="px-6 py-6 bg-white lg:w-1/2 rounded-lg shadow-xl"
+          className="px-6 py-6 bg-white lg:w-1/2 rounded-lg shadow-xl lg:hover:scale-y-105 transition transform duration-300 ease-out"
         >
           <div className="relative h-[60vh] w-full ">
             <Image
-              src={featuredBlogs[0].blog.illustration}
+              src={`${
+                featuredBlogs[0].blog.illustration === " "
+                  ? "https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/6192594_3125988.jpg?alt=media&token=f255e3cb-bc07-4e8a-8df7-eea5d3853158"
+                  : featuredBlogs[0].blog.illustration
+              }`}
               fill
               alt="Featured blog of LAC"
             />
@@ -59,10 +63,14 @@ const Page2 = ({ featuredBlogs }: props) => {
           {/* 2nd featured blog */}
           <Link
             href={`/blogs/read/${featuredBlogs[1].id}`}
-            className="lg:h-[32vh] w-full px-6 py-6 bg-white rounded-lg shadow-xl flex flex-col lg:flex-row space-y-6 lg:space-x-6"
+            className="lg:h-[32vh] w-full px-6 py-6 bg-white rounded-lg shadow-xl flex flex-col lg:flex-row space-y-6 lg:space-x-6 lg:hover:scale-y-105 transition transform duration-300 ease-out"
           >
             <Image
-              src={featuredBlogs[1].blog.illustration}
+              src={`${
+                featuredBlogs[1].blog.illustration === " "
+                  ? "https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/6192594_3125988.jpg?alt=media&token=f255e3cb-bc07-4e8a-8df7-eea5d3853158"
+                  : featuredBlogs[1].blog.illustration
+              }`}
               height={200}
               width={150}
               className="h-[26vh] lg:h-full w-full lg:w-1/3"
@@ -83,10 +91,14 @@ const Page2 = ({ featuredBlogs }: props) => {
           {/* 3rd featured blog */}
           <Link
             href={`/blogs/read/${featuredBlogs[2].id}`}
-            className="lg:h-[32vh] w-full px-6 py-6 bg-white rounded-lg shadow-xl flex flex-col lg:flex-row space-y-6 lg:space-x-6"
+            className="lg:h-[32vh] w-full px-6 py-6 bg-white rounded-lg shadow-xl flex flex-col lg:flex-row space-y-6 lg:space-x-6 lg:hover:scale-y-105 transition transform duration-300 ease-out"
           >
             <Image
-              src={featuredBlogs[2].blog.illustration}
+              src={`${
+                featuredBlogs[2].blog.illustration === " "
+                  ? "https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/6192594_3125988.jpg?alt=media&token=f255e3cb-bc07-4e8a-8df7-eea5d3853158"
+                  : featuredBlogs[2].blog.illustration
+              }`}
               height={200}
               width={150}
               className="h-[26vh] lg:h-full w-full lg:w-1/3"

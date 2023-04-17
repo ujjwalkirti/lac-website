@@ -86,7 +86,6 @@ export async function getServerSideProps(context: any) {
   featuredBlogsQuerySnapshot.forEach((doc) => {
     // doc.data() is never undefined for query doc snapshots
     featuredBlogs.push({ blog: doc.data(), id: doc.id });
-    console.log(doc.data());
   });
 
   return {

@@ -1,4 +1,11 @@
-import { adminButton, formats, inputStyle, modules, trimString } from "@/utils";
+import {
+  adminButton,
+  formats,
+  inputStyle,
+  libre_caslon_text,
+  modules,
+  trimString,
+} from "@/utils";
 import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import {
@@ -45,6 +52,8 @@ const BlogForm = () => {
     data.content = content;
     //@ts-ignore
     data.isVerified = JSON.parse(data.isVerified);
+    // @ts-ignore
+    data.isFeatured = JSON.parse(data.isFeatured);
 
     // Add a new document with a generated id.
     // const docRef = ;
@@ -68,11 +77,17 @@ const BlogForm = () => {
   }
 
   return (
-    <section>
-      <p className="text-center font-bold text-2xl mt-2">Add blogs</p>
+    <section className=" py-5">
+      <p
+        className={
+          "text-center font-bold text-2xl mt-2 " + libre_caslon_text.className
+        }
+      >
+        Add blogs
+      </p>
       <form
         onSubmit={handleSubmit(onBlogFormSubmit)}
-        className="flex flex-col gap-4 px-2"
+        className="flex flex-col gap-4 px-2 my-4 bg-white dark:bg-black py-6"
       >
         <input
           className={inputStyle}
@@ -165,6 +180,34 @@ const BlogForm = () => {
             </div>
           </div>
           {errors.isVerified && (
+            <span className="text-center text-red-500">
+              This field is required
+            </span>
+          )}
+        </div>
+        <div>
+          <label htmlFor="isFeatured">Is this a featured blog?</label>
+          <div className="flex space-x-4 items-center" id="isFeatured">
+            <div className="flex items-center space-x-2">
+              <input
+                type="radio"
+                id="isFeaturedTrue"
+                value={"true"}
+                {...register("isFeatured", { required: true })}
+              />
+              <label htmlFor="isFeaturedTrue">Yes</label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <input
+                id="isFeaturedFalse"
+                type="radio"
+                value={"false"}
+                {...register("isFeatured", { required: true })}
+              />
+              <label htmlFor="isFeaturedFalse">No</label>
+            </div>
+          </div>
+          {errors.isFeatured && (
             <span className="text-center text-red-500">
               This field is required
             </span>
@@ -272,7 +315,7 @@ function Blog({ blog, id }: props) {
     );
   }
   return (
-    <div className="w-full flex flex-col justify-evenly  shadow-lg px-3 py-3 rounded-lg my-3">
+    <div className="w-full flex flex-col justify-evenly  shadow-lg px-3 py-3 rounded-lg my-3 bg-white dark:bg-black">
       <div className="space-y-3">
         <div className="flex justify-between">
           <div className="font-semibold flex justify-center w-full text-3xl text-center">
@@ -303,9 +346,21 @@ function Blog({ blog, id }: props) {
           <p className="text-xs">
             {blog.isVerified ? "Published" : "Not Published, under review."}
           </p>
+          <p className="text-xs">
+            {blog.isFeatured ? "Featured" : "Not Featured."}
+          </p>
         </div>
         <div className="h-[300px] w-full relative object-contain mt-4">
-          <Image src={blog.illustration || " "} fill alt="blogs image" />
+          <Image
+            src={`${
+              blog.illustration === " "
+                ? "https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/6192594_3125988.jpg?alt=media&token=f255e3cb-bc07-4e8a-8df7-eea5d3853158"
+                : blog.illustration
+            }`}
+            fill
+            className="object-cover"
+            alt="blogs image"
+          />
         </div>
       </div>
       {showEditForm && (

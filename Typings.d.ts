@@ -31,12 +31,13 @@ type LAC_Event = {
   reglink: string;
 };
 
-type Team_Member = {
+type Developer = {
   [key: string]: string;
-  picture: string;
+  image: string;
+  coverImage: string;
   name: string;
-  post: string;
-  desc: string;
+  tag: string;
+  links: string[];
 };
 
 type Litevent = {

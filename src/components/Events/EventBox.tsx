@@ -22,7 +22,7 @@ const EventBox = ({
   reglink,
 }: props) => {
   return (
-    <div className="flex flex-col gap-2 shadow-xl py-5 px-5 rounded-lg bg-white w-11/12 dark:bg-[#603726] dark:text-[#dfa437] w-full mx-auto">
+    <div className="flex flex-col gap-2 shadow-xl py-5 px-5 rounded-lg bg-white dark:bg-[#603726] dark:text-[#dfa437] w-full mx-auto">
       <div className="w-[250px] h-[250px]  relative mx-auto">
         {/* className=" object-contain" */}
         <Image src={img} fill alt="Event poster" />

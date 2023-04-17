@@ -25,6 +25,16 @@ const BookClub = ({ books }: props) => {
         ook <FirstLetterCapital letter="C" bgColor="#DA8E63" />
         lub
       </p>
+      <p>
+        Do you often get lost in the world of dreams setting off on adventures
+        with Harry, Percy or Katniss? Do you sometimes imagine yourself living
+        in the enchanted land of Westeros or solving mysteries with Hercule
+        Poirot? Do you feel mesmerized by Shakespeare's sonnets? Or are you
+        still new to this fantastic world of literature? Well, don't you worry!
+        We've got you covered. LAC has its very own bookclub for all passionate
+        readers out there. <br />
+        Venue: 3rd floor, Central Library 
+      </p>
       {books.map((book: Book, index: number) => {
         return <BookDisplayBox book={book} key={index} />;
       })}

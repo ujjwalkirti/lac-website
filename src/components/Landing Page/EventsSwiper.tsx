@@ -33,7 +33,7 @@ export default function EventsSwiper({
             className="rounded-md object-cover"
           />
           <div className="absolute h-full w-full z-10 bg-gradient-to-t from-black to-transparent  rounded-md"></div>
-          <div className="absolute flex flex-col items-end bottom-7 right-3 z-20 text-white">
+          <div className="absolute flex flex-col items-end bottom-7 right-3 z-20 text-white px-2 text-right">
             <p className={"text-2xl mb-3 " + libre_caslon_text.className}>
               {yetToHappenEvents[0].title}
             </p>
@@ -48,30 +48,35 @@ export default function EventsSwiper({
         </div>
       </div>
       {/* div for the next latest upcoming event */}
-      <div className=" transition-all duration-200 relative">
-        <div className="absolute top-3 right-3 z-20 bg-white dark:text-[#2c1810] animate-pulse px-3 py-1 rounded-md font-semibold flex items-center gap-3">
-          <CgLivePhoto />
-          <p className="">Upcoming</p>
-        </div>{" "}
-        <div className="relative h-full w-[80vw]">
-          <Image
-            src={yetToHappenEvents[1].img}
-            fill
-            alt="LAC's most recent event poster"
-            className="rounded-md object-cover"
-          />
-          <div className="absolute h-full w-full z-10 bg-gradient-to-t from-black to-transparent  rounded-md"></div>
-          <div className="absolute flex flex-col items-end bottom-7 right-3 z-20 text-white">
-            <p className={"text-2xl mb-3 " + libre_caslon_text.className}>
-              {yetToHappenEvents[1].title}
-            </p>
+      {yetToHappenEvents.length === 2 && (
+        <div className=" transition-all duration-200 relative">
+          <div className="absolute top-3 right-3 z-20 bg-white dark:text-[#2c1810] animate-pulse px-3 py-1 rounded-md font-semibold flex items-center gap-3">
+            <CgLivePhoto />
+            <p className="">Upcoming</p>
+          </div>{" "}
+          <div className="relative h-full w-[80vw]">
+            <Image
+              src={yetToHappenEvents[1].img}
+              fill
+              alt="LAC's most recent event poster"
+              className="rounded-md object-cover"
+            />
+            <div className="absolute h-full w-full z-10 bg-gradient-to-t from-black to-transparent  rounded-md"></div>
+            <div className="absolute flex flex-col items-end bottom-7 right-3 z-20 text-white">
+              <p className={"text-2xl mb-3 " + libre_caslon_text.className}>
+                {yetToHappenEvents[1].title}
+              </p>
 
-            <Link className="bg-[#DA8E63] px-3 py-2 rounded-lg" href="/events">
-              View / Register
-            </Link>
+              <Link
+                className="bg-[#DA8E63] px-3 py-2 rounded-lg"
+                href="/events"
+              >
+                View / Register
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
+      )}
       {/* div for latest event which just happened */}
       <div className=" transition-all duration-200 relative">
         <div className="absolute top-3 right-3 z-20 bg-white dark:text-[#2c1810] animate-pulse px-3 py-1 rounded-md font-semibold flex items-center gap-3">
