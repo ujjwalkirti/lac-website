@@ -1,11 +1,26 @@
-import { libre_caslon_text, monsterrat } from "@/utils";
+import { monsterrat } from "@/utils";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { BsFillSunFill, BsMoonFill } from "react-icons/bs";
-import { GiHamburgerMenu } from "react-icons/gi";
+import {
+  BsCalendar2EventFill,
+  BsFillSunFill,
+  BsMoonFill,
+} from "react-icons/bs";
+import { ImBlog } from "react-icons/im";
+import { GiHamburgerMenu, GiSparkles } from "react-icons/gi";
 import { MdOutlineClose } from "react-icons/md";
+import { RiTeamLine } from "react-icons/ri";
+import { HiHome } from "react-icons/hi";
+
+const options = [
+  { name: "EVENTS", url: "/events" },
+  { name: "BLOGS", url: "/blogs" },
+  { name: "LITFEST", url: "/Litfest" },
+  { name: "ABOUT US", url: "/about_us" },
+];
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
@@ -16,18 +31,39 @@ const Navbar = () => {
     setMounted(true);
   }, []);
 
+  function styleBasedOnRoute({ name, url }: styleProps) {
+    switch (url) {
+      case "/events":
+        // code block
+        return (
+          "flex items-center gap-2 " +
+          `${!showMenu ? "ml-[60px] " : ""}` +
+          `${emphasiseRoute("/events")}`
+        );
+      case "/blogs":
+        return "flex items-center gap-2 " + `${emphasiseRoute("/blogs")}`;
+      // code block
+      case "/Litfest":
+        return "flex items-center gap-2 " + `${emphasiseRoute("/Litfest")}`;
+      case "/about_us":
+        return "flex items-center gap-2 " + `${emphasiseRoute("/about_us")}`;
+      default:
+      // code block
+    }
+  }
+
   if (!mounted) {
     return null;
   }
   return (
     <section
       className={
-        "flex justify-between items-center w-11/12 mx-auto pt-[32px] dark:bg-[#2C1810] dark:text-[#dfa437] text-[#2C1810] font-medium " +
+        "flex justify-between items-center w-11/12 mx-auto pt-4 lg:pt-[32px] font-medium " +
         monsterrat.className
       }
     >
       <GiHamburgerMenu
-        className="text-[32px] md:hidden cursor-pointer"
+        className="text-[32px] lg:hidden cursor-pointer"
         onClick={() => {
           setShowMenu(true);
         }}
@@ -42,8 +78,7 @@ const Navbar = () => {
       </Link>{" "}
       <div
         className={
-          "hidden w-full md:flex justify-start space-x-[48px] text-[14px] leading-[17.07px] " +
-          libre_caslon_text.className
+          "hidden w-full lg:flex justify-start space-x-[28px] text-[14px] leading-[17.07px] "
         }
       >
         {" "}
@@ -52,35 +87,42 @@ const Navbar = () => {
             HOME
           </Link>
         )}
-        <Link
-          className={"hover:underline " + `${!showMenu ? "ml-[100px]" : ""}`}
-          href="/events"
-        >
-          EVENTS
-        </Link>
-        <Link className="hover:underline" href={`/blogs`}>
-          BLOGS
-        </Link>
-        <Link className="hover:underline" href={`/Litfest`}>
-          LITFEST
-        </Link>
-        <Link className="hover:underline" href={`/about_us`}>
-          ABOUT US
-        </Link>
+        {options.map((option, index) => {
+          if (option.url !== "/")
+            return (
+              <Link
+                key={index}
+                href={option.url}
+                className={styleBasedOnRoute(option)}
+              >
+                {renderIconsAsPerRoute(option.url)}
+                {option.name}
+              </Link>
+            );
+        })}
       </div>
       {/* 
+        .
+        .
+        .
+        .
         This navbar component will only be  displayed when screen is below md breakpoint
+        .
+        .
+        .
+        .
+        .
       */}
       {showMenu && (
         <div
           className={
-            "absolute md:hidden top-0 left-0  w-screen min-h-screen z-40 flex filter backdrop-filter backdrop-blur-sm "
+            "fixed lg:hidden top-0 left-0  w-screen min-h-screen z-40 flex filter backdrop-filter backdrop-blur-sm " +
+            `${showMenu ? "animate-fade-in" : ""}`
           }
         >
           <div
             className={
-              "w-[40%] px-[15px] h-screen bg-[#2C1810] text-white pt-10 grayish-text flex flex-col items-center " +
-              libre_caslon_text.className
+              "w-[40%] px-[15px] h-screen bg-[#2C1810] dark:bg-[#603726] text-white pt-10 grayish-text flex flex-col items-center"
             }
           >
             <div className="flex justify-end w-full h-1/8">
@@ -94,34 +136,42 @@ const Navbar = () => {
             <div className="flex flex-col gap-8 justify-center h-5/6 pb-10">
               {" "}
               {showMenu && (
-                <Link className="hover:underline" href={`/`}>
+                <Link
+                  onClick={() => {
+                    setShowMenu(false);
+                  }}
+                  className="flex items-center justify-center gap-2 border-b-4 border-transparent hover:border-[#fffbf7]"
+                  href={`/`}
+                >
+                  {renderIconsAsPerRoute("/")}
                   HOME
                 </Link>
               )}
-              <Link className=" hover:underline" href="/events">
-                EVENTS
-              </Link>
-              <Link className="hover:underline" href={`/blogs`}>
-                BLOGS
-              </Link>
-              <Link className="hover:underline" href={`/litfest`}>
-                LITFEST
-              </Link>
-              <Link className="hover:underline" href={`/about_us`}>
-                ABOUT US
-              </Link>
+              {options.map((option, index) => (
+                <Link
+                  href={option.url}
+                  key={index}
+                  onClick={() => {
+                    setShowMenu(false);
+                  }}
+                  className="flex items-center justify-center gap-2 border-b-4 border-transparent hover:border-[#fffbf7]"
+                >
+                  {renderIconsAsPerRoute(option.url)}
+                  {option.name}
+                </Link>
+              ))}
             </div>
           </div>
         </div>
       )}
       {/* Theme toggle button */}
       <div
-        className="w-[62px] md:w-[86px] h-[24px] md:h-[36px] relative rounded-full shadow-slate-400 shadow-inner cursor-pointer"
+        className="w-[62px] lg:w-[86px] h-[24px] lg:h-[36px] relative rounded-full shadow-slate-400 shadow-inner cursor-pointer"
         onClick={() => {
           setTheme(theme === "dark" ? "light" : "dark");
         }}
       >
-        <span className="h-[30px] md:h-[40px] w-[30px] md:w-[40px] rounded-full bg-[#DA8E63] absolute -top-0.5 dark:right-0 transition-all duration-500 ease-in-out"></span>
+        <span className="h-[30px] lg:h-[40px] w-[30px] lg:w-[40px] rounded-full bg-[#DA8E63] absolute -top-0.5 dark:right-0 transition-all duration-500 ease-in-out"></span>
         {theme === "light" ? (
           <span className=" absolute right-2 text-[14px] md:text-[19px] text-[#DA8E63] h-full flex items-center">
             <BsMoonFill />
@@ -137,3 +187,30 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+function emphasiseRoute(url: string) {
+  const router = useRouter();
+  return router.asPath === url
+    ? "bg-[#daaa63] px-4 rounded-full py-2 text-sm font-semibold"
+    : "text-sm font-normal hover:bg-[#daaa63] rounded-full px-4 py-2 ";
+}
+
+type styleProps = {
+  name: string;
+  url: string;
+};
+
+function renderIconsAsPerRoute(url: String) {
+  switch (url) {
+    case "/events":
+      return <BsCalendar2EventFill />;
+    case "/blogs":
+      return <ImBlog />;
+    case "/about_us":
+      return <RiTeamLine />;
+    case "/Litfest":
+      return <GiSparkles />;
+    case "/":
+      return <HiHome />;
+  }
+}

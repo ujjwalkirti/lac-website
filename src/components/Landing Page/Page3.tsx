@@ -13,11 +13,11 @@ const Page3 = () => {
         />
       </div>
       <div className="lg:w-3/5 ">
-        <p className="lg:w-2/3 mx-auto text-justify font-[400] text-[18px] lg:text-[22px] leading-[24px] lg:leading-[32.01px]">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis,
-          a ad excepturi at quos est nulla voluptatem officia provident sequi
-          sit voluptatum, quae corporis ipsam porro deleniti ullam molestias.
-          Iusto!
+        <p className="lg:w-2/3 mx-auto text-left font-[400] text-[18px] lg:text-[22px] leading-[24px] lg:leading-[32.01px]">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo atque
+          quam, facilis, dolore aperiam molestias, blanditiis impedit veritatis
+          incidunt assumenda numquam odit quis placeat quisquam maiores? Commodi
+          possimus et quam?
         </p>
       </div>
       <div className="my-5 hidden lg:relative lg:flex h-[400px] mx-auto w-[400px] shadow-xl rounded-full">
