@@ -122,7 +122,7 @@ const Navbar = () => {
         >
           <div
             className={
-              "w-[40%] px-[15px] h-screen bg-[#2C1810] text-white pt-10 grayish-text flex flex-col items-center"
+              "w-[40%] px-[15px] h-screen bg-[#2C1810] dark:bg-[#603726] text-white pt-10 grayish-text flex flex-col items-center"
             }
           >
             <div className="flex justify-end w-full h-1/8">
@@ -166,12 +166,12 @@ const Navbar = () => {
       )}
       {/* Theme toggle button */}
       <div
-        className="w-[62px] md:w-[86px] h-[24px] md:h-[36px] relative rounded-full shadow-slate-400 shadow-inner cursor-pointer"
+        className="w-[62px] lg:w-[86px] h-[24px] lg:h-[36px] relative rounded-full shadow-slate-400 shadow-inner cursor-pointer"
         onClick={() => {
           setTheme(theme === "dark" ? "light" : "dark");
         }}
       >
-        <span className="h-[30px] md:h-[40px] w-[30px] md:w-[40px] rounded-full bg-[#DA8E63] absolute -top-0.5 dark:right-0 transition-all duration-500 ease-in-out"></span>
+        <span className="h-[30px] lg:h-[40px] w-[30px] lg:w-[40px] rounded-full bg-[#DA8E63] absolute -top-0.5 dark:right-0 transition-all duration-500 ease-in-out"></span>
         {theme === "light" ? (
           <span className=" absolute right-2 text-[14px] md:text-[19px] text-[#DA8E63] h-full flex items-center">
             <BsMoonFill />

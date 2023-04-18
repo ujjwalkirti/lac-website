@@ -46,7 +46,12 @@ const AboutUs = () => {
         />
       </div>
       {/* Students in-charge */}
-      <p className="text-[30px] lg:text-[50px] text-center">
+      <p
+        className={
+          "text-[30px] lg:text-[50px] text-center " +
+          libre_caslon_text.className
+        }
+      >
         Student Representatives
       </p>
       <div className="flex flex-col items-center gap-10">

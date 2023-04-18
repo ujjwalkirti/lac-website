@@ -11,6 +11,7 @@ type props = {
 };
 
 const Blogs = ({ blogs }: props) => {
+  
   return (
     <section className="w-11/12 mx-auto">
       <Head>
@@ -46,7 +47,7 @@ const Blogs = ({ blogs }: props) => {
         </p>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {blogs.map((post, index) => {
-            if (index !== 0 && post.blog.isFeatured != true) {
+            if (index !== 0) {
               return <NormalBlog id={post.id} blog={post.blog} key={index} />;
             }
           })}
@@ -60,12 +61,9 @@ export default Blogs;
 
 export async function getServerSideProps(context: any) {
   let blogs: any[] = [];
-  /* get only those blogs from firestore database whose isVerified value is true.
-
-  You will get more details abo=ut it in the firestore documentation
-  */
 
   let featuredBlog: any[] = [];
+  // occupying the 0th index for the most recent featured blog
   blogs.push({});
 
   const q = query(collection(db, "blogs"), where("isVerified", "==", true));
@@ -85,13 +83,13 @@ export async function getServerSideProps(context: any) {
     //@ts-ignore
     (a: number, b: number) => new Date(a.blog.date) - new Date(b.blog.date)
   );
+  console.log(sortedData.length)
   if (sortedData.length > 0) {
     blogs[0] = sortedData[sortedData.length - 1];
   }
   sortedData.map((blog, index) => {
     if (index < sortedData.length - 1) {
       blogs.push(blog);
-      console.log(blog)
     }
   });
 

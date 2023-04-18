@@ -32,7 +32,7 @@ const InformationHolder = ({
   socials,
 }: props) => {
   return (
-    <div className="flex flex-col lg:flex-row gap-2 shadow-xl py-3 px-2 rounded-lg bg-white w-11/12 dark:bg-[#603726] dark:text-[#dfa437] lg:w-full mx-auto">
+    <div className="flex flex-col lg:flex-row gap-2 shadow-xl py-3 px-2 rounded-lg bg-white w-11/12 dark:bg-[#603726]  lg:w-full mx-auto">
       <div
         className={
           "flex flex-col items-center mx-auto  lg:gap-3 " +
@@ -66,55 +66,72 @@ const InformationHolder = ({
             </Link>
           </div>
         )}
-        {socials && (
-          <div className="grid grid-cols-3 gap-3 text-[40px] w-full px-3 my-4">
-            {/* facebook */}
-            {socials[0] && (
-              <Link
-                className="text-blue-600 dark:text-[#dfa437] mx-auto"
-                href={socials[0]}
-              >
-                <AiFillFacebook />
-              </Link>
-            )}
-            {/* LinkedIn */}
-            {socials[1] && (
-              <Link
-                className="text-blue-600  dark:text-[#dfa437]  mx-auto"
-                href={socials[1]}
-              >
-                <AiFillLinkedin />
-              </Link>
-            )}
-            {/* Twitter */}
-            {socials[2] && (
-              <Link
-                className="text-blue-600  dark:text-[#dfa437]  mx-auto"
-                href={socials[2]}
-              >
-                <AiFillTwitterSquare />
-              </Link>
-            )}
-            {/* Gmail */}
-            {socials[3] && (
-              <Link
-                className=" text-red-600 dark:text-[#dfa437]  mx-auto"
-                href={socials[3]}
-              >
-                <SiGmail />
-              </Link>
-            )}
-            {/* Instagram */}
-            {socials[4] && (
-              <Link
-                className=" text-purple-600 dark:text-[#dfa437]  mx-auto"
-                href={socials[4]}
-              >
-                <AiFillInstagram />
-              </Link>
-            )}
-          </div>
-        )}
+        <div className="grid grid-cols-3 gap-3 text-[40px] w-full px-3 my-4">
+          {socials?.map((link, index) => {
+            switch (index) {
+              case 0:
+                if (link !== " ") {
+                  return (
+                    <Link
+                      className="text-blue-600 dark:text-[#dfa437] mx-auto"
+                      href={link}
+                    >
+                      <AiFillFacebook />
+                    </Link>
+                  );
+                }
+                break;
+              case 1:
+                if (link !== " ") {
+                  return (
+                    <Link
+                      className="text-blue-600  dark:text-[#dfa437]  mx-auto"
+                      href={socials[1]}
+                    >
+                      <AiFillLinkedin />
+                    </Link>
+                  );
+                }
+                break;
+              case 2:
+                if (link !== " ") {
+                  return (
+                    <Link
+                      className="text-blue-600  dark:text-[#dfa437]  mx-auto"
+                      href={link}
+                    >
+                      <AiFillTwitterSquare />
+                    </Link>
+                  );
+                }
+                break;
+              case 3:
+                if (link !== " ") {
+                  return (
+                    <Link
+                      className=" text-red-600 dark:text-[#dfa437]  mx-auto"
+                      href={link}
+                    >
+                      <SiGmail />
+                    </Link>
+                  );
+                }
+                break;
+              case 4:
+                if (link !== " ") {
+                  return (
+                    <Link
+                      className=" text-purple-600 dark:text-[#dfa437]  mx-auto"
+                      href={link}
+                    >
+                      <AiFillInstagram />
+                    </Link>
+                  );
+                }
+                break;
+            }
+          })}
+        </div>
       </div>
       {/* His message */}
       {message && (

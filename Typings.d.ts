@@ -34,7 +34,6 @@ type LAC_Event = {
 type Developer = {
   [key: string]: string;
   image: string;
-  coverImage: string;
   name: string;
   tag: string;
   links: string[];
