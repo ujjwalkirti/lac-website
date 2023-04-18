@@ -21,11 +21,18 @@ const EventBox = ({
   date,
   reglink,
 }: props) => {
+  const dateFromTimestamp = new Date(date);
+  const options = { day: "numeric", month: "long", year: "numeric" };
+  //@ts-ignore
+  const formattedTime = new Intl.DateTimeFormat("en-US", options).format(
+    dateFromTimestamp
+  );
+
   return (
-    <div className="flex flex-col gap-2 shadow-xl py-5 px-5 rounded-lg bg-white w-11/12 dark:bg-[#603726] dark:text-[#dfa437] w-full mx-auto">
-      <div className="w-[250px] h-[250px]  relative mx-auto">
+    <div className="flex flex-col gap-2 shadow-xl py-5 px-5 rounded-lg bg-white dark:bg-[#603726] dark:text-[#fffbf7] w-full h-auto mx-auto">
+      <div className="w-full h-[250px]  relative mx-auto">
         {/* className=" object-contain" */}
-        <Image src={img} fill alt="Event poster" />
+        <Image src={img} fill alt="Event poster" className="object-cover"/>
       </div>
       <p className="text-[30px] text-center font-bold">{title}</p>
       {completed && (
@@ -41,11 +48,11 @@ const EventBox = ({
       <p className="text-[18px] text-justify ">{description}</p>
       <div>
         <p className="text-left font-semibold">
-          Number of team members:{teamMembers}
+          Number of team members: {teamMembers}
         </p>
       </div>
       <div>
-        <p className="text-left font-semibold">Date: {date}</p>
+        <p className="text-left font-semibold">Date: {formattedTime}</p>
       </div>
       {!completed && (
         <a

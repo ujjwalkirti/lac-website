@@ -1,6 +1,7 @@
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import React from "react";
+import { Ripples } from "@uiball/loaders";
 
 const Loader = () => {
   const { theme } = useTheme();
@@ -11,23 +12,37 @@ const Loader = () => {
         `${theme === "dark" ? "bg-[#2C1810]" : "bg-white"}`
       }
     >
-      {theme === "dark" ? (
-        <Image
-          src={`/logo-black.png`}
-          height={200}
-          width={200}
-          alt="LAC logo"
-          className="rounded-full border-4 border-gray-300 animate-spin"
+      <div className="absolute">
+        <Ripples
+          size={285}
+          speed={2}
+          color={`${theme === "dark" ? "#fffbf7" : "#2c1810"}`}
         />
-      ) : (
-        <Image
-          src={`/logo-white.png`}
-          height={200}
-          width={200}
-          alt="LAC logo"
-          className="border-4 border-[#2C1810] rounded-full animate-spin"
-        />
-      )}
+      </div>
+      <div
+        className={
+          `${theme === "dark" ? "bg-[#2c1810]" : "bg-[#fffbf7]"}` +
+          " z-40 rounded-full flex items-center justify-center"
+        }
+      >
+        {theme === "dark" ? (
+          <Image
+            src={`/logo-black.png`}
+            height={120}
+            width={120}
+            alt="LAC logo"
+            className="rounded-full border-4 border-gray-300 "
+          />
+        ) : (
+          <Image
+            src={`/logo-white.png`}
+            height={120}
+            width={120}
+            alt="LAC logo"
+            className="border-4 border-[#2C1810] rounded-full"
+          />
+        )}
+      </div>
     </div>
   );
 };

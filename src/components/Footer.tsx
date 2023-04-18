@@ -11,7 +11,16 @@ import {
 import { SiGmail } from "react-icons/si";
 
 const Footer = () => {
+  const [mounted, setMounted] = React.useState(false);
+
   const { theme } = useTheme();
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+  if (!mounted) {
+    return null;
+  }
   return (
     <section className="w-11/12 mx-auto flex flex-col items-center">
       <div className="h-[72px] w-[72px] relative mt-[51px]">
@@ -31,14 +40,11 @@ const Footer = () => {
         Literary Affairs Committee
       </p>
       <p className="mt-[16px] lg:w-[75vw] mb-[20px] text-[16px] lg:text-[20px] font-[400] leading-[24.38px] text-center">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum ab,
-        fugit beatae quia voluptatem voluptatum nesciunt doloremque excepturi
-        autem, vitae tenetur veniam quos vel et id neque accusamus delectus nam.
+        
       </p>
       <div
         className={
-          "grid grid-cols-3 gap-4 lg:grid-cols-6 lg:gap-[50px] mb-[34px] " +
-          libre_caslon_text.className
+          "grid grid-cols-3 gap-4 lg:grid-cols-6 lg:gap-[50px] mb-[34px] "
         }
       >
         <Link className="hover:underline  text-center" href={`/`}>
@@ -53,25 +59,41 @@ const Footer = () => {
         <Link className="hover:underline  text-center" href={`/about_us`}>
           ABOUT US
         </Link>
-        <Link className="hover:underline  text-center" href={`/developers`}>
-          DEVELOPERS 💻
+        <Link className="hover:underline  text-center" href={`/book_club`}>
+          BOOK CLUB
+        </Link>
+        <Link className="hover:underline  text-center" href={`/Litfest`}>
+          LITFEST
         </Link>
       </div>
+      <Link className="hover:underline mb-4  text-center" href={`/developers`}>
+        Developers 💻 & Designers 🎨
+      </Link>
       <div className="flex flex-col lg:flex-row justify-between items-center mb-[20px] w-full gap-5">
         <p>CopyRight 2023 LAC, All Rights Reserved</p>
         <div className="flex space-x-8 text-[36px]">
-          <Link href={`https://www.facebook.com/LACSVNIT/`}>
+          <Link
+            className="hover:text-[#dfa437]"
+            href={`https://www.facebook.com/LACSVNIT/`}
+          >
             <AiFillFacebook />
           </Link>
-          <Link href={`https://www.instagram.com/lacsvnit/?hl=en`}>
+          <Link
+            className="hover:text-[#dfa437]"
+            href={`https://www.instagram.com/lacsvnit/?hl=en`}
+          >
             <AiFillInstagram />
           </Link>
           <Link
+            className="hover:text-[#dfa437]"
             href={`https://www.linkedin.com/company/lacsvnit/?originalSubdomain=in`}
           >
             <AiFillLinkedin />
           </Link>
-          <Link href={`mailto:ujjwalkirti2000@gmail.com`}>
+          <Link
+            className="hover:text-[#dfa437]"
+            href={`mailto:lac@svnit.ac.in`}
+          >
             <SiGmail />
           </Link>
         </div>

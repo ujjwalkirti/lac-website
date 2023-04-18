@@ -1,13 +1,12 @@
 import InformationHolder from "@/components/About us/InformationHolder";
-import FirstLetterCapital from "@/components/Landing Page/FirstLetterCapital";
 import { libre_caslon_text } from "@/utils";
 import Head from "next/head";
-import Image from "next/image";
+
 import React from "react";
 
 const AboutUs = () => {
   return (
-    <section className="min-h-[80vh] flex flex-col items-center gap-5 px-2 py-5">
+    <section className="min-h-[80vh] flex flex-col items-center gap-5 px-2 py-3">
       <Head>
         <title>About Us</title>
       </Head>
@@ -47,7 +46,12 @@ const AboutUs = () => {
         />
       </div>
       {/* Students in-charge */}
-      <p className="text-[30px] lg:text-[50px] text-center">
+      <p
+        className={
+          "text-[30px] lg:text-[50px] text-center " +
+          libre_caslon_text.className
+        }
+      >
         Student Representatives
       </p>
       <div className="flex flex-col items-center gap-10">
