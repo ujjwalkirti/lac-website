@@ -26,7 +26,7 @@ const CarouselLit = ({events}:props) => {
               <SwiperSlide key={index}>
                 <div className="cursor-pointer">
                     <div className="relative h-96 w-full">
-                        <Image src={item.img} layout="fill" objectFit="cover" className="rounded-xl"/>
+                        <Image src={item.img} layout="fill" objectFit="cover" className="rounded-md"/>
                     </div>
                 </div>
               </SwiperSlide>
