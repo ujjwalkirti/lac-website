@@ -12,7 +12,7 @@ const AboutUs = () => {
       </Head>
       <p className={"text-[60px] " + libre_caslon_text.className}>About Us</p>
       {/* Faculty Advisor */}
-      <div className="lg:w-10/12">
+      <div className="w-full lg:w-10/12">
         <InformationHolder
           name="Mr Some Random Name"
           position="Professor, Dept of XYZ Engineering"
@@ -48,7 +48,7 @@ const AboutUs = () => {
       {/* Students in-charge */}
       <p
         className={
-          "text-[30px] lg:text-[50px] text-center " +
+          "text-[40px] mt-10 lg:text-[50px] text-center " +
           libre_caslon_text.className
         }
       >

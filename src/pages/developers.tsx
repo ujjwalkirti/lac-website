@@ -70,7 +70,6 @@ export async function getServerSideProps(context: any) {
         developers.push(doc.data());
       }
     }
-    console.log(designers);
   });
   return {
     props: {
