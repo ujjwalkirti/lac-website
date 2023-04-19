@@ -40,7 +40,8 @@ const Footer = () => {
         Literary Affairs Committee
       </p>
       <p className="mt-[16px] lg:w-[75vw] mb-[20px] text-[16px] lg:text-[20px] font-[400] leading-[24.38px] text-center">
-        
+        LAC - an amalgamation of Speaking, reading and quizzing, the place where
+        communication meets expression and a me becomes a we!
       </p>
       <div
         className={
