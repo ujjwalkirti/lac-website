@@ -35,7 +35,7 @@ const Timline = ({events}:props) => {
     }, []);
 
   return (
-        <VerticalTimeline className="mx-auto" animate={screenWidth>475 ? true:false}>
+        <VerticalTimeline className="mx-auto" animate={screenWidth>760 ? true:false}>
             {events?.map(function(item:any,index:number){
                 return(
                     <VerticalTimelineElement
