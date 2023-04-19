@@ -11,7 +11,7 @@ const NormalBlog = ({ blog, id }: props) => {
   return (
     <div
       className={
-        "flex flex-col lg:gap-4 dark:bg-[#603726] rounded-lg shadow-lg " +
+        "flex flex-col lg:gap-4 bg-white dark:bg-[#603726] rounded-lg shadow-lg " +
         monsterrat.className
       }
     >

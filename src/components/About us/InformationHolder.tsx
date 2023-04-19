@@ -7,6 +7,7 @@ import {
   AiFillInstagram,
   AiFillLinkedin,
   AiFillTwitterSquare,
+  AiOutlineTwitter,
   AiOutlineWhatsApp,
 } from "react-icons/ai";
 import Link from "next/link";
@@ -32,11 +33,11 @@ const InformationHolder = ({
   socials,
 }: props) => {
   return (
-    <div className="flex flex-col lg:flex-row gap-2 shadow-xl py-3 px-2 rounded-lg bg-white w-11/12 dark:bg-[#603726]  lg:w-full mx-auto">
+    <div className="flex flex-col lg:flex-row gap-2 shadow-xl py-3 px-2 rounded-lg bg-white dark:bg-[#603726]  lg:w-full mx-auto">
       <div
         className={
-          "flex flex-col items-center mx-auto  lg:gap-3 " +
-          `${message ? "lg:w-1/3 " : ""}`
+          "flex flex-col items-center mx-auto gap-2 lg:gap-3 " +
+          `${message ? "lg:w-2/5 " : ""}`
         }
       >
         <p className="text-[30px] text-center font-semibold">{name}</p>
@@ -100,7 +101,7 @@ const InformationHolder = ({
                       className="text-blue-600  dark:text-[#dfa437]  mx-auto"
                       href={link}
                     >
-                      <AiFillTwitterSquare />
+                      <AiOutlineTwitter />
                     </Link>
                   );
                 }
@@ -137,12 +138,12 @@ const InformationHolder = ({
       {message && (
         <div
           className="flex flex-col lg:justify-center
-        lg:gap-4 mt-5 mb-3 lg:w-2/3"
+        lg:gap-4 lg:mt-5 mb-3 lg:w-3/5"
         >
-          <p className="text-center font-medium text-xl">
+          <p className="text-center font-medium text-xl dark:text-[#dfa437]">
             Message from the Desk
           </p>
-          <p className="text-justify italic px-3 lg:w-2/3 lg:mx-auto">
+          <p className="text-justify italic px-3 lg:w-full lg:mx-auto ">
             <FirstLetterCapital letter={`"`} />
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum
             fuga debitis, quos dolores sint, architecto amet tempore maxime

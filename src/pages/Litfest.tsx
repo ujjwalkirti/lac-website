@@ -13,7 +13,7 @@ type props = {
 
 const Litfest = ({ litevents }: props) => {
   return (
-    <div className="min-w-full md:w-10/12 mx-auto">
+    <div className="w-screen md:w-10/12 mx-auto">
       <Head>
         <title>LitFest SVNIT, Surat</title>
       </Head>
@@ -51,9 +51,9 @@ const Litfest = ({ litevents }: props) => {
             );
           })}
         </div>
-        <div className="mt-10 md:mx-10 mx-1 w-full flex-shrink-0">
-          <div className="mt-10 md:min-w-full flex-shrink-0">
-            <h1 className={"m-auto text-4xl text-center pb-10 " + libre_caslon_text.className}>Timeline</h1>
+        <div className="mt-10 md:mx-10 sm:mx-3">
+          <div className="mt-10 w-full flex-shrink-0 mx-auto">
+            <h1 className={"m-auto text-4xl text-center pb-10 w-full " + libre_caslon_text.className}>Timeline</h1>
             <Timeline events={litevents}/>
           </div>
         </div>

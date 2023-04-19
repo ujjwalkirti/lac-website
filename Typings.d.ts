@@ -36,6 +36,8 @@ type Developer = {
   image: string;
   name: string;
   tag: string;
+  branch: string;
+  year: number;
   links: string[];
 };
 

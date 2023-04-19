@@ -29,10 +29,10 @@ const EventBox = ({
   );
 
   return (
-    <div className="flex flex-col gap-2 shadow-xl py-5 px-5 rounded-lg bg-white dark:bg-[#603726] dark:text-[#fffbf7] w-full h-auto mx-auto">
-      <div className="w-full h-[250px]  relative mx-auto">
+    <div className="flex flex-col gap-2 shadow-xl py-5 px-3 rounded-lg bg-white dark:bg-[#603726] dark:text-[#fffbf7] w-[100%] h-auto mx-auto">
+      <div className="w-full h-[250px] relative mx-auto">
         {/* className=" object-contain" */}
-        <Image src={img} fill alt="Event poster" className="object-cover"/>
+        <Image src={img} fill alt="Event poster" className=" object-contain" />
       </div>
       <p className="text-[30px] text-center font-bold">{title}</p>
       {completed && (
@@ -67,7 +67,7 @@ const EventBox = ({
           className="bg-[#e3bc74] w-full rounded-lg text-center dark:text-[#858383] py-3 "
           disabled
         >
-          Register
+          Registerations Closed
         </button>
       )}
     </div>
