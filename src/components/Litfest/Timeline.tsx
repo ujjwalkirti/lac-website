@@ -4,14 +4,38 @@ import 'react-vertical-timeline-component/style.min.css';
 import { FaCircle } from 'react-icons/fa';
 import Image from 'next/legacy/image';
 import { libre_caslon_text } from '@/utils';
+import { useState, useEffect } from 'react';
 
 type props = {
     events: Litevent[];
 };
 
 const Timline = ({events}:props) => {
+
+    const [screenWidth, setScreenWidth] = useState(0);
+
+    useEffect(() => {
+      const handleResize = () => {
+        if (typeof window !== 'undefined') {
+          setScreenWidth(window.innerWidth);
+        }
+      };
+  
+      handleResize();
+
+      if (typeof window !== 'undefined') {
+        window.addEventListener('resize', handleResize);
+      }
+  
+      return () => {
+        if (typeof window !== 'undefined') {
+          window.removeEventListener('resize', handleResize);
+        }
+      };
+    }, []);
+
   return (
-        <VerticalTimeline className="mx-auto">
+        <VerticalTimeline className="mx-auto" animate={screenWidth>475 ? true:false}>
             {events?.map(function(item:any,index:number){
                 return(
                     <VerticalTimelineElement
