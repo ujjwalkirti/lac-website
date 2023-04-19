@@ -26,6 +26,9 @@ const DeveloperCard = ({ developer }: props) => {
       <div className="flex flex-col items-center py-2 gap-3">
         <p className="text-[30px] font-semibold">{developer.name}</p>
         <p className="text-xl">{developer.tag}</p>
+        <div className="">
+          {yearFormatter(developer.year)} - {developer.branch}
+        </div>
         <div className="grid grid-cols-5 text-[35px] gap-6">
           {developer.links?.map((link, index) => {
             switch (index) {
@@ -83,6 +86,21 @@ const DeveloperCard = ({ developer }: props) => {
 };
 
 export default DeveloperCard;
+
+function yearFormatter(year: number) {
+  switch (year) {
+    case 1:
+      return "1st Year";
+    case 2:
+      return "Sophomore";
+    case 3:
+      return "Pre-final Year";
+    case 4:
+      return "Final Year";
+    case 5:
+      return "Final Year";
+  }
+}
 
 /*
   github

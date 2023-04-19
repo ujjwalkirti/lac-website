@@ -13,11 +13,11 @@ type props = {
 const Blogs = ({ blogs }: props) => {
   
   return (
-    <section className="w-11/12 mx-auto">
+    <section className="lg:w-11/12 mx-auto">
       <Head>
         <title>LAC - Blogs</title>
       </Head>
-      <div className="min-h-screen px-1 lg:px-8">
+      <div className="min-h-screen px-3 lg:px-8">
         <p
           className={
             "font-[600] text-[62px] text-center lg:text-left lg:text-[76px] mt-[18px] mb-[27px] lg:mb-0 " +
