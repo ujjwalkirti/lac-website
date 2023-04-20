@@ -6,7 +6,6 @@ import {
   AiFillFacebook,
   AiFillInstagram,
   AiFillLinkedin,
-  AiFillTwitterSquare,
   AiOutlineTwitter,
   AiOutlineWhatsApp,
 } from "react-icons/ai";
@@ -37,7 +36,7 @@ const InformationHolder = ({
       <div
         className={
           "flex flex-col items-center mx-auto gap-2 lg:gap-3 " +
-          `${message ? "lg:w-2/5 " : ""}`
+          `${message ? "lg:w-2/5 " : "w-full"}`
         }
       >
         <p className="text-[30px] text-center font-semibold">{name}</p>
@@ -48,8 +47,8 @@ const InformationHolder = ({
           <Image
             src={img}
             fill
-            alt="LAC SVNIT Faculty Advisor"
-            className="object-contain"
+            alt="Images of people from LAC,SVNIT"
+            className="object-cover"
           />
         </div>
         {contact && (
