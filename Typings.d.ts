@@ -15,7 +15,6 @@ type Book = {
   name: string;
   author: string;
   image: string;
-  genre: string[];
   rating: number;
   reviewLink: string;
 };

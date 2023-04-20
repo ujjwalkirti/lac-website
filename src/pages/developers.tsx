@@ -11,7 +11,7 @@ type props = {
 };
 const Developers = ({ developers, designers }: props) => {
   return (
-    <section className="min-h-[55vh] flex flex-col items-center">
+    <section className="min-h-[55vh] flex flex-col items-center lg:w-11/12">
       <Head>
         <title>Developers 💻 & Designers 🎨</title>
       </Head>
@@ -24,12 +24,12 @@ const Developers = ({ developers, designers }: props) => {
       </p>
       {/* for lead developer */}
       {Object.keys(developers[0]).length !== 0 && (
-        <div className="px-3 lg:w-auto lg:mx-auto">
+        <div className="w-full px-3 lg:w-1/4 lg:mx-auto mb-[20px]">
           <DeveloperCard developer={developers[0]} />
         </div>
       )}
       {/* for other developers */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 px-3 lg:w-10/12">
         {developers.map((developer, index) => {
           if (index !== 0)
             return <DeveloperCard developer={developer} key={index} />;
@@ -41,7 +41,7 @@ const Developers = ({ developers, designers }: props) => {
           "text-[45px] text-center mb-5 mt-10 " + libre_caslon_text.className
         }
       >
-        UX Designer
+        UI/UX Designer
       </p>
       <div className="px-3">
         {designers.map((developer, index) => {

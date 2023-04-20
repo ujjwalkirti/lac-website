@@ -11,7 +11,6 @@ type props = {
 };
 
 const Blogs = ({ blogs }: props) => {
-  
   return (
     <section className="lg:w-11/12 mx-auto">
       <Head>
@@ -27,10 +26,9 @@ const Blogs = ({ blogs }: props) => {
           LAC Blogs
         </p>
         <p className="mb-7 leading-[30px]">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae est
-          inventore deleniti architecto explicabo, nesciunt ipsum fugiat numquam
-          quibusdam reprehenderit, beatae corrupti suscipit quos repellendus
-          aliquam. Voluptatum inventore repudiandae maxime?
+          Here is LAC’s attempt to recording their opinions which are generally
+          voiced, the LAC Blogs reflect a sense of belonging and common
+          community where every opinion is respected and gracefully accepted.
         </p>
         {/* featured blog */}
         {Object.keys(blogs[0]).length !== 0 && (
@@ -83,7 +81,7 @@ export async function getServerSideProps(context: any) {
     //@ts-ignore
     (a: number, b: number) => new Date(a.blog.date) - new Date(b.blog.date)
   );
-  console.log(sortedData.length)
+  console.log(sortedData.length);
   if (sortedData.length > 0) {
     blogs[0] = sortedData[sortedData.length - 1];
   }
