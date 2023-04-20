@@ -22,7 +22,7 @@ const EventBox = ({
   reglink,
 }: props) => {
   let formattedTime = "";
-  if (date) {
+  if (date && typeof date !== "string") {
     //@ts-ignore
     const dateFromTimestamp = new Date(date);
     const options = { day: "numeric", month: "long", year: "numeric" };
@@ -36,7 +36,7 @@ const EventBox = ({
     <div className="flex flex-col gap-2 shadow-xl py-5 px-3 rounded-lg bg-white dark:bg-[#603726] dark:text-[#fffbf7] w-[100%] h-auto mx-auto">
       <div className="w-full h-[250px] relative mx-auto">
         {/* className=" object-contain" */}
-        <Image src={img} fill alt="Event poster" className=" object-contain" />
+        <Image src={img} fill alt="Event poster" className=" object-cover" />
       </div>
       <p className="text-[30px] text-center font-bold">{title}</p>
       {completed && reglink && (
@@ -57,9 +57,14 @@ const EventBox = ({
           </p>
         </div>
       )}
-      {date && (
+      {date && typeof date !== "string" && (
         <div>
           <p className="text-left font-semibold">Date: {formattedTime}</p>
+        </div>
+      )}
+      {date && typeof date === "string" && (
+        <div>
+          <p className="text-left font-semibold">Date: {date}</p>
         </div>
       )}
       {!completed && reglink && (
@@ -70,7 +75,7 @@ const EventBox = ({
           <button>Register</button>
         </a>
       )}
-      {completed && reglink && (
+      {completed  && (
         <button
           className="bg-[#e3bc74] w-full rounded-lg text-center dark:text-[#858383] py-3 "
           disabled

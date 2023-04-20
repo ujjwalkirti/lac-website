@@ -58,7 +58,7 @@ const AboutUs = () => {
         {/* Secretary */}
         <div className="w-full lg:w-[400px]">
           <InformationHolder
-            name="Mr Some Random Name"
+            name="Milind Shinkar"
             position="BTech N-Year, Dept of XYZ Engineering"
             img="/placeholder-man.png"
             designation="Secretary"
@@ -70,8 +70,8 @@ const AboutUs = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* Joint Secretary 1 */}
           <InformationHolder
-            name="Mr Some Random Name"
-            position="BTech N-Year, Dept of XYZ Engineering"
+            name="Priyanshi Shah"
+            position="BTech Pre-final Year, Dept of Computer Science Engineering"
             img="/placeholder-man.png"
             designation="Joint Secretary"
             contact={[9876543210, 9876543210]}
@@ -79,8 +79,8 @@ const AboutUs = () => {
           />
           {/* Joint Secretary 2 */}
           <InformationHolder
-            name="Mr Some Random Name"
-            position="BTech N-Year, Dept of XYZ Engineering"
+            name="Sayantani Dutta"
+            position="BTech Pre-final Year, Dept of XYZ Engineering"
             img="/placeholder-man.png"
             designation="Joint Secretary"
             contact={[9876543210, 9876543210]}
