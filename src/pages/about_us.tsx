@@ -12,7 +12,7 @@ const AboutUs = () => {
       </Head>
       <p className={"text-[60px] " + libre_caslon_text.className}>About Us</p>
       {/* Faculty Advisor */}
-      <div className="w-full lg:w-10/12">
+      <div className="w-full lg:w-auto">
         <InformationHolder
           name="Dr Kalpana C Maheria"
           position="Professor, Dept of XYZ Engineering"
