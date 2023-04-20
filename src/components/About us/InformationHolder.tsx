@@ -67,14 +67,14 @@ const InformationHolder = ({
             </Link>
           </div>
         )}
-        <div className="grid grid-cols-3 gap-3 text-[40px] w-full px-3 my-4">
+        <div className="flex gap-3 text-[40px] w-full px-3 my-4">
           {socials?.map((link, index) => {
             switch (index) {
               case 0:
                 if (link !== " ") {
                   return (
                     <Link
-                      className="text-blue-600 dark:text-[#dfa437] mx-auto"
+                      className="dark:text-[#dfa437] mx-auto"
                       href={link}
                     >
                       <AiFillFacebook />
@@ -86,7 +86,7 @@ const InformationHolder = ({
                 if (link !== " ") {
                   return (
                     <Link
-                      className="text-blue-600  dark:text-[#dfa437]  mx-auto"
+                      className=" dark:text-[#dfa437]  mx-auto"
                       href={socials[1]}
                     >
                       <AiFillLinkedin />
@@ -98,7 +98,7 @@ const InformationHolder = ({
                 if (link !== " ") {
                   return (
                     <Link
-                      className="text-blue-600  dark:text-[#dfa437]  mx-auto"
+                      className=" dark:text-[#dfa437]  mx-auto"
                       href={link}
                     >
                       <AiOutlineTwitter />
@@ -110,7 +110,7 @@ const InformationHolder = ({
                 if (link !== " ") {
                   return (
                     <Link
-                      className=" text-red-600 dark:text-[#dfa437]  mx-auto"
+                      className=" dark:text-[#dfa437]  mx-auto"
                       href={link}
                     >
                       <SiGmail />
@@ -122,7 +122,7 @@ const InformationHolder = ({
                 if (link !== " ") {
                   return (
                     <Link
-                      className=" text-purple-600 dark:text-[#dfa437]  mx-auto"
+                      className=" dark:text-[#dfa437]  mx-auto"
                       href={link}
                     >
                       <AiFillInstagram />

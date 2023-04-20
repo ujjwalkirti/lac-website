@@ -11,7 +11,7 @@ type props = {
 };
 const Developers = ({ developers, designers }: props) => {
   return (
-    <section className="min-h-[55vh] flex flex-col items-center lg:w-11/12">
+    <section className="min-h-[55vh] flex flex-col items-center lg:w-11/12 mx-auto">
       <Head>
         <title>Developers 💻 & Designers 🎨</title>
       </Head>
