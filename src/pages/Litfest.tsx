@@ -27,19 +27,29 @@ const Litfest = ({ litevents }: props) => {
           Lit Fest
         </h2>
         <div className="md:pl-3 md:pr-0 p-3">
-          <p className="text-justify lg:text-left mx-4 mt-5 mb-10 leading-[30px]">
-            A vision that our seniors saw and our juniors witnessed, an
-            aspiration of the club, a reality that thousands enjoyed, LITFEST'23
-            came into being on the 14th and 15th of October 2022. After months
-            of hard work, sleepless nights, scrapped ideas, cold mails, numerous
-            sponsor visits, countless meetings at various places, unmatched
-            bonding, and tremendous support from everyone, LitFest was revived!
-            But it was only the excitement, love, support, sponsors,
+          <p className="text-justify lg:text-left mx-4 mt-5 mb-10 leading-[24px]">
+            A <strong>vision</strong> that our seniors saw and our juniors
+            witnessed, an <strong>aspiration</strong> of the club, a{" "}
+            <strong>reality</strong> that thousands enjoyed,{" "}
+            <strong>LITFEST'23</strong> came into being on the 14th and 15th of
+            October 2022.
+            <br />
+            <br />
+            After months of hard work, sleepless nights, scrapped ideas, cold
+            mails, numerous sponsor visits, countless meetings at various
+            places, unmatched bonding, and tremendous support from everyone,{" "}
+            <strong>LitFest</strong> was revived!
+            <br /> But it was only the excitement, love, support, sponsors,
             participants, performers, and of course all the volunteers and the
-            team that gave it life. From the inauguration to the debate and
-            squid games, from the quiz to the Talk, and from Aditya Kulshreshth
-            aka Kullubaazi to Strings and Stories performing for us, LitFest'23
-            was truly a dream that turned into reality.
+            team that gave it life.
+            <br /> <br />
+            From the <strong>inauguration</strong> to the{" "}
+            <strong>debate</strong> and <strong>squid games</strong>, from the{" "}
+            <strong>quiz</strong> to the <strong>Talk</strong>, and from Aditya
+            Kulshreshth aka <strong>Kullubaazi</strong> to{" "}
+            <strong>Strings and Stories</strong>{" "}
+            performing for us, LitFest'23 was truly a dream that turned into
+            reality.
           </p>
           <CarouselLit events={litevents} />
         </div>
@@ -53,8 +63,15 @@ const Litfest = ({ litevents }: props) => {
         </div>
         <div className="mt-10 md:mx-10 sm:mx-3">
           <div className="mt-10 w-full flex-shrink-0 mx-auto">
-            <h1 className={"m-auto text-4xl text-center pb-10 w-full " + libre_caslon_text.className}>Timeline</h1>
-            <Timeline events={litevents}/>
+            <h1
+              className={
+                "m-auto text-4xl text-center pb-10 w-full " +
+                libre_caslon_text.className
+              }
+            >
+              Timeline
+            </h1>
+            <Timeline events={litevents} />
           </div>
         </div>
       </section>

@@ -32,10 +32,10 @@ const InformationHolder = ({
   socials,
 }: props) => {
   return (
-    <div className="flex flex-col lg:flex-row gap-2 shadow-xl py-3 px-2 rounded-lg bg-white dark:bg-[#603726]  lg:w-full mx-auto">
+    <div className="flex flex-col lg:flex-row gap-2 shadow-xl py-3 px-2 rounded-lg bg-white  w-full mx-auto">
       <div
         className={
-          "flex flex-col items-center mx-auto gap-2 lg:gap-3 " +
+          "flex flex-col items-center justify-between mx-auto gap-2 lg:gap-3 " +
           `${message ? "lg:w-2/5 " : "w-full"}`
         }
       >
@@ -43,12 +43,12 @@ const InformationHolder = ({
         <p className="text-[18px] text-center ">{position}</p>
         <p className="text-center">({designation})</p>
         {/* Faculty Advisor image */}
-        <div className="h-[250px] w-[75%] relative mx-auto">
+        <div className="h-[450px] w-full relative mx-auto">
           <Image
             src={img}
             fill
             alt="Images of people from LAC,SVNIT"
-            className="object-cover"
+            className="object-contain"
           />
         </div>
         {contact && (
@@ -58,7 +58,7 @@ const InformationHolder = ({
               {contact[0]}
             </p>
             <Link
-              href={`https://wa.me/${contact[1]}`}
+              href={`https://wa.me/91${contact[1]}`}
               className="flex items-center justify-center text-xl gap-3 bg-green-500 text-white dark:bg-[#9A7B4F] dark:text-yellow-400 w-2/3 mx-auto px-1 py-2 rounded-md"
             >
               <AiOutlineWhatsApp />
@@ -66,16 +66,14 @@ const InformationHolder = ({
             </Link>
           </div>
         )}
-        <div className="flex gap-3 text-[40px] w-full px-3 my-4">
+        <hr />
+        <div className="flex flex-row justify-center gap-10 text-[40px] px-3 my-4">
           {socials?.map((link, index) => {
             switch (index) {
               case 0:
                 if (link !== " ") {
                   return (
-                    <Link
-                      className="dark:text-[#dfa437] mx-auto"
-                      href={link}
-                    >
+                    <Link className="dark:text-[#dfa437] mx-auto" href={link}>
                       <AiFillFacebook />
                     </Link>
                   );
@@ -96,10 +94,7 @@ const InformationHolder = ({
               case 2:
                 if (link !== " ") {
                   return (
-                    <Link
-                      className=" dark:text-[#dfa437]  mx-auto"
-                      href={link}
-                    >
+                    <Link className=" dark:text-[#dfa437]  mx-auto" href={link}>
                       <AiOutlineTwitter />
                     </Link>
                   );
@@ -108,10 +103,7 @@ const InformationHolder = ({
               case 3:
                 if (link !== " ") {
                   return (
-                    <Link
-                      className=" dark:text-[#dfa437]  mx-auto"
-                      href={link}
-                    >
+                    <Link className=" dark:text-[#dfa437]  mx-auto" href={link}>
                       <SiGmail />
                     </Link>
                   );
@@ -120,10 +112,7 @@ const InformationHolder = ({
               case 4:
                 if (link !== " ") {
                   return (
-                    <Link
-                      className=" dark:text-[#dfa437]  mx-auto"
-                      href={link}
-                    >
+                    <Link className=" dark:text-[#dfa437]  mx-auto" href={link}>
                       <AiFillInstagram />
                     </Link>
                   );

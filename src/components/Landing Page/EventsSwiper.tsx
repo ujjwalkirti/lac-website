@@ -63,7 +63,7 @@ export default function EventsSwiper({
             />
             <div className="absolute h-full w-full z-10 bg-gradient-to-t from-black to-transparent  rounded-md"></div>
             <div className="absolute flex flex-col items-end bottom-7 right-3 z-20 text-white">
-              <p className={"text-2xl mb-3 " + libre_caslon_text.className}>
+              <p className={"text-2xl text-right mb-3 " + libre_caslon_text.className}>
                 {yetToHappenEvents[1].title}
               </p>
 

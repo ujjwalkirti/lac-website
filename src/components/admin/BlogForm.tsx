@@ -48,7 +48,7 @@ const BlogForm = () => {
     formState: { errors },
   } = useForm<Blog>();
   const onBlogFormSubmit: SubmitHandler<Blog> = async (data) => {
-    data.date = Date.now();
+    
     data.content = content;
     //@ts-ignore
     data.isVerified = JSON.parse(data.isVerified);
@@ -131,6 +131,16 @@ const BlogForm = () => {
           placeholder="Designation"
         />
         {errors.designation && (
+          <span className="text-center text-red-500">
+            This field is required
+          </span>
+        )}
+        <input
+          className={inputStyle}
+          {...register("date", { required: true })}
+          placeholder="Please enter the date and time as 11 January, 2023"
+        />
+        {errors.date && (
           <span className="text-center text-red-500">
             This field is required
           </span>

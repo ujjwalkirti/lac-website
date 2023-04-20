@@ -18,18 +18,18 @@ const AboutUs = () => {
           position="Professor, Dept of XYZ Engineering"
           img="https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/about_us%2Ffaculty%20advisor%2FWhatsApp%20Image%202023-04-20%20at%208.57.00%20PM.jpeg?alt=media&token=e4c9a8af-5e0e-4ed8-8571-9180a34d3e07"
           designation="Chairperson"
-          socials={[" ", " ", " ", "kcm@chem.svnit.ac.in", " "]}
+          socials={[" ", " ", " ", "mailto:kcm@chem.svnit.ac.in", " "]}
         />
       </div>
       {/* Chairmans */}
       <div className="flex flex-col lg:flex-row items-center gap-5 lg:w-10/12">
         {/* Chairman 1 */}
         <InformationHolder
-          name="Mr Some Random Name"
-          position="Professor, Dept of XYZ Engineering"
-          img="/placeholder-man.png"
-          designation="Chairman"
-          socials={[" ", " ", " ", "sumitkhare@med.svnit.ac.in", " "]}
+          name="Dr Sumit Khare"
+          position="Professor, Dept of Mechanical Engineering"
+          img="https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/about_us%2Ffaculty%20advisor%2FWhatsApp%20Image%202023-04-20%20at%205.55.02%20PM.jpeg?alt=media&token=e23624fd-d118-47fa-b4a3-1431aeedb20a"
+          designation="Co-Chairman"
+          socials={[" ", " ", " ", "mailto:sumitkhare@med.svnit.ac.in", " "]}
         />
         {/* Chairman 2 */}
         <InformationHolder
@@ -37,7 +37,7 @@ const AboutUs = () => {
           position="Professor, Dept of Civil Engineering"
           img="https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/about_us%2Ffaculty%20advisor%2FWhatsApp%20Image%202023-04-20%20at%206.19.32%20PM.jpeg?alt=media&token=23cbf00b-4465-4a04-8412-1eb19d18e787"
           designation="Co-Chairman"
-          socials={[" ", " ", " ", "crp@ced.svnit.ac.in", " "]}
+          socials={[" ", " ", " ", "mailto:crp@ced.svnit.ac.in", " "]}
         />
       </div>
       {/* Students in-charge */}
@@ -54,15 +54,21 @@ const AboutUs = () => {
         <div className="w-full lg:w-[400px]">
           <InformationHolder
             name="Milind Shinkar"
-            position="BTech Final-Year, Dept of XYZ Engineering"
+            position="BTech Final-Year, Dept of Electrical Engineering"
             img="https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/about_us%2Fmilind%20shinkar.jpg?alt=media&token=77da6c39-bc10-448a-ab34-ced69607e30c"
             designation="Secretary"
             contact={[9429786867, 9429786867]}
-            socials={["dummy", "dummy", "dummy"]}
+            socials={[
+              " ",
+              "https://www.linkedin.com/in/milind-shinkar",
+              " ",
+              "mailto:shinkarmilind98@gmail.com",
+              "https://instagram.com/milind.shinkar?igshid=YmMyMTA2M2Y",
+            ]}
           />
         </div>
         {/* 2 Joint Secretaries */}
-        <div className="flex gap-10">
+        <div className="flex flex-col lg:flex-row gap-10">
           {/* Joint Secretary 1 */}
           <InformationHolder
             name="Priyanshi Shah"
@@ -84,7 +90,7 @@ const AboutUs = () => {
             position="BTech Pre-final Year, Dept of Chemical Engineering"
             img="https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/about_us%2Fsayantani%20dutta.jpg?alt=media&token=75ce1ef6-aeaf-42e2-9115-c09c0da71b08"
             designation="Joint Secretary"
-            contact={[9429786867, 9876543210]}
+            contact={[9316599256, 9316599256]}
             socials={[
               " ",
               "https://www.linkedin.com/in/sayantanidutta25",

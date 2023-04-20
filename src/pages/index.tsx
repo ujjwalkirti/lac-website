@@ -12,6 +12,8 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "@/Firebase";
+import Link from "next/link";
+import { AiFillRightCircle } from "react-icons/ai";
 
 type props = {
   yetToHappenEvents: LAC_Event[];
@@ -40,6 +42,12 @@ export default function Home({
         <ThreeValuesOfLac />
         <Page2 featuredBlogs={featuredBlogs} />
         <Page3 />
+        <Link
+          className="text-center dark:bg-[#F8F3ED] dark:text-[#2C1810] bg-[#2C1810] text-[#FFFBF7] px-3 py-2 rounded-md flex justify-center items-center gap-3 w-[180px] mx-auto"
+          href={`/Litfest`}
+        >
+          Check it out! <AiFillRightCircle className="text-3xl"/>
+        </Link>
       </section>
     </>
   );

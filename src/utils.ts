@@ -72,17 +72,29 @@ const valuesOfLAC = [
   {
     title: "Speaking",
     desc: "In LAC, we believe that oration is a powerful tool for communication and persuasion. Whether it's a group discussion or a formal debate, we encourage our members to hone their oratory skills and express their ideas with clarity and conviction. Through oration, we explore diverse perspectives, challenge our assumptions, and develop our critical thinking abilities. Join us to discover the art of effective communication and become a confident and persuasive orator.",
-    img: "",
+    img: "https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/values%2Fspeaking%2FDSC_1648-1.JPG?alt=media&token=856806be-6e15-4cee-a89b-e0ad0fc96da6",
+    gallery: [
+      "https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/values%2Fspeaking%2FIMG-20221116-WA0010.jpg?alt=media&token=c26db027-c9ae-40f5-8d93-cdc6208c06eb",
+      "https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/values%2Fspeaking%2FWhatsApp%20Image%202023-04-19%20at%201.31.26%20PM.jpeg?alt=media&token=4d6877fb-0668-4557-9f22-eebd0974042e",
+    ],
   },
   {
     title: "Reading",
     desc: "LAC believes in fostering a vibrant reading culture, where like-minded individuals can come together to read and discuss their favorite literary works. From classic fiction to short stories and fantasy to thrillers, we have them all! Join us for engaging discussions, insightful analysis, and the opportunity to connect with fellow book lovers.",
-    img: "",
+    img: "https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/book_club%2FCOK.jpg?alt=media&token=0b204609-a7e8-4677-be07-ebdc508d9397",
+    gallery: [
+      "https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/book_club%2FRJ.jfif?alt=media&token=cd5e4beb-96f3-47d1-8eee-8611ced8eaab",
+      "https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/book_club%2FSOMEWT.jfif?alt=media&token=c6b9c546-0a25-4968-97ad-9f737f1436cd",
+    ],
   },
   {
     title: "Quizzing",
     desc: "Join the world of quizzes and let your brain cells go wild! Quizzing is more than just pleasure or leisure; it is a tool for personal development and self-discovery. It pushes you to think outside the box, improves your logical thinking talents, and keeps you updated on everything from pop culture to current events. There's nothing quite like the adrenaline rush of competing with others and proving your knowledge against them in real-time.",
-    img: "",
+    img: "https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/values%2Fquizzing%2FWhatsApp%20Image%202023-04-19%20at%201.32.07%20PM.jpeg?alt=media&token=b931d2a9-6cd7-439c-8f76-49f62c90a720",
+    gallery: [
+      "https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/values%2Fquizzing%2FSnapinsta.app_274959452_4629746337148377_3272822758412195358_n_1080.jpg?alt=media&token=ac444c8a-26b1-4f44-80df-d8cbbc8f7c5b",
+      "https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/values%2Fquizzing%2F20220418_182335.jpg?alt=media&token=7fee507d-736c-47b5-8ace-a5e3eac9853d",
+    ],
   },
 ];
 export {

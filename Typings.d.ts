@@ -8,7 +8,7 @@ type Blog = {
   about: string;
   content: string;
   illustration: string;
-  date: number;
+  date: string;
 };
 
 type Book = {

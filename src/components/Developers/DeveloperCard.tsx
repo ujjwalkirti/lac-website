@@ -15,13 +15,13 @@ type props = {
 
 const DeveloperCard = ({ developer }: props) => {
   return (
-    <div className="dark:bg-[#603726] px-2 py-3 rounded-lg shadow-lg mx-auto">
+    <div className="dark:bg-[#603726] px-2 py-3 rounded-lg shadow-lg mx-auto w-full sm:w-auto ">
       <Image
         src={developer.image}
         height={200}
         width={200}
         alt={`${developer.tag} profile picture`}
-        className="w-full object-cover  h-[300px]"
+        className="w-full h-[300px]"
       />
       <div className="flex flex-col items-center py-2 gap-3">
         <p className="text-[30px] font-semibold">{developer.name}</p>
@@ -29,6 +29,7 @@ const DeveloperCard = ({ developer }: props) => {
         <div className=" text-center">
           {yearFormatter(developer.year)} - {developer.branch}
         </div>
+        <hr />
         <div className="flex  text-[35px] gap-6">
           {developer.links?.map((link, index) => {
             switch (index) {
