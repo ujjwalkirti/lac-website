@@ -49,7 +49,7 @@ const Timline = ({events}:props) => {
                         icon={<FaCircle />}
                     >
                         <div id={`${item.title}`} className="flex-col m-0 gap-y-11 cursor-pointer md:mx-2 rounded-md">
-                            <div className="relative h-80 m-auto w-full">
+                            <div className="relative h-80 m-auto md:w-80 w-full">
                                 <Image src={item.img} layout="fill" alt="" objectFit="cover" className="rounded-md"/>
                             </div>
                             <div className={"flex flex-col w-full " + libre_caslon_text.className}>

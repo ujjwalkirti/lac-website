@@ -26,7 +26,7 @@ const BookClubIndicator = () => {
           </p>
           <Link
             href={`/book_club`}
-            className="h-[40px] lg:w-4/5 text-[13px] lg:text-[17px] font-[600] leading-[17.07px] py-[12px] px-[23px] bg-[#DA8E63] text-white rounded-md absolute lg:relative lg:flex"
+            className="h-[40px] lg:w-4/5 text-[13px] lg:text-[17px] font-[600] leading-[17.07px] py-[12px] lg:py-[7px] px-[18px] bg-[#DA8E63] text-white rounded-md absolute lg:relative lg:flex"
           >
             Go, have a look!
           </Link>
