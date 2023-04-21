@@ -9,6 +9,7 @@ import Loader from "@/components/Loader";
 import { monsterrat } from "@/utils";
 import "@/styles/animations.css";
 import dynamic from "next/dynamic";
+import { Analytics } from "@vercel/analytics/react";
 
 const Footer = dynamic(() => import("@/components/Footer"), {
   loading: () => <Loader />,
@@ -48,6 +49,7 @@ export default function App({
           <Navbar />
           <Component {...pageProps} />
           <Footer />
+          <Analytics />
         </div>
       </ThemeProvider>
     </SessionProvider>
