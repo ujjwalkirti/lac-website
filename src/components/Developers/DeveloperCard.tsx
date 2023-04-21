@@ -15,7 +15,7 @@ type props = {
 
 const DeveloperCard = ({ developer }: props) => {
   return (
-    <div className="dark:bg-[#603726] px-2 py-3 rounded-lg shadow-lg mx-auto w-full sm:w-auto ">
+    <div className="dark:bg-[#603726] bg-white  px-2 py-3 rounded-lg shadow-lg mx-auto w-full sm:w-auto ">
       <Image
         src={developer.image}
         height={200}
