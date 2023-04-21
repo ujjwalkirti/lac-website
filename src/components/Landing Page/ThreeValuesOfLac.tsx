@@ -10,14 +10,6 @@ const ThreeValuesOfLac = () => {
           key={index}
           className="w-11/12 flex flex-col justify-between shadow-md bg-white dark:bg-[#9A7B4F] rounded-md"
         >
-          <p
-            className={
-              "flex text-center  lg:hidden font-[700] text-[64px] leading-[78.72px] " +
-              libre_caslon_text.className
-            }
-          >
-            {value.title}
-          </p>
           <div className="flex flex-col items-center justify-between gap-4">
             <Image
               src={value.img}
@@ -46,19 +38,6 @@ const ThreeValuesOfLac = () => {
               </span>
               {/* <span className="absolute w-[150px] h-[200px] top-1/2  left-1/4 z-20 bg-red-200 rounded-md"></span> */}
               <span className="relative w-1/2 h-[240px] top-0 left-0 z-10 bg-red-400 rounded-md">
-                <div className="">
-                  <Image src={value.gallery[1]} fill alt="lll" />
-                </div>
-              </span>
-            </div>
-            {/* similar component as above, except that it is having display set as flex */}
-            <div className="lg:hidden grid grid-cols-2 px-2 gap-2 w-full">
-              <span className="relative w-full h-[200px] bg-red-400 rounded-md">
-                <div className="">
-                  <Image src={value.gallery[0]} fill alt="lll" />
-                </div>
-              </span>
-              <span className="relative w-full h-[200px] bg-red-200 rounded-md">
                 <div className="">
                   <Image src={value.gallery[1]} fill alt="lll" />
                 </div>

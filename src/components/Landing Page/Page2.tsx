@@ -44,6 +44,7 @@ const Page2 = ({ featuredBlogs }: props) => {
                   : featuredBlogs[0].blog.illustration
               }`}
               fill
+              className="object-cover"
               alt="Featured blog of LAC"
             />
             <div className="absolute right-0 bottom-1/4 rounded-l-md px-3 py-2 z-10 bg-white text-[#2C1810] dark:bg-[#603726] dark:text-[#FFFBF7]">

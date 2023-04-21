@@ -81,10 +81,10 @@ const valuesOfLAC = [
   {
     title: "Reading",
     desc: "LAC believes in fostering a vibrant reading culture, where like-minded individuals can come together to read and discuss their favorite literary works. From classic fiction to short stories and fantasy to thrillers, we have them all! Join us for engaging discussions, insightful analysis, and the opportunity to connect with fellow book lovers.",
-    img: "https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/book_club%2FCOK.jpg?alt=media&token=0b204609-a7e8-4677-be07-ebdc508d9397",
+    img: "https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/values%2Freading%2FWhatsApp%20Image%202023-04-21%20at%2012.14.28.jpg?alt=media&token=82437943-64d9-4302-a3a6-d27d451106b5",
     gallery: [
-      "https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/book_club%2FRJ.jfif?alt=media&token=cd5e4beb-96f3-47d1-8eee-8611ced8eaab",
-      "https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/book_club%2FSOMEWT.jfif?alt=media&token=c6b9c546-0a25-4968-97ad-9f737f1436cd",
+      "https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/values%2Freading%2FIMG-20210216-WA0184.jpg?alt=media&token=ec2c5187-72d5-48bd-89bb-b5c57bd52665",
+      "https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/values%2Freading%2FWhatsApp%20Image%202023-04-21%20at%2012.11.48.jpg?alt=media&token=2928056c-37b4-4c57-9b03-df5135c7294d",
     ],
   },
   {

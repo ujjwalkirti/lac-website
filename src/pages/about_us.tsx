@@ -11,6 +11,14 @@ const AboutUs = () => {
         <title>About Us</title>
       </Head>
       <p className={"text-[60px] " + libre_caslon_text.className}>About Us</p>
+      <p
+        className={
+          "text-[40px] mt-5 lg:text-[50px] text-center " +
+          libre_caslon_text.className
+        }
+      >
+        Faculty Advisors
+      </p>
       {/* Faculty Advisor */}
       <div className="w-full lg:w-auto">
         <InformationHolder
@@ -28,7 +36,7 @@ const AboutUs = () => {
           name="Dr Sumit Khare"
           position="Professor, Dept of Mechanical Engineering"
           img="https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/about_us%2Ffaculty%20advisor%2FWhatsApp%20Image%202023-04-20%20at%205.55.02%20PM.jpeg?alt=media&token=e23624fd-d118-47fa-b4a3-1431aeedb20a"
-          designation="Co-Chairman"
+          designation="Co-Chairperson"
           socials={[" ", " ", " ", "mailto:sumitkhare@med.svnit.ac.in", " "]}
         />
         {/* Chairman 2 */}
@@ -36,7 +44,7 @@ const AboutUs = () => {
           name="Dr Chetan Patel"
           position="Professor, Dept of Civil Engineering"
           img="https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/about_us%2Ffaculty%20advisor%2FWhatsApp%20Image%202023-04-20%20at%206.19.32%20PM.jpeg?alt=media&token=23cbf00b-4465-4a04-8412-1eb19d18e787"
-          designation="Co-Chairman"
+          designation="Co-Chairperson"
           socials={[" ", " ", " ", "mailto:crp@ced.svnit.ac.in", " "]}
         />
       </div>

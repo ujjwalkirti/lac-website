@@ -26,7 +26,7 @@ const BookClub = ({ books }: props) => {
         ook <FirstLetterCapital letter="C" bgColor="#DA8E63" />
         lub
       </p>
-      <p>
+      <p className="text-center  leading-[30px] lg:leading-[40px]">  
         Do you often get lost in the world of dreams setting off on adventures
         with Harry, Percy or Katniss? <br />
         Do you sometimes imagine yourself living in the enchanted land of
@@ -40,7 +40,7 @@ const BookClub = ({ books }: props) => {
         Venue: 3rd floor, Central Library 
         <SiTarget className="" />
       </div>
-      <div>
+      <div className="lg:grid lg:grid-cols-2 gap-4">
         {books.map((book: Book, index: number) => {
           return <BookDisplayBox book={book} key={index} />;
         })}

@@ -24,7 +24,7 @@ const Developers = ({ developers, designers }: props) => {
       </p>
       {/* for lead developer */}
       {Object.keys(developers[0]).length !== 0 && (
-        <div className="px-3 w-full md:w-1/2 lg:w-1/3 lg:mx-auto mb-[20px]">
+        <div className="px-3 w-full md:w-auto lg:mx-auto mb-[20px]">
           <DeveloperCard developer={developers[0]} />
         </div>
       )}

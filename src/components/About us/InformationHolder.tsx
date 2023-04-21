@@ -32,7 +32,7 @@ const InformationHolder = ({
   socials,
 }: props) => {
   return (
-    <div className="flex flex-col lg:flex-row gap-2 shadow-xl py-3 px-2 rounded-lg bg-white  w-full mx-auto">
+    <div className="flex flex-col lg:flex-row gap-2 shadow-xl py-3 px-2 rounded-lg bg-white dark:bg-[#9A7B4F]  w-full mx-auto">
       <div
         className={
           "flex flex-col items-center justify-between mx-auto gap-2 lg:gap-3 " +
@@ -57,16 +57,8 @@ const InformationHolder = ({
               <IoMdCall />
               {contact[0]}
             </p>
-            <Link
-              href={`https://wa.me/91${contact[1]}`}
-              className="flex items-center justify-center text-xl gap-3 bg-green-500 text-white dark:bg-[#9A7B4F] dark:text-yellow-400 w-2/3 mx-auto px-1 py-2 rounded-md"
-            >
-              <AiOutlineWhatsApp />
-              {contact[1]}
-            </Link>
           </div>
         )}
-        <hr />
         <div className="flex flex-row justify-center gap-10 text-[40px] px-3 my-4">
           {socials?.map((link, index) => {
             switch (index) {
@@ -101,7 +93,17 @@ const InformationHolder = ({
                 }
                 break;
               case 3:
-                if (link !== " ") {
+                if (
+                  link !== " " &&
+                  (designation === "Chairperson" ||
+                    designation === "Co-Chairperson")
+                ) {
+                  return (
+                    <Link className=" dark:text-[#dfa437] border flex items-center gap-4 px-3 py-2 text-3xl rounded-lg  mx-auto" href={link}>
+                      <SiGmail /> Email
+                    </Link>
+                  );
+                } else {
                   return (
                     <Link className=" dark:text-[#dfa437]  mx-auto" href={link}>
                       <SiGmail />
@@ -120,6 +122,14 @@ const InformationHolder = ({
                 break;
             }
           })}
+          {contact && (
+            <Link
+              href={`https://wa.me/91${contact[1]}`}
+              className="dark:text-[#dfa437]  mx-auto"
+            >
+              <AiOutlineWhatsApp />
+            </Link>
+          )}
         </div>
       </div>
       {/* His message */}
