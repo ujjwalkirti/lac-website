@@ -7,7 +7,7 @@ const Page3 = () => {
     <div className="lg:min-h-[50vh] py-5 lg:my-0 flex flex-col lg:flex-row lg:items-center">
       <div className="lg:hidden relative my-5 h-[200px] w-full mx-auto shadow-xl rounded-md">
         <Image
-          src={`/litfest-logo.jpg `}
+          src={`/litfest-logo.jpg`}
           alt="Litfest SVNIT Logo"
           fill
           className="rounded-md"
