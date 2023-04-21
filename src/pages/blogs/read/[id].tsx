@@ -71,6 +71,7 @@ const SinglBlogById = ({ blog }: props) => {
         <div
           dangerouslySetInnerHTML={{ __html: blog.content }}
           id="content-of-blog"
+          className=""
         ></div>
         <BsThreeDots className="text-center text-[50px] font-bold w-full" />
       </div>

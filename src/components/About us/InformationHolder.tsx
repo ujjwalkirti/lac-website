@@ -6,7 +6,6 @@ import {
   AiFillFacebook,
   AiFillInstagram,
   AiFillLinkedin,
-  AiFillTwitterSquare,
   AiOutlineTwitter,
   AiOutlineWhatsApp,
 } from "react-icons/ai";
@@ -33,22 +32,22 @@ const InformationHolder = ({
   socials,
 }: props) => {
   return (
-    <div className="flex flex-col lg:flex-row gap-2 shadow-xl py-3 px-2 rounded-lg bg-white dark:bg-[#603726]  lg:w-full mx-auto">
+    <div className="flex flex-col lg:flex-row gap-2 shadow-xl py-3 px-2 rounded-lg bg-white dark:bg-[#9A7B4F]  w-full mx-auto">
       <div
         className={
-          "flex flex-col items-center mx-auto gap-2 lg:gap-3 " +
-          `${message ? "lg:w-2/5 " : ""}`
+          "flex flex-col items-center justify-between mx-auto gap-2 lg:gap-3 " +
+          `${message ? "lg:w-2/5 " : "w-full"}`
         }
       >
         <p className="text-[30px] text-center font-semibold">{name}</p>
         <p className="text-[18px] text-center ">{position}</p>
         <p className="text-center">({designation})</p>
         {/* Faculty Advisor image */}
-        <div className="h-[250px] w-[75%] relative mx-auto">
+        <div className="h-[450px] w-full relative mx-auto">
           <Image
             src={img}
             fill
-            alt="LAC SVNIT Faculty Advisor"
+            alt="Images of people from LAC,SVNIT"
             className="object-contain"
           />
         </div>
@@ -58,25 +57,15 @@ const InformationHolder = ({
               <IoMdCall />
               {contact[0]}
             </p>
-            <Link
-              href={`https://wa.me/${contact[1]}`}
-              className="flex items-center justify-center text-xl gap-3 bg-green-500 text-white dark:bg-[#9A7B4F] dark:text-yellow-400 w-2/3 mx-auto px-1 py-2 rounded-md"
-            >
-              <AiOutlineWhatsApp />
-              {contact[1]}
-            </Link>
           </div>
         )}
-        <div className="grid grid-cols-3 gap-3 text-[40px] w-full px-3 my-4">
+        <div className="flex flex-row justify-center gap-10 text-[40px] px-3 my-4">
           {socials?.map((link, index) => {
             switch (index) {
               case 0:
                 if (link !== " ") {
                   return (
-                    <Link
-                      className="text-blue-600 dark:text-[#dfa437] mx-auto"
-                      href={link}
-                    >
+                    <Link className="dark:text-[#dfa437] mx-auto" href={link}>
                       <AiFillFacebook />
                     </Link>
                   );
@@ -86,7 +75,7 @@ const InformationHolder = ({
                 if (link !== " ") {
                   return (
                     <Link
-                      className="text-blue-600  dark:text-[#dfa437]  mx-auto"
+                      className=" dark:text-[#dfa437]  mx-auto"
                       href={socials[1]}
                     >
                       <AiFillLinkedin />
@@ -97,22 +86,26 @@ const InformationHolder = ({
               case 2:
                 if (link !== " ") {
                   return (
-                    <Link
-                      className="text-blue-600  dark:text-[#dfa437]  mx-auto"
-                      href={link}
-                    >
+                    <Link className=" dark:text-[#dfa437]  mx-auto" href={link}>
                       <AiOutlineTwitter />
                     </Link>
                   );
                 }
                 break;
               case 3:
-                if (link !== " ") {
+                if (
+                  link !== " " &&
+                  (designation === "Chairperson" ||
+                    designation === "Co-Chairperson")
+                ) {
                   return (
-                    <Link
-                      className=" text-red-600 dark:text-[#dfa437]  mx-auto"
-                      href={link}
-                    >
+                    <Link className=" dark:text-[#dfa437] border flex items-center gap-4 px-3 py-2 text-3xl rounded-lg  mx-auto" href={link}>
+                      <SiGmail /> Email
+                    </Link>
+                  );
+                } else {
+                  return (
+                    <Link className=" dark:text-[#dfa437]  mx-auto" href={link}>
                       <SiGmail />
                     </Link>
                   );
@@ -121,10 +114,7 @@ const InformationHolder = ({
               case 4:
                 if (link !== " ") {
                   return (
-                    <Link
-                      className=" text-purple-600 dark:text-[#dfa437]  mx-auto"
-                      href={link}
-                    >
+                    <Link className=" dark:text-[#dfa437]  mx-auto" href={link}>
                       <AiFillInstagram />
                     </Link>
                   );
@@ -132,6 +122,14 @@ const InformationHolder = ({
                 break;
             }
           })}
+          {contact && (
+            <Link
+              href={`https://wa.me/91${contact[1]}`}
+              className="dark:text-[#dfa437]  mx-auto"
+            >
+              <AiOutlineWhatsApp />
+            </Link>
+          )}
         </div>
       </div>
       {/* His message */}

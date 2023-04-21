@@ -8,14 +8,13 @@ type Blog = {
   about: string;
   content: string;
   illustration: string;
-  date: number;
+  date: string;
 };
 
 type Book = {
   name: string;
   author: string;
   image: string;
-  genre: string[];
   rating: number;
   reviewLink: string;
 };

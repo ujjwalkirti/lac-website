@@ -18,7 +18,7 @@ const Events = ({ events }: props) => {
       </Head>
       <p className={"text-[60px] " + libre_caslon_text.className}>Events</p>
       {/* Event 1 */}
-      <div className="grid grid-cols-1 gap-5 items-center lg:grid-cols-3 lg:w-11/12 lg:mx-auto">
+      <div className="grid grid-cols-1 gap-5 items-start lg:grid-cols-3 w-[95vw] lg:w-11/12 lg:mx-auto">
         {events.map((event, index) => (
           <EventBox
             key={index}
