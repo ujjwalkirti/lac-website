@@ -1,51 +1,60 @@
 import { libre_caslon_text, valuesOfLAC } from "@/utils";
 import Image from "next/image";
+import { HiSpeakerWave } from "react-icons/hi2";
 import React from "react";
+import { BiBookReader } from "react-icons/bi";
+import { MdOutlineQuiz } from "react-icons/md";
+import Link from "next/link";
 
 const ThreeValuesOfLac = () => {
   return (
-    <section className="hidden lg:flex scrollbar-hide items-start gap-10  mt-[60px] lg:mt-0 overflow-x-scroll ">
+    <section className="relative flex flex-col lg:flex-row items-start gap-10 z-30 mt-[60px] lg:mt-10 px-3">
       {valuesOfLAC.map((value, index) => (
         <div
+          className="w-1/3 bg-white dark:bg-[#9a7b4f] shadow-lg rounded-lg hover:scale-105 transition-all transform-gpu duration-300"
           key={index}
-          className="w-11/12 flex flex-col justify-between shadow-md bg-white dark:bg-[#9A7B4F] rounded-md"
         >
-          <div className="flex flex-col items-center justify-between gap-4">
-            <Image
-              src={value.img}
-              height={200}
-              width={200}
-              alt="a cartoon of a man speaking with mic"
-              className="h-[300px] lg:h-[432px] w-full object-cover rounded-t-md"
-            />
-            <p className="text-[15px] w-full flex lg:hidden">{value.desc}</p>
-          </div>
-          <div className=" h-full flex flex-col justify-center px-3">
+          <Image
+            src={value.img}
+            height={300}
+            width={300}
+            className="h-[300px] w-full object-cover"
+            alt={`${value.title} image`}
+          />
+          <div className="px-2 py-1 mt-3 flex flex-col gap-4">
             <p
               className={
-                "hidden text-center lg:flex font-[700] text-[54px] leading-[78.72px] text-[#DA8E63] dark:text-white " +
+                "text-3xl font-semibold text-center " +
                 libre_caslon_text.className
               }
             >
               {value.title}
             </p>
-            <p className="text- my-5 hidden lg:flex">{value.desc}</p>
-            <div className="hidden lg:flex lg:relative h-[35vh] lg:gap-3">
-              <span className="relative w-1/2 h-[240px] top-0 left-0 z-10 rounded-md">
-                <div className="">
-                  <Image src={value.gallery[0]} fill alt="lll" />
-                </div>
-              </span>
-              {/* <span className="absolute w-[150px] h-[200px] top-1/2  left-1/4 z-20 bg-red-200 rounded-md"></span> */}
-              <span className="relative w-1/2 h-[240px] top-0 left-0 z-10 bg-red-400 rounded-md">
-                <div className="">
-                  <Image src={value.gallery[1]} fill alt="lll" />
-                </div>
-              </span>
+            <p className="text-justify">{value.desc}</p>
+            <div className="w-full flex flex-col gap-2">
+              {value.gallery.map((imgUrl, index) => (
+                <Image
+                  key={index}
+                  src={imgUrl}
+                  alt={`${value.title} other images`}
+                  height={300}
+                  width={300}
+                  className=" w-full h-[300px] object-cover"
+                />
+              ))}
             </div>
+            <Link
+              className="bg-[#2c1810]text-[#f8f3ed] dark:bg-[#dfa437] px-3 py-1 rounded-lg mb-4 w-10/12 mx-auto text-center"
+              href={`/events/${value.title.toLowerCase()}`}
+            >
+              Participate / Know-more
+            </Link>
           </div>
         </div>
       ))}
+      <div className="hidden">
+        <button>LAC</button>
+      </div>
     </section>
   );
 };
