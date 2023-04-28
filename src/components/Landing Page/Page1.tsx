@@ -24,10 +24,10 @@ const Page1 = ({ yetToHappenEvents, happenedEvent }: props) => {
     Object.keys(happenedEvent).length
   );
   return (
-    <div className={"mt-[29px] text-[#2C1810] dark:text-[#fffbf7]"}>
+    <div className={"mt-[19px] text-[#2C1810] dark:text-[#fffbf7]"}>
       <p
         className={
-          "font-[500] text-[48px] md:text-[56px] lg:text-[76px] leading-[57px] lg:leading-[75.2px] text-center lg:text-left mb-[19px] " +
+          "font-[500] text-[38px] md:text-[46px] lg:text-[66px] leading-[37px] lg:leading-[75.2px] text-center lg:text-left mb-[9px] " +
           libre_caslon_text.className
         }
       >
@@ -38,7 +38,7 @@ const Page1 = ({ yetToHappenEvents, happenedEvent }: props) => {
 
       <p
         className={
-          "font-[400] text-[15px] lg:text-[20px] leading-[19px] lg:leading-[24.38px] text-center lg:text-left " +
+          "font-[400] text-[15px] lg:text-[18px] leading-[19px] lg:leading-[22.38px] text-center lg:text-left " +
           monsterrat.className
         }
       >
@@ -48,7 +48,7 @@ const Page1 = ({ yetToHappenEvents, happenedEvent }: props) => {
         enthusiasts. LAC nurtures budding writers, Quiz Masters, and bold
         speakers who are not afraid to put their opinion out in the public.
       </p>
-      <div className="flex flex-col lg:flex-row  lg:items-end items-center lg:justify-between gap-4 mt-[30px]">
+      <div className="flex flex-col lg:flex-row  lg:items-end items-center lg:justify-between gap-4 mt-[20px]">
         <div className="lg:w-[30vw] flex flex-col lg:justify-between lg:h-[432px]">
           <BookClubIndicator />
           <p

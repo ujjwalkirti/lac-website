@@ -4,7 +4,7 @@ import React from "react";
 
 const Page3 = () => {
   return (
-    <div className="lg:min-h-[50vh] py-5 lg:my-0 flex flex-col lg:flex-row lg:items-center">
+    <div className="lg:min-h-[50vh] py-5 lg:my-3 flex flex-col lg:flex-row lg:items-center">
       <div className="lg:hidden relative my-5 h-[200px] w-full mx-auto shadow-xl rounded-md">
         <Image
           src={`/litfest-logo.jpg`}
@@ -20,7 +20,7 @@ const Page3 = () => {
           being on the 14th and 15th of October 2022.
         </p>
       </div>
-      <div className="my-5 hidden lg:relative lg:flex h-[300px] mx-auto w-[400px] shadow-xl rounded-md">
+      <div className="my-5 hidden lg:relative lg:flex h-[250px] mx-auto w-[400px] shadow-xl rounded-md">
         <Image
           src={`/litfest-logo.jpg`}
           alt="Litfest SVNIT Logo"

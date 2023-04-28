@@ -58,7 +58,7 @@ const Navbar = () => {
   return (
     <section
       className={
-        "flex justify-between items-center w-11/12 mx-auto pt-4 lg:pt-[32px] font-medium " +
+        "flex justify-between items-center w-11/12 mx-auto pt-4 lg:pt-[12px] font-medium " +
         monsterrat.className
       }
     >
@@ -166,19 +166,19 @@ const Navbar = () => {
       )}
       {/* Theme toggle button */}
       <div
-        className="w-[62px] lg:w-[86px] h-[24px] lg:h-[36px] relative rounded-full shadow-slate-400 shadow-inner cursor-pointer"
+        className="w-[62px] lg:w-[80px] h-[30px] relative rounded-full shadow-slate-400 shadow-inner cursor-pointer"
         onClick={() => {
           setTheme(theme === "dark" ? "light" : "dark");
         }}
       >
-        <span className="h-[30px] lg:h-[40px] w-[30px] lg:w-[40px] rounded-full bg-[#DA8E63] absolute -top-0.5 dark:right-0 transition-all duration-500 ease-in-out"></span>
+        <span className="h-[33px] lg:h-[35px] w-[33px] lg:w-[35px] rounded-full bg-[#DA8E63] -top-0.5 absolute dark:translate-x-full transition-all transform-gpu duration-500 ease-in-out"></span>
         {theme === "light" ? (
           <span className=" absolute right-2 text-[14px] md:text-[19px] text-[#DA8E63] h-full flex items-center">
-            <BsMoonFill />
+            <BsFillSunFill />
           </span>
         ) : (
           <span className=" absolute left-2 text-[14px] md:text-[19px] text-[#DA8E63] h-full flex items-center">
-            <BsFillSunFill />
+            <BsMoonFill />
           </span>
         )}
       </div>

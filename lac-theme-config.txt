@@ -6,7 +6,7 @@ text-#2c1810
 
 modal-
 bg-white
-text-
+text-#2c1810
 
 some other special text-
 

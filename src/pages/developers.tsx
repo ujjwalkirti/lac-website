@@ -22,14 +22,15 @@ const Developers = ({ developers, designers }: props) => {
       >
         Developers
       </p>
-      {/* for lead developer */}
-      {Object.keys(developers[0]).length !== 0 && (
-        <div className="px-3 w-full md:w-auto lg:mx-auto mb-[20px]">
+      <div className="w-full px-2">
+        {/* for lead developer */}
+        {Object.keys(developers[0]).length !== 0 && (
           <DeveloperCard developer={developers[0]} />
-        </div>
-      )}
-      {/* for other developers */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 px-3">
+        )}
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mx-auto px-3">
+        {/* for other developers */}
+
         {developers.map((developer, index) => {
           if (index !== 0)
             return <DeveloperCard developer={developer} key={index} />;

@@ -28,6 +28,7 @@ type LAC_Event = {
   teamMembers: number;
   date: string;
   reglink: string;
+  type:string;
 };
 
 type Developer = {
