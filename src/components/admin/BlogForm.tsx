@@ -14,6 +14,7 @@ import {
   getDocs,
   doc,
   updateDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import { db } from "@/Firebase";
 import {
@@ -48,7 +49,6 @@ const BlogForm = () => {
     formState: { errors },
   } = useForm<Blog>();
   const onBlogFormSubmit: SubmitHandler<Blog> = async (data) => {
-    
     data.content = content;
     //@ts-ignore
     data.isVerified = JSON.parse(data.isVerified);
@@ -87,7 +87,7 @@ const BlogForm = () => {
       </p>
       <form
         onSubmit={handleSubmit(onBlogFormSubmit)}
-        className="flex flex-col gap-4 px-2 my-4 bg-white dark:bg-black py-6"
+        className="flex flex-col gap-4 px-2 my-4 bg-white dark:bg-gray-300 py-6"
       >
         <input
           className={inputStyle}
@@ -113,7 +113,7 @@ const BlogForm = () => {
           //@ts-ignore
           value={content}
           style={{ height: "400px" }}
-          className="mb-32 md:mb-16"
+          className="mb-32 md:mb-16 dark:text-white dark:bg-white"
           onChange={(e: React.SetStateAction<string>) => {
             setContent(e);
           }}
@@ -338,7 +338,21 @@ function Blog({ blog, id }: props) {
               }}
               className=" text-green-500 cursor-pointer hover:shadow-lg"
             />
-            <AiOutlineDelete className="text-red-500 cursor-pointer hover:shadow-lg" />
+            <AiOutlineDelete
+              onClick={async () => {
+                try {
+                  await deleteDoc(doc(db, "blogs", id));
+                  alert(
+                    "Blog Successfully deleted, please reload the page to see the changes!"
+                  );
+                } catch (error) {
+                  if (error) {
+                    alert("Something went wrong, please try again!");
+                  }
+                }
+              }}
+              className="text-red-500 cursor-pointer hover:shadow-lg"
+            />
           </div>
         </div>
         <p className="text-lg">{blog.about}</p>

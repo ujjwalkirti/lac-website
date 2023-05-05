@@ -20,9 +20,11 @@ export default function App({
   pageProps: { session, ...pageProps },
 }: AppProps) {
   const [loading, setLoading] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
+    setMounted(true);
     const handleStart = () => setLoading(true);
     const handleComplete = () => setLoading(false);
 
@@ -40,17 +42,19 @@ export default function App({
     <SessionProvider session={session}>
       <ThemeProvider enableSystem={true} attribute="class">
         {loading && <Loader />}
-        <div
-          className={
-            "bg-[#F8F3ED] text-[#2C1810] dark:bg-[#2C1810] dark:text-[#FFFBF7] " +
-            monsterrat.className
-          }
-        >
-          <Navbar />
-          <Component {...pageProps} />
-          <Footer />
-          <Analytics />
-        </div>
+        {mounted && (
+          <div
+            className={
+              "bg-[#F8F3ED] text-[#2C1810] dark:bg-[#2C1810] dark:text-[#FFFBF7] " +
+              monsterrat.className
+            }
+          >
+            <Navbar />
+            <Component {...pageProps} />
+            <Footer />
+            <Analytics />
+          </div>
+        )}
       </ThemeProvider>
     </SessionProvider>
   );

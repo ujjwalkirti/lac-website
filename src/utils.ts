@@ -45,7 +45,6 @@ const formats = [
   "indent",
   "link",
   "image",
-  "color",
   "background",
   "code-block",
   "script",
