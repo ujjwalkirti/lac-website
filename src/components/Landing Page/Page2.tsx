@@ -10,7 +10,7 @@ type props = {
 
 const Page2 = ({ featuredBlogs }: props) => {
   return (
-    <div className="lg:h-screen pt-[100px]">
+    <div className="lg:h-screen lg:pt-[100px]">
       <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between">
         {" "}
         <p
@@ -49,7 +49,7 @@ const Page2 = ({ featuredBlogs }: props) => {
             />
             <div className="absolute right-0 bottom-1/4 rounded-l-md px-3 py-2 z-10 bg-white text-[#2C1810] dark:bg-[#603726] dark:text-[#FFFBF7]">
               <p
-                className={"text-xl lg:text-3xl " + libre_caslon_text.className}
+                className={"text-xl lg:text-2xl " + libre_caslon_text.className}
               >
                 {featuredBlogs[0].blog.name}
               </p>
@@ -81,7 +81,7 @@ const Page2 = ({ featuredBlogs }: props) => {
             <div className="">
               {" "}
               <p
-                className={"text-xl text-center lg:text-3xl " + libre_caslon_text.className}
+                className={"text-xl text-center lg:text-2xl " + libre_caslon_text.className}
               >
                 {featuredBlogs[1].blog.name}
               </p>
@@ -111,7 +111,7 @@ const Page2 = ({ featuredBlogs }: props) => {
             <div className="">
               {" "}
               <p
-                className={"text-xl text-center lg:text-3xl " + libre_caslon_text.className}
+                className={"text-xl text-center lg:text-2xl " + libre_caslon_text.className}
               >
                 {featuredBlogs[2].blog.name}
               </p>

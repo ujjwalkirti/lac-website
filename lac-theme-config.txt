@@ -1,0 +1,23 @@
+theme for lac website color code-
+
+light
+bg-#f8f3ed
+text-#2c1810
+
+modal-
+bg-white
+text-#2c1810
+
+some other special text-
+
+
+dark
+
+bg-#2c1810
+text-#fffbf7
+
+modal-
+bg-#9a7b4f
+text-#dfa437
+
+some other special text-
