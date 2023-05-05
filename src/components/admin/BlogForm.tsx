@@ -77,7 +77,7 @@ const BlogForm = () => {
   }
 
   return (
-    <section className=" py-5">
+    <section className="text-[#2c1810] py-5">
       <p
         className={
           "text-center font-bold text-2xl mt-2 " + libre_caslon_text.className
@@ -325,7 +325,7 @@ function Blog({ blog, id }: props) {
     );
   }
   return (
-    <div className="w-full flex flex-col justify-evenly  shadow-lg px-3 py-3 rounded-lg my-3 bg-white dark:bg-black">
+    <div className="w-full flex flex-col justify-evenly  shadow-lg px-3 py-3 rounded-lg my-3 bg-white dark:bg-gray-300">
       <div className="space-y-3">
         <div className="flex justify-between">
           <div className="font-semibold flex justify-center w-full text-3xl text-center">
