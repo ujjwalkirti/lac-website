@@ -42,7 +42,7 @@ export default function Home({
         />
         <ThreeValuesOfLac />
         {/* Ujjwal is working on the following component. */}
-        {/* <ThreeValuesOfLACForMobile /> */}
+        <ThreeValuesOfLACForMobile />
         <Page2 featuredBlogs={featuredBlogs} />
         <Page3 />
         <Link

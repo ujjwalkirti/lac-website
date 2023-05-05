@@ -1,14 +1,13 @@
 import { libre_caslon_text, valuesOfLAC } from "@/utils";
 import Image from "next/image";
-import { HiSpeakerWave } from "react-icons/hi2";
+
 import React from "react";
-import { BiBookReader } from "react-icons/bi";
-import { MdOutlineQuiz } from "react-icons/md";
+
 import Link from "next/link";
 
 const ThreeValuesOfLac = () => {
   return (
-    <section className="relative flex flex-col lg:flex-row items-start gap-10 z-30 mt-[60px] lg:mt-10 px-3">
+    <section className="hidden lg:relative lg:flex lg:flex-row items-start gap-10 z-30 mt-[60px] lg:mt-10 px-3">
       {valuesOfLAC.map((value, index) => (
         <div
           className="w-1/3 bg-white dark:bg-[#9a7b4f] shadow-lg rounded-lg hover:scale-105 transition-all transform-gpu duration-300"
