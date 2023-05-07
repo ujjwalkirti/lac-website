@@ -45,7 +45,7 @@ const Footer = () => {
       </p>
       <div
         className={
-          "grid grid-cols-3 gap-4 lg:grid-cols-6 lg:gap-[50px] mb-[34px] "
+          "grid grid-cols-3 gap-4 lg:grid-cols-6 lg:gap-[50px] mb-[34px] font-semibold"
         }
       >
         <Link className="hover:underline  text-center" href={`/`}>

@@ -9,16 +9,19 @@ const valueUrl = [
     url: "/values/speaking.svg",
     dark_url: "/values/speaking-dark.svg",
     images: valuesOfLAC[0].gallery,
+    short_desc: valuesOfLAC[0].short_desc,
   },
   {
     url: "/values/quizzing.svg",
     dark_url: "/values/quizzing-dark.svg",
     images: valuesOfLAC[2].gallery,
+    short_desc: valuesOfLAC[2].short_desc,
   },
   {
     url: "/values/reading.svg",
     dark_url: "/values/reading-dark.svg",
     images: valuesOfLAC[1].gallery,
+    short_desc: valuesOfLAC[1].short_desc,
   },
 ];
 
@@ -38,7 +41,7 @@ const CardsToBeSwapped = ({ showValues }: props) => {
           return prevDiv + 1;
         }
       });
-    }, 4000);
+    }, 5500);
 
     return () => clearInterval(interval);
   }, []);
@@ -52,38 +55,20 @@ const CardsToBeSwapped = ({ showValues }: props) => {
               {showValues && (
                 <p
                   className={
-                    "text-5xl font-semibold text-center underline-offset-2 underline " + libre_caslon_text.className
+                    "text-5xl font-semibold text-center " +
+                    libre_caslon_text.className
                   }
                 >
                   {showName(index + 1)}
                 </p>
               )}
+              <p className="text-center w-11/12 italic">{urls.short_desc}</p>
               <ValueImageCard
                 key={index}
                 url={urls.url}
                 dark_url={urls.dark_url}
+                images={urls.images}
               />
-              {showValues && (
-                <div className="w-screen mb-5 relative h-[50vh]">
-                  <Image
-                    alt="some image"
-                    key={index}
-                    height={300}
-                    width={300}
-                    src={urls.images[0]}
-                    className="rounded-full object-cover h-64 w-64 absolute top-0 left-4 shadow-xl"
-                  />
-
-                  <Image
-                    alt="some image"
-                    key={index}
-                    height={300}
-                    width={300}
-                    src={urls.images[1]}
-                    className="rounded-full object-cover h-56 w-56  absolute bottom-0 right-4 shadow-xl"
-                  />
-                </div>
-              )}
             </div>
           );
         }

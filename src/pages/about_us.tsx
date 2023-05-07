@@ -23,7 +23,7 @@ const AboutUs = () => {
       <div className="w-full lg:w-auto">
         <InformationHolder
           name="Dr Kalpana C Maheria"
-          position="Professor, Dept of XYZ Engineering"
+          position="Professor, Dept of Chemistry"
           img="https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/about_us%2Ffaculty%20advisor%2FWhatsApp%20Image%202023-04-20%20at%208.57.00%20PM.jpeg?alt=media&token=e4c9a8af-5e0e-4ed8-8571-9180a34d3e07"
           designation="Chairperson"
           socials={[" ", " ", " ", "mailto:kcm@chem.svnit.ac.in", " "]}

@@ -2,6 +2,7 @@ import { monsterrat } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import StarRating from "./StarRating";
 
 type props = {
   book: Book;
@@ -30,9 +31,9 @@ const BookDisplayBox = ({ book }: props) => {
       {/* div for description and name */}
       <div className="flex flex-col justify-between h-full w-full lg:w-2/3 p-6 ">
         <div className="flex flex-col">
-          <h2 className="text-3xl mb-4">{book.name}</h2>
+          <h2 className="text-3xl mb-4 font-bold">{book.name}</h2>
           <h6 className="text-lg mb-4">{book.author}</h6>
-          <h5 className="text-lg mb-4">{book.rating}/5</h5>
+          <StarRating rating={book.rating} />
         </div>
         <Link
           href={book.reviewLink}

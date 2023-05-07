@@ -43,7 +43,7 @@ const ThreeValuesOfLac = () => {
               ))}
             </div>
             <Link
-              className="bg-[#2c1810]text-[#f8f3ed] dark:bg-[#dfa437] px-3 py-1 rounded-lg mb-4 w-10/12 mx-auto text-center"
+              className="bg-[#2c1810] text-[#f8f3ed] dark:bg-[#dfa437] px-3 py-1 rounded-lg mb-4 w-10/12 mx-auto text-center hover:shadow-xl"
               href={`/events/${value.title.toLowerCase()}`}
             >
               Participate / Know-more
