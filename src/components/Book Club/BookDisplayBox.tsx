@@ -2,7 +2,6 @@ import { monsterrat } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { Rating } from "react-simple-star-rating";
 import StarRating from "./StarRating";
 
 type props = {
