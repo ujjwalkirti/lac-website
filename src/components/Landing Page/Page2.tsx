@@ -10,7 +10,7 @@ type props = {
 
 const Page2 = ({ featuredBlogs }: props) => {
   return (
-    <div className="lg:h-screen lg:pt-[100px]">
+    <div className="lg:h-screen pt-4 lg:pt-[100px]">
       <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between">
         {" "}
         <p

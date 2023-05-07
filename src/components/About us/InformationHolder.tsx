@@ -32,128 +32,86 @@ const InformationHolder = ({
   socials,
 }: props) => {
   return (
-    <div className="flex flex-col lg:flex-row gap-2 shadow-xl py-3 px-2 rounded-lg bg-white dark:bg-[#9A7B4F]  w-full mx-auto">
-      <div
-        className={
-          "flex flex-col items-center justify-between mx-auto gap-2 lg:gap-3 " +
-          `${message ? "lg:w-2/5 " : "w-full"}`
-        }
-      >
-        <p className="text-[30px] text-center font-semibold">{name}</p>
-        <p className="text-[18px] text-center ">{position}</p>
-        <p className="text-center">({designation})</p>
-        {/* Faculty Advisor image */}
-        <div className="h-[450px] w-full relative mx-auto">
-          <Image
-            src={img}
-            fill
-            alt="Images of people from LAC,SVNIT"
-            className="object-contain"
-          />
-        </div>
-        {contact && (
-          <div className="flex flex-col items-center justify-between mt-4 px-3 w-full space-y-4">
-            <p className="flex items-center justify-center text-xl gap-3 bg-blue-500 text-white dark:bg-[#9A7B4F] dark:text-yellow-400 w-2/3 mx-auto px-1 py-2 rounded-md">
-              <IoMdCall />
-              {contact[0]}
-            </p>
-          </div>
-        )}
-        <div className="flex flex-row justify-center gap-10 text-[40px] px-3 my-4">
-          {socials?.map((link, index) => {
-            switch (index) {
-              case 0:
-                if (link !== " ") {
-                  return (
-                    <Link className="dark:text-[#dfa437] mx-auto" href={link}>
-                      <AiFillFacebook />
-                    </Link>
-                  );
-                }
-                break;
-              case 1:
-                if (link !== " ") {
-                  return (
-                    <Link
-                      className=" dark:text-[#dfa437]  mx-auto"
-                      href={socials[1]}
-                    >
-                      <AiFillLinkedin />
-                    </Link>
-                  );
-                }
-                break;
-              case 2:
-                if (link !== " ") {
-                  return (
-                    <Link className=" dark:text-[#dfa437]  mx-auto" href={link}>
-                      <AiOutlineTwitter />
-                    </Link>
-                  );
-                }
-                break;
-              case 3:
-                if (
-                  link !== " " &&
-                  (designation === "Chairperson" ||
-                    designation === "Co-Chairperson")
-                ) {
-                  return (
-                    <Link className=" dark:text-[#dfa437] border flex items-center gap-4 px-3 py-2 text-3xl rounded-lg  mx-auto" href={link}>
-                      <SiGmail /> Email
-                    </Link>
-                  );
-                } else {
-                  return (
-                    <Link className=" dark:text-[#dfa437]  mx-auto" href={link}>
-                      <SiGmail />
-                    </Link>
-                  );
-                }
-                break;
-              case 4:
-                if (link !== " ") {
-                  return (
-                    <Link className=" dark:text-[#dfa437]  mx-auto" href={link}>
-                      <AiFillInstagram />
-                    </Link>
-                  );
-                }
-                break;
-            }
-          })}
-          {contact && (
-            <Link
-              href={`https://wa.me/91${contact[1]}`}
-              className="dark:text-[#dfa437]  mx-auto"
-            >
-              <AiOutlineWhatsApp />
-            </Link>
-          )}
-        </div>
+    <div className="dark:bg-[#603726] bg-white rounded-lg shadow-lg mx-auto my-3 flex flex-col gap-2 w-full md:w-[300px]">
+      {/* Faculty Advisor image */}
+      <div className="h-[450px] w-full relative mx-auto">
+        <Image
+          src={img}
+          fill
+          alt="Images of people from LAC,SVNIT"
+          className="object-cover"
+        />
       </div>
-      {/* His message */}
-      {message && (
-        <div
-          className="flex flex-col lg:justify-center
-        lg:gap-4 lg:mt-5 mb-3 lg:w-3/5"
-        >
-          <p className="text-center font-medium text-xl dark:text-[#dfa437]">
-            Message from the Desk
-          </p>
-          <p className="text-justify italic px-3 lg:w-full lg:mx-auto ">
-            <FirstLetterCapital letter={`"`} />
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum
-            fuga debitis, quos dolores sint, architecto amet tempore maxime
-            quibusdam rem tempora doloribus vitae facilis numquam atque ex ad
-            voluptatibus sequi. Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Libero quas ab, magnam aperiam, error magni iure
-            voluptate at ad quos dolorum sit placeat, non saepe rem distinctio
-            exercitationem. Sit, fugit?
-            <FirstLetterCapital letter={`"`} />
+      <p className="text-[30px] text-center font-semibold">{name}</p>
+      <p className="text-[18px] text-center ">{position}</p>
+      <p className="text-center">({designation})</p>
+      {contact && (
+        <div className="flex flex-col items-center justify-between mt-4 px-3 w-full space-y-4">
+          <p className="flex items-center justify-center text-xl gap-3 shadow-xl border dark:bg-[#9A7B4F] dark:text-white w-2/3 mx-auto px-1 py-2 rounded-md">
+            <IoMdCall />
+            {contact[0]}
           </p>
         </div>
       )}
+      <div className="flex flex-row justify-center gap-10 text-[40px] px-3 my-4">
+        {socials?.map((link, index) => {
+          switch (index) {
+            case 0:
+              if (link !== " ") {
+                return (
+                  <Link className="dark:text-white mx-auto" href={link}>
+                    <AiFillFacebook />
+                  </Link>
+                );
+              }
+              break;
+            case 1:
+              if (link !== " ") {
+                return (
+                  <Link className=" dark:text-white  mx-auto" href={socials[1]}>
+                    <AiFillLinkedin />
+                  </Link>
+                );
+              }
+              break;
+            case 2:
+              if (link !== " ") {
+                return (
+                  <Link className=" dark:text-white  mx-auto" href={link}>
+                    <AiOutlineTwitter />
+                  </Link>
+                );
+              }
+              break;
+            case 3:
+              if (link !== " ") {
+                return (
+                  <Link className=" dark:text-white  mx-auto" href={link}>
+                    <SiGmail />
+                  </Link>
+                );
+              }
+              break;
+            case 4:
+              if (link !== " ") {
+                return (
+                  <Link className=" dark:text-white  mx-auto" href={link}>
+                    <AiFillInstagram />
+                  </Link>
+                );
+              }
+              break;
+          }
+        })}
+        {contact && (
+          <Link
+            href={`https://wa.me/91${contact[1]}`}
+            className="dark:text-white  mx-auto"
+          >
+            <AiOutlineWhatsApp />
+          </Link>
+        )}
+      </div>
     </div>
   );
 };
