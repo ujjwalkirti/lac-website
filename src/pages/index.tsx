@@ -18,7 +18,7 @@ import ThreeValuesOfLACForMobile from "@/components/Landing Page/ThreeValuesOfLA
 
 type props = {
   yetToHappenEvents: LAC_Event[];
-  happenedEvent: LAC_Event;
+  happenedEvent: LAC_Event[];
   featuredBlogs: { blog: Blog; id: string }[];
 };
 
@@ -58,20 +58,20 @@ export default function Home({
 
 export async function getServerSideProps(context: any) {
   let yetToHappenEvents: any[] = [];
-  let happenedEvent: any = {};
+  let happenedEvent: any[] = [];
   let featuredBlogs: any[] = [];
   // 1.fetch top 2 events whose completed status is false and one whose completed status is true
   const yetToHappenEventsQuery = query(
     collection(db, "events"),
     where("completed", "==", false),
     orderBy("date", "desc"),
-    limit(2)
+    limit(3)
   );
   const happenedEventsQuery = query(
     collection(db, "events"),
     where("completed", "==", true),
     orderBy("date", "desc"),
-    limit(1)
+    limit(3)
   );
 
   const yetToHappenEventsQuerySnapshot = await getDocs(yetToHappenEventsQuery);
@@ -83,7 +83,7 @@ export async function getServerSideProps(context: any) {
   const happenedEventsQuerySnapshot = await getDocs(happenedEventsQuery);
   happenedEventsQuerySnapshot.forEach((doc) => {
     // doc.data() is never undefined for query doc snapshots
-    happenedEvent = doc.data();
+    happenedEvent.push(doc.data());
   });
 
   //2. fetch the 3 featured blogs and return them
@@ -98,7 +98,6 @@ export async function getServerSideProps(context: any) {
     // doc.data() is never undefined for query doc snapshots
     featuredBlogs.push({ blog: doc.data(), id: doc.id });
   });
-
   return {
     props: {
       yetToHappenEvents,

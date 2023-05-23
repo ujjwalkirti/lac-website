@@ -1,9 +1,8 @@
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FiArrowRight } from "react-icons/fi";
 import BookClubIndicator from "./BookClubIndicator";
 import FirstLetterCapital from "./FirstLetterCapital";
-import Typewriter from "./Typewriter";
 import { CgLivePhoto } from "react-icons/cg";
 import { libre_caslon_text, monsterrat } from "@/utils";
 import Image from "next/image";
@@ -11,18 +10,23 @@ import EventsSwiper from "./EventsSwiper";
 
 type props = {
   yetToHappenEvents: LAC_Event[];
-  happenedEvent: LAC_Event;
+  happenedEvent: LAC_Event[];
 };
 
 const Page1 = ({ yetToHappenEvents, happenedEvent }: props) => {
   const [isOtherHovered, setIsOtherHovered] = useState(false);
   const [isSecondDivHovered, setIsSecondDivHovered] = useState(false);
-  const [yetToHappenEventsCount, setYetToHappenEventsCount] = useState(
-    yetToHappenEvents.length
-  );
-  const [happenedEventsCount, setHappenedEventsCount] = useState(
-    Object.keys(happenedEvent).length
-  );
+
+  // const happenedEventsCount = happenedEvent.length;
+  const yetToHappenEventsCount = yetToHappenEvents.length;
+
+  if (yetToHappenEventsCount === 0) {
+    yetToHappenEvents[0] = happenedEvent[1];
+    yetToHappenEvents[1] = happenedEvent[2];
+  } else if (yetToHappenEventsCount === 1) {
+    yetToHappenEvents[1] = happenedEvent[1];
+  }
+
   return (
     <div className={"mt-[19px] text-[#2C1810] dark:text-[#fffbf7]"}>
       <p
@@ -70,6 +74,14 @@ const Page1 = ({ yetToHappenEvents, happenedEvent }: props) => {
             View all
           </Link>
         </div>
+        {/* 
+        
+            
+              This is the div which contains the 3 cards showing the events.
+              The first 2 are the upcoming ones, and the last one shows the event which has most recently happened.
+          
+        
+        */}
         <div className="hidden w-[70%] lg:flex justify-between gap-[20px] h-[432px]">
           {/* div for major latest upcoming event */}
           <div
@@ -189,7 +201,7 @@ const Page1 = ({ yetToHappenEvents, happenedEvent }: props) => {
                 </div>
               )}
               <Image
-                src={happenedEvent.img}
+                src={happenedEvent[0].img}
                 fill
                 alt="LAC's most recent event poster"
                 className="rounded-md object-cover"
@@ -207,7 +219,7 @@ const Page1 = ({ yetToHappenEvents, happenedEvent }: props) => {
                     libre_caslon_text.className
                   }
                 >
-                  {happenedEvent.title}
+                  {happenedEvent[0].title}
                 </p>
                 {isOtherHovered && !isSecondDivHovered && (
                   <Link

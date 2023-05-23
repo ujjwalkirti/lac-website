@@ -24,12 +24,7 @@ const options = [
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   function styleBasedOnRoute({ name, url }: styleProps) {
     switch (url) {
@@ -52,9 +47,6 @@ const Navbar = () => {
     }
   }
 
-  if (!mounted) {
-    return null;
-  }
   return (
     <section
       className={

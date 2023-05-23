@@ -9,7 +9,7 @@ import Link from "next/link";
 
 type props = {
   yetToHappenEvents: LAC_Event[];
-  happenedEvent: LAC_Event;
+  happenedEvent: LAC_Event[];
 };
 
 export default function EventsSwiper({
@@ -63,7 +63,11 @@ export default function EventsSwiper({
             />
             <div className="absolute h-full w-full z-10 bg-gradient-to-t from-black to-transparent  rounded-md"></div>
             <div className="absolute flex flex-col items-end bottom-7 right-3 z-20 text-white">
-              <p className={"text-2xl text-right mb-3 " + libre_caslon_text.className}>
+              <p
+                className={
+                  "text-2xl text-right mb-3 " + libre_caslon_text.className
+                }
+              >
                 {yetToHappenEvents[1].title}
               </p>
 
@@ -85,7 +89,7 @@ export default function EventsSwiper({
         </div>{" "}
         <div className="relative h-full w-[80vw]">
           <Image
-            src={happenedEvent.img}
+            src={happenedEvent[0].img}
             fill
             alt="LAC's most recent event poster"
             className="rounded-md object-cover"
@@ -93,7 +97,7 @@ export default function EventsSwiper({
           <div className="absolute h-full w-full z-10 bg-gradient-to-t from-black to-transparent  rounded-md"></div>
           <div className="absolute flex flex-col items-end bottom-7 right-3 z-20 text-white">
             <p className={"text-2xl mb-3 " + libre_caslon_text.className}>
-              {happenedEvent.title}
+              {happenedEvent[0].title}
             </p>
 
             <Link className="bg-[#DA8E63] px-3 py-2 rounded-lg" href="/events">

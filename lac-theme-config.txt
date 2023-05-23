@@ -1,6 +1,6 @@
 theme for lac website color code-
 
-light
+light mode
 bg-#f8f3ed
 text-#2c1810
 
@@ -11,7 +11,7 @@ text-#2c1810
 some other special text-
 
 
-dark
+dark mode
 
 bg-#2c1810
 text-#fffbf7
