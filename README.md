@@ -1,38 +1,18 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## About LAC 
+Literary Affairs Committee is a place where people share their passion for the art of speaking , reading , and writing . It includes fierce debaters , bold orators , quirky quizzers , avid readers , and literature enthusiasts . LAC nurtures budding writers , Quiz Masters , and bold speakers who are not afrai to put their opinion out in the public . 
 
-## Getting Started
+LAC stands on three pillars : Speaking , Quizzing and Reading . Alongside the technical knowledge we gain in college , it is essential to have the soft skills that are needed to communicate the knowledge to the common audience . LAC provides a platform for the students of the college to hone their soft skills through various Debate and Group Discussion workshops and competitions . 
 
-First, run the development server:
+We tease the wits of college students through various quizzes that cover all the topics ever known to man . LAC has conducted a national quiz and an Inter NIT Quiz hosting the most inquisitive minds from all over the nation to test out their deduction skills through twisted questions . 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+LAC also hosts a Book Club at the Central Library with up to 200 non - academic books to choose from , genres varying from fiction , fantasy , and romance to self help , biographies , and history .
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### Purpose of Website 
+This website has been developed to make it easier to learn about the club and the different activities it conducts throughout the year. Apart from that, an entire list of books present in the bookclub has been provided for the convinience of whoever wants to issue them.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+#### Tech Stacks 
+Tech stacks used include NextJS, Tailwind CSS, NodeJS, ExpressJS 
+The website was hosted using Versal.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+#### Live Website link
+https://lac-website.vercel.app/
