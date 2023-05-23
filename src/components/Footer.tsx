@@ -11,16 +11,8 @@ import {
 import { SiGmail } from "react-icons/si";
 
 const Footer = () => {
-  const [mounted, setMounted] = React.useState(false);
-
   const { theme } = useTheme();
 
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-  if (!mounted) {
-    return null;
-  }
   return (
     <section className="w-11/12 mx-auto flex flex-col items-center">
       <div className="h-[72px] w-[72px] relative mt-[51px]">

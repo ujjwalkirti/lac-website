@@ -3,8 +3,11 @@ import { collection, getDocs, query, where } from "@firebase/firestore";
 import React, { useState } from "react";
 import EventBox from "./EventBox";
 import { DotSpinner } from "@uiball/loaders";
+import { useTheme } from "next-themes";
 
 const PastEvents = () => {
+  const { theme } = useTheme();
+
   const [pastEvents, setPastEvents] = useState([]);
   const [showPastEvents, setShowPastEvents] = useState("false");
   async function getPastEvents() {
@@ -24,12 +27,17 @@ const PastEvents = () => {
       <button
         className="dark:bg-white dark:text-[#2c1810] px-2 py-1 rounded-md font-semibold mx-auto w-32"
         onClick={() => {
-          setShowPastEvents("loading");
-          if (
-            (showPastEvents === "true" || showPastEvents === "loading") &&
-            pastEvents.length === 0
-          ) {
+          if (showPastEvents === "true" || showPastEvents === "loading") {
+            setShowPastEvents("false");
+          }
+
+          if (showPastEvents === "false" && pastEvents.length === 0) {
+            setShowPastEvents("loading");
+
             getPastEvents();
+          }
+          if (showPastEvents === "false" && pastEvents.length !== 0) {
+            setShowPastEvents("true");
           }
         }}
       >
@@ -44,7 +52,7 @@ const PastEvents = () => {
 
         */}
       {pastEvents.length !== 0 && showPastEvents === "true" && (
-        <div className="grid grid-cols-1 lg:grid-cols-3 px-2">
+        <div className="grid grid-cols-1 lg:grid-cols-3 px-2 gap-2">
           {pastEvents.map((lac_event: LAC_Event, index: number) => (
             <EventBox
               key={index}
@@ -59,7 +67,11 @@ const PastEvents = () => {
       {/* Until the past events are fetched, loading symbol will be displayed */}
       {showPastEvents === "loading" && (
         <div>
-          <DotSpinner size={40} speed={0.9} color="purple" />;
+          <DotSpinner
+            size={40}
+            speed={0.9}
+            color={theme === "dark" ? "white" : "brown"}
+          />
         </div>
       )}
       {/* If there are no past events as well, apology message will be displayed */}
