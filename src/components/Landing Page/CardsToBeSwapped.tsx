@@ -51,7 +51,10 @@ const CardsToBeSwapped = ({ showValues }: props) => {
       {valueUrl.map((urls, index) => {
         if (currentDiv === index + 1) {
           return (
-            <div className={showValues ? "flex flex-col space-y-4" : ""}>
+            <div
+              key={index}
+              className={showValues ? "flex flex-col space-y-4" : ""}
+            >
               {showValues && (
                 <p
                   className={

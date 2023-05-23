@@ -30,6 +30,8 @@ const EventsBasedOnTypes = ({ events, type }: props) => {
         >
           {firstLetterCapital(type)} Events
         </p>
+        <p>Sorry there are no events planned</p>
+        <p>Why don't you have a look at past events?</p>
         <PastEvents />
       </div>
     );
