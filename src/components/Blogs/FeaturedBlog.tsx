@@ -9,7 +9,7 @@ type props = {
 };
 
 function shortenCharacter(content: string) {
-  return content.slice(0, 150)+"...";
+  return content.slice(0, 150) + "...";
 }
 
 const FeaturedBlog = ({ blog, id }: props) => {
@@ -37,7 +37,12 @@ const FeaturedBlog = ({ blog, id }: props) => {
           <p className="italic">by {blog.author}</p>
         </div>
 
-        <p className={"text-[24px] lg:text-[55px] font-bold " + libre_caslon_text.className}>
+        <p
+          className={
+            "text-[24px] lg:text-[35px] font-bold " +
+            libre_caslon_text.className
+          }
+        >
           {blog.name}
         </p>
         <p className="text-lg w-full text-justify my-3">
