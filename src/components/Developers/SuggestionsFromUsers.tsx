@@ -53,7 +53,7 @@ const SuggestionsFromUsers = () => {
         >
           <textarea
             placeholder="Write here"
-            className="px-2 py-1 h-[250px] lg:h-[150px] dark:bg-white dark:text-black"
+            className="px-2 py-1 h-[250px] lg:h-[150px] dark:bg-white dark:text-black border"
             required
             onChange={(e) => {
               setMessage(e.target.value);
