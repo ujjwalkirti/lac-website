@@ -25,7 +25,7 @@ const Page2 = ({ featuredBlogs }: props) => {
         </p>
         <Link
           href={`/blogs`}
-          className="text-[#BA9871] text-[22px] font-semibold flex justify-center my-6"
+          className="text-[#BA9871] text-[22px] font-semibold flex justify-center my-6 hover:underline"
         >
           View all
         </Link>
@@ -81,7 +81,10 @@ const Page2 = ({ featuredBlogs }: props) => {
             <div className="">
               {" "}
               <p
-                className={"text-xl text-center lg:text-2xl " + libre_caslon_text.className}
+                className={
+                  "text-xl text-center lg:text-2xl " +
+                  libre_caslon_text.className
+                }
               >
                 {featuredBlogs[1].blog.name}
               </p>
@@ -111,7 +114,10 @@ const Page2 = ({ featuredBlogs }: props) => {
             <div className="">
               {" "}
               <p
-                className={"text-xl text-center lg:text-2xl " + libre_caslon_text.className}
+                className={
+                  "text-xl text-center lg:text-2xl " +
+                  libre_caslon_text.className
+                }
               >
                 {featuredBlogs[2].blog.name}
               </p>

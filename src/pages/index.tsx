@@ -37,6 +37,7 @@ export default function Home({
       </Head>
       <section className="px-4 lg:w-11/12 mx-auto">
         <Page1
+          yetToHappenEventsCount={yetToHappenEvents.length}
           yetToHappenEvents={yetToHappenEvents}
           happenedEvent={happenedEvent}
         />
