@@ -1,5 +1,5 @@
 ## About LAC 
-Literary Affairs Committee is a place where people share their passion for the art of speaking , reading , and writing . It includes fierce debaters , bold orators , quirky quizzers , avid readers , and literature enthusiasts . LAC nurtures budding writers , Quiz Masters , and bold speakers who are not afrai to put their opinion out in the public . 
+Literary Affairs Committee is a place where people share their passion for the art of speaking, reading, and writing. It includes fierce debaters , bold orators , quirky quizzers , avid readers , and literature enthusiasts . LAC nurtures budding writers , Quiz Masters , and bold speakers who are not afrai to put their opinion out in the public . 
 
 LAC stands on three pillars : Speaking , Quizzing and Reading . Alongside the technical knowledge we gain in college , it is essential to have the soft skills that are needed to communicate the knowledge to the common audience . LAC provides a platform for the students of the college to hone their soft skills through various Debate and Group Discussion workshops and competitions . 
 
