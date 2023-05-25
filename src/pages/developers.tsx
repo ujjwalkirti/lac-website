@@ -4,6 +4,7 @@ import { libre_caslon_text } from "@/utils";
 import { collection, getDocs } from "firebase/firestore";
 import Head from "next/head";
 import React from "react";
+import SuggestionsFromUsers from "@/components/Developers/SuggestionsFromUsers";
 
 type props = {
   developers: Developer[];
@@ -11,7 +12,7 @@ type props = {
 };
 const Developers = ({ developers, designers }: props) => {
   return (
-    <section className="min-h-[55vh] flex flex-col items-center lg:w-11/12 mx-auto">
+    <section className="min-h-[55vh] flex flex-col items-center px-2 lg:w-11/12 mx-auto">
       <Head>
         <title>Developers 💻 & Designers 🎨</title>
       </Head>
@@ -49,6 +50,7 @@ const Developers = ({ developers, designers }: props) => {
           return <DeveloperCard developer={developer} key={index} />;
         })}
       </div>
+      <SuggestionsFromUsers />
     </section>
   );
 };
