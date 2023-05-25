@@ -1,19 +1,33 @@
 import React, { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "@/Firebase";
+import { BsHourglassSplit } from "react-icons/bs";
+import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SuggestionsFromUsers = () => {
   const [message, setMessage] = useState("");
+  const [progress, setProgress] = useState("false");
   const handleSubmit = (e: any) => {
     e.preventDefault();
     addDoc(collection(db, "suggestions"), {
       suggestion: message,
     })
       .then((docRef) => {
-        alert("you have successfully submitted your suggestion");
+        toast.success("you have successfully submitted your suggestion!", {
+          pauseOnHover: true,
+          autoClose: 3000, // Close the toast after 3 seconds (default: 5000)
+        });
         setMessage("");
+        setProgress("false");
       })
-      .catch((e) => alert("try again"));
+      .catch((e) =>
+        toast.error("try again", {
+          pauseOnHover: true,
+          autoClose: 3000, // Close the toast after 3 seconds (default: 5000)
+        })
+      );
   };
   return (
     <div className=" dark:bg-[#9A7B4F] dark:text-white border mt-5 py-2 w-full md:w-11/12  rounded xl:w-4/5 md:px-4">
@@ -46,12 +60,18 @@ const SuggestionsFromUsers = () => {
             }}
             value={message}
           />
-          <input
+          <button
             type="submit"
+            onClick={() => {
+              setProgress("loading");
+            }}
             className="my-3 py-1 px-6 bg-[#9A7B4F] hover:text-[#9A7B4F] hover:bg-white border-[#9A7B4F] border text-white mx-auto font-semibold text-xl rounded-lg cursor-pointer"
-          />
+          >
+            {progress === "loading" ? <BsHourglassSplit /> : "Submit"}
+          </button>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };
