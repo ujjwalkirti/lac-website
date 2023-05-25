@@ -21,7 +21,7 @@ const DeveloperCard = ({ developer }: props) => {
         height={200}
         width={200}
         alt={`${developer.tag} profile picture`}
-        className="w-full h-[400px] md:h-[300px]"
+        className="w-full h-[400px] md:h-[350px]"
       />
       <div className="flex flex-col items-center justify-between h-auto py-2 px-2 gap-3">
         <p className="text-[28px] font-semibold">{developer.name}</p>

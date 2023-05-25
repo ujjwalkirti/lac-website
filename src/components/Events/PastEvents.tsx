@@ -25,7 +25,7 @@ const PastEvents = () => {
   return (
     <div className="flex flex-col items-center gap-4 mt-5">
       <button
-        className="dark:bg-white dark:text-[#2c1810] px-2 py-1 rounded-md font-semibold mx-auto w-32"
+        className="dark:bg-white bg-[#2c1810] text-[#f8f3ed] dark:text-[#2c1810] px-2 py-1 rounded-md font-semibold mx-auto w-32"
         onClick={() => {
           if (showPastEvents === "true" || showPastEvents === "loading") {
             setShowPastEvents("false");

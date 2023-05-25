@@ -10,11 +10,13 @@ import Link from "next/link";
 type props = {
   yetToHappenEvents: LAC_Event[];
   happenedEvent: LAC_Event[];
+  yetToHappenEventsCount: number;
 };
 
 export default function EventsSwiper({
   yetToHappenEvents,
   happenedEvent,
+  yetToHappenEventsCount,
 }: props) {
   return (
     <div className="overflow-x-scroll scrollbar-hide lg:hidden w-full flex justify-between gap-[20px] h-[420px]">
@@ -22,9 +24,15 @@ export default function EventsSwiper({
       <div className={" transition-all duration-200 "}>
         {" "}
         <div className="relative w-[80vw] h-full">
-          <div className="absolute top-3 right-3 z-20 bg-white dark:text-[#2c1810] animate-pulse px-3 py-1 rounded-md font-semibold flex items-center gap-3">
+          <div className="absolute top-3 right-3 z-20 bg-[#2C1810] text-white dark:bg-white dark:text-[#2C1810] rounded-md animate-pulse px-3 py-1 rounded-md font-semibold flex items-center gap-3">
             <CgLivePhoto />
-            <p className="">Upcoming</p>
+            <p className="">
+              {yetToHappenEventsCount === 0
+                ? "Past"
+                : yetToHappenEventsCount === 1
+                ? "Upcoming"
+                : "Upcoming"}
+            </p>
           </div>
           <Image
             src={yetToHappenEvents[0].img}
@@ -42,7 +50,11 @@ export default function EventsSwiper({
               className="bg-[#DA8E63] text-sm px-3 py-2 rounded-lg"
               href="/events"
             >
-              View / Register
+              {yetToHappenEventsCount === 0
+                ? "View"
+                : yetToHappenEventsCount === 1
+                ? "View/Register"
+                : "View/Register"}
             </Link>
           </div>
         </div>
@@ -50,9 +62,15 @@ export default function EventsSwiper({
       {/* div for the next latest upcoming event */}
       {yetToHappenEvents.length === 2 && (
         <div className=" transition-all duration-200 relative">
-          <div className="absolute top-3 right-3 z-20 bg-white dark:text-[#2c1810] animate-pulse px-3 py-1 rounded-md font-semibold flex items-center gap-3">
+          <div className="absolute top-3 right-3 z-20 bg-[#2C1810] text-white dark:bg-white dark:text-[#2C1810] rounded-md animate-pulse px-3 py-1 rounded-md font-semibold flex items-center gap-3">
             <CgLivePhoto />
-            <p className="">Upcoming</p>
+            <p className="">
+              {yetToHappenEventsCount === 0
+                ? "Past"
+                : yetToHappenEventsCount === 1
+                ? "Past"
+                : "Upcoming"}
+            </p>
           </div>{" "}
           <div className="relative h-full w-[80vw]">
             <Image
@@ -75,7 +93,11 @@ export default function EventsSwiper({
                 className="bg-[#DA8E63] px-3 py-2 rounded-lg"
                 href="/events"
               >
-                View / Register
+                {yetToHappenEventsCount === 0
+                  ? "View"
+                  : yetToHappenEventsCount === 1
+                  ? "View"
+                  : "View/Register"}
               </Link>
             </div>
           </div>
@@ -83,7 +105,7 @@ export default function EventsSwiper({
       )}
       {/* div for latest event which just happened */}
       <div className=" transition-all duration-200 relative">
-        <div className="absolute top-3 right-3 z-20 bg-white dark:text-[#2c1810] animate-pulse px-3 py-1 rounded-md font-semibold flex items-center gap-3">
+        <div className="absolute top-3 right-3 z-20 bg-[#2C1810] text-white dark:bg-white dark:text-[#2C1810] rounded-md animate-pulse px-3 py-1 rounded-md font-semibold flex items-center gap-3">
           <CgLivePhoto />
           <p className="">Past</p>
         </div>{" "}

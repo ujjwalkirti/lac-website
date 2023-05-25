@@ -32,7 +32,7 @@ const NormalBlog = ({ blog, id }: props) => {
         <p className={"text-[25px] font-bold " + libre_caslon_text.className}>
           {blog.name}
         </p>
-        <p className="text-base w-full text-justify">{blog.about}</p>
+        <p className="text-base w-full text-justify">{blog.about}...</p>
         <Link
           href={`/blogs/read/${id}`}
           className="bg-[#2C1810] text-base font-semibold px-3 py-2 rounded-md text-white border border-[#2C1810] hover:bg-white hover:text-inherit dark:hover:text-[#2C1810]"

@@ -11,14 +11,16 @@ import EventsSwiper from "./EventsSwiper";
 type props = {
   yetToHappenEvents: LAC_Event[];
   happenedEvent: LAC_Event[];
+  yetToHappenEventsCount: number;
 };
 
-const Page1 = ({ yetToHappenEvents, happenedEvent }: props) => {
+const Page1 = ({
+  yetToHappenEvents,
+  happenedEvent,
+  yetToHappenEventsCount,
+}: props) => {
   const [isOtherHovered, setIsOtherHovered] = useState(false);
   const [isSecondDivHovered, setIsSecondDivHovered] = useState(false);
-
-  // const happenedEventsCount = happenedEvent.length;
-  const yetToHappenEventsCount = yetToHappenEvents.length;
 
   if (yetToHappenEventsCount === 0) {
     yetToHappenEvents[0] = happenedEvent[1];
@@ -93,9 +95,15 @@ const Page1 = ({ yetToHappenEvents, happenedEvent }: props) => {
             {" "}
             <div className="relative h-full">
               {!isOtherHovered && (
-                <div className="absolute top-3 right-3 z-20 text-white flex items-center gap-3 text-xl font-semibold">
+                <div className="absolute top-3 right-3 z-20 text-white flex items-center gap-3 text-xl font-semibold bg-[#2C1810] dark:bg-white dark:text-[#2C1810] px-2 py-1 rounded-md">
                   <CgLivePhoto />
-                  <p>Upcoming</p>
+                  <p>
+                    {yetToHappenEventsCount === 0
+                      ? "Past"
+                      : yetToHappenEventsCount === 1
+                      ? "Upcoming"
+                      : "Upcoming"}
+                  </p>
                 </div>
               )}
               <Image
@@ -124,7 +132,11 @@ const Page1 = ({ yetToHappenEvents, happenedEvent }: props) => {
                     className="bg-[#DA8E63] text-lg px-3 py-2 rounded-lg "
                     href={`/events`}
                   >
-                    View / Register
+                    {yetToHappenEventsCount === 0
+                      ? "View"
+                      : yetToHappenEventsCount === 1
+                      ? "View/Register"
+                      : "View/Register"}
                   </Link>
                 )}
               </div>
@@ -145,9 +157,15 @@ const Page1 = ({ yetToHappenEvents, happenedEvent }: props) => {
             {" "}
             <div className="relative h-full">
               {isOtherHovered && isSecondDivHovered && (
-                <div className="absolute top-3 right-3 z-20 text-white flex items-center gap-3 text-xl font-semibold">
+                <div className="absolute top-3 right-3 z-20 text-white flex items-center gap-3 text-xl font-semibold bg-[#2C1810] dark:bg-white dark:text-[#2C1810] px-2 py-1 rounded-md">
                   <CgLivePhoto />
-                  <p>Upcoming</p>
+                  <p>
+                    {yetToHappenEventsCount === 0
+                      ? "Past"
+                      : yetToHappenEventsCount === 1
+                      ? "Past"
+                      : "Upcoming"}
+                  </p>
                 </div>
               )}
               <Image
@@ -176,7 +194,11 @@ const Page1 = ({ yetToHappenEvents, happenedEvent }: props) => {
                     className="bg-[#DA8E63] px-3 py-2 rounded-lg"
                     href="/events"
                   >
-                    View / Register
+                    {yetToHappenEventsCount === 0
+                      ? "View"
+                      : yetToHappenEventsCount === 1
+                      ? "View"
+                      : "View/Register"}
                   </Link>
                 )}
               </div>
@@ -195,7 +217,7 @@ const Page1 = ({ yetToHappenEvents, happenedEvent }: props) => {
             {" "}
             <div className="relative h-full">
               {isOtherHovered && !isSecondDivHovered && (
-                <div className="absolute top-3 right-3 z-20 text-white flex items-center gap-3 text-xl font-semibold">
+                <div className="absolute top-3 right-3 z-20 text-white flex items-center gap-3 text-xl font-semibold bg-[#2C1810] dark:bg-white dark:text-[#2C1810] px-2 py-1 rounded-md">
                   <CgLivePhoto />
                   <p>Past</p>
                 </div>
@@ -233,13 +255,14 @@ const Page1 = ({ yetToHappenEvents, happenedEvent }: props) => {
             </div>
           </div>
         </div>
-
+        {/* For screens smaller than lg break point */}
         <EventsSwiper
+          yetToHappenEventsCount={yetToHappenEventsCount}
           happenedEvent={happenedEvent}
           yetToHappenEvents={yetToHappenEvents}
         />
       </div>
-      <div className="hidden lg:flex font-[600] text-[24px] leading-[29.26px] text-[#ba9871] justify-end my-4">
+      <div className="hidden lg:flex font-[600] text-[24px] leading-[29.26px] text-[#ba9871] justify-end my-4 hover:underline">
         <Link href={`/events`}>View all</Link>
       </div>
     </div>
