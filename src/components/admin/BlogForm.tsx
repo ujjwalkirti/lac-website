@@ -29,6 +29,7 @@ import { DotSpinner, DotWave } from "@uiball/loaders";
 
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
+import { toast } from "react-toastify";
 
 //@ts-ignore
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
@@ -59,9 +60,9 @@ const BlogForm = () => {
     // const docRef = ;
     try {
       const docRef = await addDoc(collection(db, "blogs"), data);
-      alert("blog added successfully!");
+      toast.success("blog added successfully!");
     } catch (error: any) {
-      alert(error.message);
+      toast.error(error.message);
     }
   };
 
@@ -309,11 +310,11 @@ function Blog({ blog, id }: props) {
         // To update age and favorite color:
         await updateDoc(frankDocRef, updatedFields);
       }
-      alert("blog updated successfully!");
+      toast.success("blog updated successfully!");
       setShowEditForm(false);
       setFormSubmitting(false);
     } catch (error: any) {
-      alert(error.message + " Please try again");
+      toast.error(error.message + " Please try again");
       setFormSubmitting(false);
     }
   };
@@ -342,12 +343,12 @@ function Blog({ blog, id }: props) {
               onClick={async () => {
                 try {
                   await deleteDoc(doc(db, "blogs", id));
-                  alert(
+                  toast.success(
                     "Blog Successfully deleted, please reload the page to see the changes!"
                   );
                 } catch (error) {
                   if (error) {
-                    alert("Something went wrong, please try again!");
+                    toast.error("Something went wrong, please try again!");
                   }
                 }
               }}

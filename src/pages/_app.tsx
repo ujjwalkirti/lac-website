@@ -11,9 +11,7 @@ import "@/styles/animations.css";
 import dynamic from "next/dynamic";
 import { Analytics } from "@vercel/analytics/react";
 
-const Footer = dynamic(() => import("@/components/Footer"), {
-  loading: () => <Loader />,
-});
+const Footer = dynamic(() => import("../components/Footer"));
 
 export default function App({
   Component,
@@ -40,7 +38,7 @@ export default function App({
   }, [router]);
   return (
     <SessionProvider session={session}>
-      <ThemeProvider enableSystem={true} attribute="class">
+      <ThemeProvider defaultTheme="dark" attribute="class">
         {loading && <Loader />}
         {mounted && (
           <div
