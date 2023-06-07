@@ -8,6 +8,8 @@ import BookForm from "@/components/admin/BookForm";
 import EventForm from "@/components/admin/EventForm";
 import TeamMember from "@/components/admin/TeamMember";
 import { adminButton } from "@/utils";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type props = {
   auth_users: DocumentData[];
@@ -102,6 +104,7 @@ const Dashboard = ({ auth_users }: props) => {
           {renderFormAccordingToChoice(choice)}
         </div>
       </section>
+      <ToastContainer/>
     </div>
   );
 };
