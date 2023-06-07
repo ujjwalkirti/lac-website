@@ -12,6 +12,7 @@ const EventForm = () => {
   const description = useRef<HTMLTextAreaElement | null>(null);
   const title = useRef<HTMLInputElement | null>(null);
   const teamMembers = useRef<HTMLInputElement | null>(null);
+  const type = useRef<HTMLInputElement | null>(null);
 
   const [events, setEvents] = useState<any[]>([]);
   const [imageFile, setImageFile] = useState(null);
@@ -80,9 +81,9 @@ const EventForm = () => {
               description: description.current?.value || "",
               teamMembers: Number(teamMembers.current?.value || 1),
               date: date.current?.value.toString() || new Date().toDateString(),
-              image: downloadURL,
+              img: downloadURL,
               completed: false,
-              type: "general",
+              type: type.current?.value || "general",
             };
             const docRef = await addDoc(collection(db, "events"), data);
             toast.success("Event added successfully! LAC for the win! ✌️");
@@ -127,6 +128,13 @@ const EventForm = () => {
           ref={teamMembers}
           min={0}
         />
+        <select id="dropdown" className={inputStyle} ref={type}>
+          <option value="">-- Select --</option>
+          <option value="speaking">Speaking</option>
+          <option value="reading">Reading</option>
+          <option value="quizzing">Quizzing</option>
+          <option value="general">General</option>
+        </select>
         <div className="w-full">
           <input
             type="date"
