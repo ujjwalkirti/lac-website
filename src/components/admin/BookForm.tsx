@@ -117,7 +117,7 @@ const BookForm = () => {
   };
 
   return (
-    <div className="flex flex-col items-center space-y-3">
+    <div className="flex flex-col items-center space-y-3 px-2">
       <form className="flex flex-col items-center justify-start space-y-3 w-full mb-5 px-2 py-2 lg:px-0 bg-white dark:bg-gray-300 text-black">
         <p className="font-semibold text-3xl flex items-center gap-3">
           Add Books <ImBooks />
