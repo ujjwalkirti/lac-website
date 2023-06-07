@@ -80,6 +80,10 @@ const BookForm = () => {
         },
         (error) => {
           // Handle unsuccessful uploads
+          toast.error(
+            "Sorry something wet wrong, Please try again. Reason:" +
+              error.message
+          );
         },
         () => {
           // Handle successful uploads on complete
