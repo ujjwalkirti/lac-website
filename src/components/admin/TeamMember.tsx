@@ -3,19 +3,26 @@ import { toast } from "react-toastify";
 import InformationHolder from "../About us/InformationHolder";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { db, storage } from "@/Firebase";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import {
+  StorageReference,
+  getDownloadURL,
+  ref,
+  uploadBytesResumable,
+} from "firebase/storage";
 import { adminButton } from "@/utils";
 import { inputStyle } from "@/utils";
 
 const TeamMember = () => {
   const position = useRef<HTMLInputElement | null>(null);
-  const designation = useRef<HTMLTextAreaElement | null>(null);
+  const designation = useRef<HTMLInputElement | null>(null);
   const name = useRef<HTMLInputElement | null>(null);
   const contact = useRef<HTMLInputElement | null>(null);
   const socials = useRef<HTMLInputElement | null>(null);
 
   const [members, setMembers] = useState<any[]>([]);
-  const [imageFile, setImageFile] = useState(null);
+  const [imageFile, setImageFile] = useState<
+    string | number | readonly string[] | undefined
+  >("");
   const [progress, setProgress] = useState(0);
   const [uploadStatus, setUploadStatus] = useState("");
   /*
@@ -46,8 +53,22 @@ const TeamMember = () => {
 
   const handleUpload = () => {
     if (imageFile) {
+      let imageRef: StorageReference;
+      if (
+        designation.current &&
+        (designation.current.value === "Secretary" ||
+          designation.current.value === "Joint Secretary")
+      ) {
+        imageRef = ref(
+          storage,
+          //@ts-ignore
+          `about_us/student representatives/${imageFile.name}`
+        );
+      } else {
+        //@ts-ignore
+        imageRef = ref(storage, `about_us/faculty advisors/${imageFile.name}`);
+      }
       //@ts-ignore
-      const imageRef = ref(storage, `members/${imageFile.name}`);
       const uploadTask = uploadBytesResumable(imageRef, imageFile);
       uploadTask.on(
         "state_changed",
@@ -68,7 +89,7 @@ const TeamMember = () => {
         (error) => {
           // Handle unsuccessful uploads
           toast.error(
-            "Sorry something wet wrong, Please try again. Reason:" +
+            "Sorry something went wrong, Please try again. Reason:" +
               error.message
           );
         },
@@ -77,22 +98,23 @@ const TeamMember = () => {
           // For instance, get the download URL: https://firebasestorage.googleapis.com/...
 
           const getContact = contact.current?.value || "";
-            const splitWords = getContact.split(" ");
-            let contacts: any[] = [];
-            // Looping over the words
-            for (let i = 0; i < splitWords.length; i++) {
-              const contactNo = parseInt(splitWords[i].trim()); // Remove leading/trailing spaces
-              contacts.push(contactNo);
-            }
+          const splitContacts = getContact.split(",");
+          let contacts: number[] = [];
+          // Looping over the numbers
+          for (let i = 0; i < splitContacts.length; i++) {
+            const contactNo = parseInt(splitContacts[i].trim()); // Remove leading/trailing spaces
+            contacts.push(contactNo);
+          }
 
-            const getSocials = socials.current?.value || "";
-            const splitLinks = getSocials.split(" ");
-            let links: any[] = [];
-            // Looping over the words
-            for (let i = 0; i < splitLinks.length; i++) {
-              const link = splitLinks[i].trim(); // Remove leading/trailing spaces
-              links.push(link);
-            }
+          const getSocials = socials.current?.value || "";
+          const splitLinks = getSocials.split(",");
+          // Looping over the words
+          for (let i = 0; i < splitLinks.length; i++) {
+            splitLinks[i] = splitLinks[i].trim();
+            if (splitLinks[i] === "") {
+              splitLinks[i] = " ";
+            } // Remove leading/trailing spaces
+          }
 
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
             const data = {
@@ -101,15 +123,16 @@ const TeamMember = () => {
               position: position.current?.value || "",
               contact: contacts || [],
               img: downloadURL,
-              socials: links || []
+              socials: splitLinks || [],
             };
             const docRef = await addDoc(collection(db, "members"), data);
             toast.success("Member added successfully! LAC for the win! ✌️");
-            name.current.value = "";
-            designation.current.value = "";
-            position.current.value = "";
-            contact.current.value = "";
-            socials.current.value = "";
+            name.current && (name.current.value = "");
+            designation.current && (designation.current.value = "");
+            position.current && (position.current.value = "");
+            contact.current && (contact.current.value = "");
+            socials.current && (socials.current.value = "");
+            setImageFile("");
             setProgress(0);
             setUploadStatus("");
           });
@@ -148,6 +171,7 @@ const TeamMember = () => {
         <input
           type="file"
           className={inputStyle}
+          value={imageFile}
           onChange={handleFileChange}
           required
         />
@@ -158,7 +182,10 @@ const TeamMember = () => {
             ref={contact}
             placeholder="Enter the contact numbers"
           />
-          <p>Note: Enter the contact separated by comma(,).Format = [contact number, whatsapp number]</p>
+          <p>
+            Note: Enter the contact separated by comma(,).Format = [contact
+            number, whatsapp number]
+          </p>
         </div>
         <div className="w-full">
           <input
@@ -167,7 +194,10 @@ const TeamMember = () => {
             ref={socials}
             placeholder="Enter the social accounts link here"
           />
-          <p>Note: Enter the details separated by comma(,).<b>Format = [Facebook, linkedin, tweeter, Email, Instagram]</b></p>
+          <p>
+            Note: Enter the details separated by comma(,).
+            <b>Format = [Facebook, linkedin, tweeter, Email, Instagram]</b>
+          </p>
         </div>
         <div>Upload status: {uploadStatus}</div>
         {progress !== 0 && (
@@ -205,4 +235,3 @@ const TeamMember = () => {
 };
 
 export default TeamMember;
-
