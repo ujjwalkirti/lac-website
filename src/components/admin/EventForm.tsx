@@ -13,6 +13,7 @@ const EventForm = () => {
   const title = useRef<HTMLInputElement | null>(null);
   const teamMembers = useRef<HTMLInputElement | null>(null);
   const type = useRef<HTMLSelectElement | null>(null);
+  const regLink = useRef<HTMLInputElement | null>(null);
 
   const [events, setEvents] = useState<any[]>([]);
   const [imageFile, setImageFile] = useState(null);
@@ -84,6 +85,7 @@ const EventForm = () => {
               img: downloadURL,
               completed: false,
               type: type.current?.value || "general",
+              reglink: regLink.current?.value || "",
             };
             const docRef = await addDoc(collection(db, "events"), data);
             toast.success("Event added successfully! LAC for the win! ✌️");
@@ -143,6 +145,13 @@ const EventForm = () => {
           <option value="quizzing">Quizzing</option>
           <option value="general">General</option>
         </select>
+        <input
+          type="text"
+          placeholder="enter the registration link"
+          required
+          className={inputStyle}
+          ref={regLink}
+        />
         <div className="w-full">
           <input
             type="date"
