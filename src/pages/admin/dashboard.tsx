@@ -2,13 +2,13 @@ import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import { useSession, signIn } from "next-auth/react";
 import { DocumentData, collection, getDocs } from "firebase/firestore";
-import { db } from "@/Firebase";
+import { db2 } from "@/Firebase";
 import BlogForm from "@/components/admin/BlogForm";
 import BookForm from "@/components/admin/BookForm";
 import EventForm from "@/components/admin/EventForm";
 import TeamMember from "@/components/admin/TeamMember";
 import { adminButton } from "@/utils";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 type props = {
@@ -112,7 +112,7 @@ const Dashboard = ({ auth_users }: props) => {
 export default Dashboard;
 
 export async function getServerSideProps(context: any) {
-  const querySnapshot = await getDocs(collection(db, "auth-users"));
+  const querySnapshot = await getDocs(collection(db2, "auth-users"));
 
   let auth_users: DocumentData[] = [];
 
