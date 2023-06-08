@@ -12,7 +12,7 @@ const EventForm = () => {
   const description = useRef<HTMLTextAreaElement | null>(null);
   const title = useRef<HTMLInputElement | null>(null);
   const teamMembers = useRef<HTMLInputElement | null>(null);
-  const type = useRef<HTMLInputElement | null>(null);
+  const type = useRef<HTMLSelectElement | null>(null);
 
   const [events, setEvents] = useState<any[]>([]);
   const [imageFile, setImageFile] = useState(null);
@@ -87,10 +87,18 @@ const EventForm = () => {
             };
             const docRef = await addDoc(collection(db, "events"), data);
             toast.success("Event added successfully! LAC for the win! ✌️");
-            title.current.value = "";
-            description.current.value = "";
-            teamMembers.current.value = 0;
-            date.current.value = date.current.defaultValue;
+            if (title.current) {
+              title.current.value = "";
+            }
+            if (description.current) {
+              description.current.value = "";
+            }
+            if (teamMembers.current) {
+              teamMembers.current.value = "0";
+            }
+            if (date.current) {
+              date.current.value = date.current.defaultValue;
+            }
             setProgress(0);
             setUploadStatus("");
           });
@@ -140,7 +148,7 @@ const EventForm = () => {
             type="date"
             className={inputStyle}
             ref={date}
-            defaultValue={new Date()}
+            defaultValue={new Date().toISOString().split("T")[0]}
             placeholder="Enter the date of the event"
           />
         </div>

@@ -47,7 +47,7 @@ const BookForm = () => {
   };
 
   const handleChange = (e: { target: { value: string } }) => {
-    const value = parseInt(e.target.value);
+    const value = parseFloat(e.target.value);
     if (value <= 5 && value >= 0) {
       setRating(value);
     } else {
@@ -90,7 +90,7 @@ const BookForm = () => {
           // For instance, get the download URL: https://firebasestorage.googleapis.com/...
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
             const genreString = genres.current?.value || "";
-            const splitWords = genreString.split(" ");
+            const splitWords = genreString.split(",");
             let localGenres = [];
             // Looping over the words
             for (let i = 0; i < splitWords.length; i++) {
@@ -107,10 +107,18 @@ const BookForm = () => {
             };
             const docRef = await addDoc(collection(db, "books"), data);
             toast.success("Book added successfully! LAC for the win! ✌️");
-            author.current.value = "";
-            name.current.value = "";
-            reviewLink.current.value = "";
-            genres.current.value = "";
+            if (author.current) {
+              author.current.value = "";
+            }
+            if (name.current) {
+              name.current.value = "";
+            }
+            if (reviewLink.current) {
+              reviewLink.current.value = "";
+            }
+            if (genres.current) {
+              genres.current.value = "";
+            }
             setRating(0);
             setProgress(0);
             setUploadStatus("");
