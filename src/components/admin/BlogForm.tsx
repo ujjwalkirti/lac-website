@@ -16,7 +16,7 @@ import {
   updateDoc,
   deleteDoc,
 } from "firebase/firestore";
-import { db } from "@/Firebase";
+import { db, db2 } from "@/Firebase";
 import {
   AiOutlineDelete,
   AiOutlineDownCircle,
@@ -59,7 +59,7 @@ const BlogForm = () => {
     // Add a new document with a generated id.
     // const docRef = ;
     try {
-      const docRef = await addDoc(collection(db, "blogs"), data);
+      const docRef = await addDoc(collection(db2, "blogs"), data);
       toast.success("blog added successfully!");
     } catch (error: any) {
       toast.error(error.message);
