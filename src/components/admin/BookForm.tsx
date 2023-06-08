@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { toast } from "react-toastify";
 import BookDisplayBox from "../Book Club/BookDisplayBox";
 import { addDoc, collection, getDocs } from "firebase/firestore";
-import { db, storage } from "@/Firebase";
+import { db, db2, storage2 } from "@/Firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { adminButton } from "@/utils";
 import { inputStyle } from "@/utils";
@@ -60,7 +60,7 @@ const BookForm = () => {
   const handleUpload = () => {
     if (imageFile) {
       //@ts-ignore
-      const imageRef = ref(storage, `books/${imageFile.name}`);
+      const imageRef = ref(storage2, `books/${imageFile.name}`);
       const uploadTask = uploadBytesResumable(imageRef, imageFile);
       uploadTask.on(
         "state_changed",
@@ -105,7 +105,7 @@ const BookForm = () => {
               genres: localGenres,
               image: downloadURL,
             };
-            const docRef = await addDoc(collection(db, "books"), data);
+            const docRef = await addDoc(collection(db2, "books"), data);
             toast.success("Book added successfully! LAC for the win! ✌️");
             if (author.current) {
               author.current.value = "";

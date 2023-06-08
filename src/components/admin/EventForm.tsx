@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { toast } from "react-toastify";
 import EventBox from "../Events/EventBox";
 import { addDoc, collection, getDocs } from "firebase/firestore";
-import { db, storage } from "@/Firebase";
+import { db, db2, storage2 } from "@/Firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { adminButton } from "@/utils";
 import { inputStyle } from "@/utils";
@@ -13,6 +13,7 @@ const EventForm = () => {
   const title = useRef<HTMLInputElement | null>(null);
   const teamMembers = useRef<HTMLInputElement | null>(null);
   const type = useRef<HTMLSelectElement | null>(null);
+  const regLink = useRef<HTMLInputElement | null>(null);
 
   const [events, setEvents] = useState<any[]>([]);
   const [imageFile, setImageFile] = useState(null);
@@ -47,7 +48,7 @@ const EventForm = () => {
   const handleUpload = () => {
     if (imageFile) {
       //@ts-ignore
-      const imageRef = ref(storage, `events/${imageFile.name}`);
+      const imageRef = ref(storage2, `events/${imageFile.name}`);
       const uploadTask = uploadBytesResumable(imageRef, imageFile);
       uploadTask.on(
         "state_changed",
@@ -84,8 +85,9 @@ const EventForm = () => {
               img: downloadURL,
               completed: false,
               type: type.current?.value || "general",
+              reglink: regLink.current?.value || "",
             };
-            const docRef = await addDoc(collection(db, "events"), data);
+            const docRef = await addDoc(collection(db2, "events"), data);
             toast.success("Event added successfully! LAC for the win! ✌️");
             if (title.current) {
               title.current.value = "";
@@ -143,6 +145,13 @@ const EventForm = () => {
           <option value="quizzing">Quizzing</option>
           <option value="general">General</option>
         </select>
+        <input
+          type="text"
+          placeholder="enter the registration link"
+          required
+          className={inputStyle}
+          ref={regLink}
+        />
         <div className="w-full">
           <input
             type="date"

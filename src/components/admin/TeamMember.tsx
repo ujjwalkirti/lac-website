@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { toast } from "react-toastify";
 import InformationHolder from "../About us/InformationHolder";
 import { addDoc, collection, getDocs } from "firebase/firestore";
-import { db, storage } from "@/Firebase";
+import { db, db2, storage2 } from "@/Firebase";
 import {
   StorageReference,
   getDownloadURL,
@@ -60,7 +60,7 @@ const TeamMember = () => {
           designation.current.value === "Joint Secretary")
       ) {
         imageRef = ref(
-          storage,
+          storage2,
           //@ts-ignore
           `about_us/student representatives/${imageFile.name}`
         );
@@ -125,7 +125,7 @@ const TeamMember = () => {
               img: downloadURL,
               socials: splitLinks || [],
             };
-            const docRef = await addDoc(collection(db, "members"), data);
+            const docRef = await addDoc(collection(db2, "members"), data);
             toast.success("Member added successfully! LAC for the win! ✌️");
             name.current && (name.current.value = "");
             designation.current && (designation.current.value = "");
