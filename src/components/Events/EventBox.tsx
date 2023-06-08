@@ -33,7 +33,7 @@ const EventBox = ({
   }
 
   return (
-    <div className="flex flex-col justify-between gap-2 shadow-xl py-5 px-3 rounded-lg bg-white dark:bg-[#603726] dark:text-[#fffbf7] w-full h-full mx-auto">
+    <div className="flex flex-col justify-between gap-2 shadow-xl py-5 px-3 my-3 rounded-lg bg-white dark:bg-[#603726] dark:text-[#fffbf7] w-full h-full mx-auto">
       <div className="flex flex-col gap-4">
         <div className="w-full h-[250px] relative mx-auto">
           {/* className=" object-contain" */}

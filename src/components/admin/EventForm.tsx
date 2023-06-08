@@ -9,9 +9,10 @@ import { inputStyle } from "@/utils";
 
 const EventForm = () => {
   const date = useRef<HTMLInputElement | null>(null);
-  const description = useRef<HTMLInputElement | null>(null);
+  const description = useRef<HTMLTextAreaElement | null>(null);
   const title = useRef<HTMLInputElement | null>(null);
   const teamMembers = useRef<HTMLInputElement | null>(null);
+  const type = useRef<HTMLInputElement | null>(null);
 
   const [events, setEvents] = useState<any[]>([]);
   const [imageFile, setImageFile] = useState(null);
@@ -66,6 +67,10 @@ const EventForm = () => {
         },
         (error) => {
           // Handle unsuccessful uploads
+          toast.error(
+            "Sorry something wet wrong, Please try again. Reason:" +
+              error.message
+          );
         },
         () => {
           // Handle successful uploads on complete
@@ -76,9 +81,9 @@ const EventForm = () => {
               description: description.current?.value || "",
               teamMembers: Number(teamMembers.current?.value || 1),
               date: date.current?.value.toString() || new Date().toDateString(),
-              image: downloadURL,
+              img: downloadURL,
               completed: false,
-              type: "general"
+              type: type.current?.value || "general",
             };
             const docRef = await addDoc(collection(db, "events"), data);
             toast.success("Event added successfully! LAC for the win! ✌️");
@@ -123,6 +128,13 @@ const EventForm = () => {
           ref={teamMembers}
           min={0}
         />
+        <select id="dropdown" className={inputStyle} ref={type}>
+          <option value="">-- Select --</option>
+          <option value="speaking">Speaking</option>
+          <option value="reading">Reading</option>
+          <option value="quizzing">Quizzing</option>
+          <option value="general">General</option>
+        </select>
         <div className="w-full">
           <input
             type="date"
@@ -157,7 +169,18 @@ const EventForm = () => {
       </button>
       <div className="px-2 flex flex-col">
         {events.map((event, index) => {
-          return <EventBox key={index} completed={event.completed} date={event.date} description={event.description} img={event.img} teamMembers={event.teamMembers} title={event.title} reglink={event.reglink ? event.reglink : ""}/>;
+          return (
+            <EventBox
+              key={index}
+              completed={event.completed}
+              date={event.date}
+              description={event.description}
+              img={event.img}
+              teamMembers={event.teamMembers}
+              title={event.title}
+              reglink={event.reglink ? event.reglink : ""}
+            />
+          );
         })}
       </div>
     </div>
