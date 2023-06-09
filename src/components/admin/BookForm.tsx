@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { toast } from "react-toastify";
 import BookDisplayBox from "../Book Club/BookDisplayBox";
 import { addDoc, collection, getDocs } from "firebase/firestore";
-import { db, db2, storage2 } from "@/Firebase";
+import { db2, storage2 } from "@/Firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { adminButton } from "@/utils";
 import { inputStyle } from "@/utils";
@@ -30,7 +30,7 @@ const BookForm = () => {
   */
 
   const fetchBooks = async () => {
-    const querySnapshot = await getDocs(collection(db, "books"));
+    const querySnapshot = await getDocs(collection(db2, "books"));
     setBooks([]);
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots

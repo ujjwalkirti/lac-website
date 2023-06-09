@@ -16,7 +16,7 @@ import {
   updateDoc,
   deleteDoc,
 } from "firebase/firestore";
-import { db, db2 } from "@/Firebase";
+import {  db2 } from "@/Firebase";
 import {
   AiOutlineDelete,
   AiOutlineDownCircle,
@@ -67,7 +67,7 @@ const BlogForm = () => {
   };
 
   async function fetchAllBlogs() {
-    const querySnapshot = await getDocs(collection(db, "blogs"));
+    const querySnapshot = await getDocs(collection(db2, "blogs"));
     let localblogs: any = [];
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
@@ -305,7 +305,7 @@ function Blog({ blog, id }: props) {
 
       // update Firestore with updatedFields object
       if (Object.keys(updatedFields).length) {
-        const frankDocRef = doc(db, "blogs", id);
+        const frankDocRef = doc(db2, "blogs", id);
 
         // To update age and favorite color:
         await updateDoc(frankDocRef, updatedFields);
@@ -342,7 +342,7 @@ function Blog({ blog, id }: props) {
             <AiOutlineDelete
               onClick={async () => {
                 try {
-                  await deleteDoc(doc(db, "blogs", id));
+                  await deleteDoc(doc(db2, "blogs", id));
                   toast.success(
                     "Blog Successfully deleted, please reload the page to see the changes!"
                   );

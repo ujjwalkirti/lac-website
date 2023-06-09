@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { toast } from "react-toastify";
 import InformationHolder from "../About us/InformationHolder";
 import { addDoc, collection, getDocs } from "firebase/firestore";
-import { db, db2, storage2 } from "@/Firebase";
+import { db2, storage2 } from "@/Firebase";
 import {
   StorageReference,
   getDownloadURL,
@@ -35,7 +35,7 @@ const TeamMember = () => {
   */
 
   const fetchEvents = async () => {
-    const querySnapshot = await getDocs(collection(db, "members"));
+    const querySnapshot = await getDocs(collection(db2, "members"));
     setMembers([]);
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
