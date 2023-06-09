@@ -1,4 +1,4 @@
-import { db } from "@/Firebase";
+import { db2 } from "@/Firebase";
 import DeveloperCard from "@/components/Developers/DeveloperCard";
 import { libre_caslon_text } from "@/utils";
 import { collection, getDocs } from "firebase/firestore";
@@ -61,7 +61,7 @@ export async function getServerSideProps(context: any) {
   let developers: any[] = [];
   let designers: any[] = [];
   developers.push({});
-  const querySnapshot = await getDocs(collection(db, "developers"));
+  const querySnapshot = await getDocs(collection(db2, "developers"));
   querySnapshot.forEach((doc) => {
     // doc.data() is never undefined for query doc snapshots
     if (doc.data().tag === "UI/UX Designer") {
