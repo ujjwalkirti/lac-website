@@ -59,7 +59,7 @@ const BookForm = () => {
   };
 
   const handleUpload = () => {
-    if (imageFile) {
+    if (imageFile && typeof rating === "number" && rating >= 0 && rating < 5) {
       //@ts-ignore
       const imageRef = ref(storage2, `books/${imageFile.name}`);
       const uploadTask = uploadBytesResumable(imageRef, imageFile);
@@ -106,30 +106,28 @@ const BookForm = () => {
               genres: localGenres,
               image: downloadURL,
             };
-            if (typeof rating === "number" && rating >= 0 && rating < 5) {
-              const docRef = await addDoc(collection(db2, "books"), data);
-              toast.success("Book added successfully! LAC for the win! ✌️");
-              if (author.current) {
-                author.current.value = "";
-              }
-              if (name.current) {
-                name.current.value = "";
-              }
-              if (reviewLink.current) {
-                reviewLink.current.value = "";
-              }
-              if (genres.current) {
-                genres.current.value = "";
-              }
-              setRating(0);
-              setProgress(0);
-              setUploadStatus("");
-            } else {
-              toast.error("Rating doesnot have a valid value");
+            const docRef = await addDoc(collection(db2, "books"), data);
+            toast.success("Book added successfully! LAC for the win! ✌️");
+            if (author.current) {
+              author.current.value = "";
             }
+            if (name.current) {
+              name.current.value = "";
+            }
+            if (reviewLink.current) {
+              reviewLink.current.value = "";
+            }
+            if (genres.current) {
+              genres.current.value = "";
+            }
+            setRating(0);
+            setProgress(0);
+            setUploadStatus("");
           });
         }
       );
+    } else {
+      toast.error("Rating doesnot have a valid value");
     }
   };
 
