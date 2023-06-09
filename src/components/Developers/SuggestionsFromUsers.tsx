@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
-import { db } from "@/Firebase";
+import {  db2 } from "@/Firebase";
 import { BsHourglassSplit } from "react-icons/bs";
 import { ToastContainer } from "react-toastify";
 import { toast } from "react-toastify";
@@ -11,7 +11,7 @@ const SuggestionsFromUsers = () => {
   const [progress, setProgress] = useState("false");
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    addDoc(collection(db, "suggestions"), {
+    addDoc(collection(db2, "suggestions"), {
       suggestion: message,
     })
       .then((docRef) => {

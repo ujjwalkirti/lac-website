@@ -1,4 +1,3 @@
-import FirstLetterCapital from "@/components/Landing Page/FirstLetterCapital";
 import EventBox from "@/components/Events/EventBox";
 import { libre_caslon_text } from "@/utils";
 import { collection, getDocs, query } from "firebase/firestore";

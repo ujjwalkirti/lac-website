@@ -81,7 +81,6 @@ export async function getServerSideProps(context: any) {
     //@ts-ignore
     (a: number, b: number) => new Date(a.blog.date) - new Date(b.blog.date)
   );
-  console.log(sortedData.length);
   if (sortedData.length > 0) {
     blogs[0] = sortedData[sortedData.length - 1];
   }
