@@ -15,7 +15,7 @@ const BookForm = () => {
   const genres = useRef<HTMLInputElement | null>(null);
 
   const [books, setBooks] = useState<any[]>([]);
-  const [rating, setRating] = useState<number>(0);
+  const [rating, setRating] = useState<number | "">("");
   const [imageFile, setImageFile] = useState(null);
   const [progress, setProgress] = useState(0);
   const [uploadStatus, setUploadStatus] = useState("");
@@ -46,10 +46,11 @@ const BookForm = () => {
     setImageFile(file);
   };
 
-  const handleChange = (e: { target: { value: string } }) => {
-    const value = parseFloat(e.target.value);
-    if (value <= 5 && value >= 0) {
-      setRating(value);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let inputValue = e.target.value; // Get the input value
+    const parsedValue = parseFloat(inputValue);
+    if (parsedValue >= 0 && parsedValue < 5) {
+      setRating(parsedValue); // Update the state with the valid input value
     } else {
       toast.error(
         "Rating value is out of 5 only, please enter a suitable value."
@@ -105,23 +106,27 @@ const BookForm = () => {
               genres: localGenres,
               image: downloadURL,
             };
-            const docRef = await addDoc(collection(db2, "books"), data);
-            toast.success("Book added successfully! LAC for the win! ✌️");
-            if (author.current) {
-              author.current.value = "";
+            if (typeof rating === "number" && rating >= 0 && rating < 5) {
+              const docRef = await addDoc(collection(db2, "books"), data);
+              toast.success("Book added successfully! LAC for the win! ✌️");
+              if (author.current) {
+                author.current.value = "";
+              }
+              if (name.current) {
+                name.current.value = "";
+              }
+              if (reviewLink.current) {
+                reviewLink.current.value = "";
+              }
+              if (genres.current) {
+                genres.current.value = "";
+              }
+              setRating(0);
+              setProgress(0);
+              setUploadStatus("");
+            } else {
+              toast.error("Rating doesnot have a valid value");
             }
-            if (name.current) {
-              name.current.value = "";
-            }
-            if (reviewLink.current) {
-              reviewLink.current.value = "";
-            }
-            if (genres.current) {
-              genres.current.value = "";
-            }
-            setRating(0);
-            setProgress(0);
-            setUploadStatus("");
           });
         }
       );
@@ -156,11 +161,9 @@ const BookForm = () => {
           ref={reviewLink}
         />
         <input
-          type="number"
-          placeholder="enter the rating of the book"
-          max={5}
-          value={rating}
+          type="text"
           className={inputStyle}
+          placeholder="Enter the rating of the book, out of 5."
           onChange={handleChange}
           required
         />
