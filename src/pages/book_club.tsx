@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import FirstLetterCapital from "@/components/Landing Page/FirstLetterCapital";
-import { collection, getDocs, query } from "firebase/firestore";
+import { collection, getDocs, query, orderBy, startAfter, limit } from "firebase/firestore";
 import { db2 } from "@/Firebase";
 import { libre_caslon_text } from "@/utils";
 import Head from "next/head";
 import BookDisplayBox from "@/components/Book Club/BookDisplayBox";
 import { SiTarget } from "react-icons/si";
 
-type props = {
+type Props = {
   books: Book[];
 };
 
-const BookClub = ({ books }: props) => {
+const BookClub = ({ books }: Props) => {
   const itemsPerPage = 20;
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -41,7 +41,7 @@ const BookClub = ({ books }: props) => {
         ook <FirstLetterCapital letter="C" bgColor="#DA8E63" />
         lub
       </p>
-      <p className="text-center  leading-[30px] lg:leading-[40px]">  
+      <p className="text-center  leading-[30px] lg:leading-[40px]">
         Do you often get lost in the world of dreams setting off on adventures
         with Harry, Percy or Katniss? <br />
         Do you sometimes imagine yourself living in the enchanted land of
@@ -55,11 +55,11 @@ const BookClub = ({ books }: props) => {
         Venue: 3rd floor, Central Library 
         <SiTarget className="" />
       </div>
-      
+
       <div className="lg:grid lg:grid-cols-2 gap-4">
-        {currentBooks.map((book: Book, index: number) => {
-          return <BookDisplayBox book={book} key={index} />;
-        })}
+        {currentBooks.map((book: Book, index: number) => (
+          <BookDisplayBox book={book} key={index} />
+        ))}
       </div>
 
       {/* Pagination */}
@@ -75,7 +75,7 @@ const BookClub = ({ books }: props) => {
         {currentPage < Math.ceil(books.length / itemsPerPage) && (
           <button
             onClick={() => handlePageChange(currentPage + 1)}
-            className="px-8 py-2 mr-2 w-30 text-white bg-[#2C1810] hover:bg-[#DA8E63] rounded transtition hover:shadow-lg active:scale-90 duration-300"
+            className="px-8 py-2 mr-2 w-30 text-white bg-[#2C1810] hover:bg-[#DA8E63] dark:bg-[#DA8E63] dark:hover:bg-[#2C1810] rounded transtition hover:shadow-lg active:scale-90 duration-300"
           >
             Next
           </button>
@@ -88,11 +88,11 @@ const BookClub = ({ books }: props) => {
 export default BookClub;
 
 export async function getServerSideProps(context: any) {
-  let books: any[] = [];
-  const q = query(collection(db2, "books"));
+  const q = query(collection(db2, "books"), orderBy("name"), limit(20));
   const localbooks = await getDocs(q);
-  localbooks.forEach((doc: { id: any; data: () => any }) => {
-    books.push(doc.data());
+  const books: Book[] = [];
+  localbooks.forEach((doc) => {
+    books.push(doc.data() as Book);
   });
 
   return {
