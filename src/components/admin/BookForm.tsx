@@ -133,7 +133,10 @@ const BookForm = () => {
 
   return (
     <div className="flex flex-col items-center space-y-3">
-      <form className="flex flex-col items-center justify-start space-y-3 w-full mb-5 px-2 py-2 bg-white dark:bg-gray-300 text-black">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col items-center justify-start space-y-3 w-full mb-5 px-2 py-2 bg-white dark:bg-gray-300 text-black"
+      >
         <p className="font-semibold text-3xl flex items-center gap-3">
           Add Books <ImBooks />
         </p>
@@ -190,7 +193,7 @@ const BookForm = () => {
             ></div>
           </div>
         )}
-        <button className={adminButton} type="submit" onClick={handleSubmit}>
+        <button className={adminButton} type="submit">
           Submit
         </button>
       </form>
