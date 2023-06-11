@@ -17,6 +17,7 @@ type Book = {
   image: string;
   rating: number;
   reviewLink: string;
+  genres: string[];
 };
 
 type LAC_Event = {
@@ -28,7 +29,7 @@ type LAC_Event = {
   teamMembers: number;
   date: string;
   reglink: string;
-  type:string;
+  type: string;
 };
 
 type Developer = {
