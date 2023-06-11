@@ -145,26 +145,7 @@ const getBooks = async (
   }
 };
 
-const getBooksBasedOnSearchTerms = async (searchTerm: string) => {
-  try {
-    const booksRef = collection(db2, "books");
-    const q = query(
-      booksRef,
-      startAt([searchTerm]),
-      endAt([searchTerm + "\uf8ff"])
-    );
-    const querySnapshot: QuerySnapshot<DocumentData> = await getDocs(q);
 
-    const books: any[] = [];
-    querySnapshot.forEach((doc: { data: () => any }) => {
-      books.push(doc.data());
-    });
-    console.log(books);
-    return books;
-  } catch (error) {
-    throw new Error("Error fetching books");
-  }
-};
 
 export {
   inputStyle,
@@ -176,5 +157,4 @@ export {
   valuesOfLAC,
   libre_caslon_text,
   getBooks,
-  getBooksBasedOnSearchTerms,
 };
