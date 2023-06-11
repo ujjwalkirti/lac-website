@@ -1,4 +1,18 @@
 import { Libre_Caslon_Text, Montserrat } from "next/font/google";
+import { db2 } from "./Firebase";
+import {
+  DocumentData,
+  QuerySnapshot,
+  collection,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  startAfter,
+  startAt,
+  where,
+  endAt,
+} from "firebase/firestore";
 
 const inputStyle =
   "flex-1 rounded-md p-2 pl-5 outline-none h-22 w-full bg-gray-200 dark:text-[#2c1810]";
@@ -102,6 +116,56 @@ const valuesOfLAC = [
     ],
   },
 ];
+
+const getBooks = async (
+  lastBookName: string,
+  page?: number,
+  searchQuery?: string
+) => {
+  try {
+    let books: DocumentData[] = [];
+    const booksRef = collection(db2, "books");
+
+    const q = query(
+      booksRef,
+      orderBy("name"),
+      startAt(lastBookName),
+      limit(20)
+    );
+    console.log(lastBookName);
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      books.push(doc.data());
+    });
+    return books;
+  } catch (error) {
+    throw new Error("Error fetching books");
+  }
+};
+
+const getBooksBasedOnSearchTerms = async (searchTerm: string) => {
+  try {
+    const booksRef = collection(db2, "books");
+    const q = query(
+      booksRef,
+      startAt([searchTerm]),
+      endAt([searchTerm + "\uf8ff"])
+    );
+    const querySnapshot: QuerySnapshot<DocumentData> = await getDocs(q);
+
+    const books: any[] = [];
+    querySnapshot.forEach((doc: { data: () => any }) => {
+      books.push(doc.data());
+    });
+    console.log(books);
+    return books;
+  } catch (error) {
+    throw new Error("Error fetching books");
+  }
+};
+
 export {
   inputStyle,
   adminButton,
@@ -111,4 +175,6 @@ export {
   formats,
   valuesOfLAC,
   libre_caslon_text,
+  getBooks,
+  getBooksBasedOnSearchTerms,
 };

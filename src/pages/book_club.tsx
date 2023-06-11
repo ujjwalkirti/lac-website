@@ -1,57 +1,96 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import FirstLetterCapital from "@/components/Landing Page/FirstLetterCapital";
-import { collection, getDocs, query, startAt, limit, orderBy } from "firebase/firestore";
+import { collection, getDocs, query, limit, orderBy } from "firebase/firestore";
 import { db2 } from "@/Firebase";
-import { libre_caslon_text } from "@/utils";
+import {
+  getBooks,
+  getBooksBasedOnSearchTerms,
+  libre_caslon_text,
+} from "@/utils";
 import Head from "next/head";
 import BookDisplayBox from "@/components/Book Club/BookDisplayBox";
 import { SiTarget } from "react-icons/si";
+import { BsSearch } from "react-icons/bs";
+import { LineWobble } from "@uiball/loaders";
+import { useTheme } from "next-themes";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 type props = {
-  books: Book[];
+  serverbooks: Book[];
 };
 
-const BookClub = ({ books }: props) => {
-  const itemsPerPage = 20;
+const BookClub = ({ serverbooks }: props) => {
+  const { theme } = useTheme();
+
+  const [books, setBooks] = useState([[], serverbooks]);
+  const [searchedBooks, setSearchedBooks] = useState<Book[]>([]);
+  const [searchStatus, setSearchStatus] = useState("not started");
+  const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [lastbook, setLastBook] = useState(books[books.length - 1]);
 
-  // Calculate start and end index for current page
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
+  useEffect(() => {
+    typeof books[currentPage] === "undefined" && fetchBooks();
+  }, [currentPage]);
 
-  // Get books for current page
-  const [currentBooks, setCurrnetBooks] = useState(books.slice(startIndex, endIndex));
+  useEffect(() => {
+    let timeoutId: string | number | NodeJS.Timeout | undefined;
 
-  // Function to handle page change
-  const handlePageChange = async (page: number) => {
-    setCurrentPage(page);
-    const newBooks = await getBooks(page);
-    setCurrnetBooks(newBooks);
+    const delayedSearch = async () => {
+      // Send the request to Firestore here
+      try {
+        const searchedBooks = await getBooksBasedOnSearchTerms(searchQuery);
+        setSearchedBooks(searchedBooks);
+
+        // Process the fetched books here
+      } catch (error) {
+        toast.error("Sorry, there was some error.");
+        console.log(error);
+        // Handle the error case
+      }
+    };
+
+    if (searchQuery !== "") {
+      // Clear any previous timeouts
+      clearTimeout(timeoutId);
+
+      // Set a new timeout for 500ms
+      timeoutId = setTimeout(delayedSearch, 500);
+    } else {
+      setSearchedBooks([]);
+    }
+    setSearchStatus("not started");
+
+    // Clean up the timeout on component unmount
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [searchQuery]);
+
+  const fetchBooks = async () => {
+    try {
+      const lastBook =
+        books[currentPage - 1][books[currentPage - 1].length - 1];
+      const response = await getBooks(lastBook.name, currentPage);
+      //@ts-ignore
+      setBooks([...books, response]);
+    } catch (error) {
+      toast.error("Error fetching books.");
+    }
   };
 
-  async function getBooks(page: number) {
-    const itemsPerPage = 20;
-  
-    const q = query(
-      collection(db2, "books"),
-      limit(itemsPerPage),
-      orderBy("name"),
-      startAt(lastbook),
-    );
-    
-    const localbooks = await getDocs(q);
-    const books: Book[] = [];
-    
-    localbooks.forEach((doc: { id: any; data: () => any }) => {
-      books.push(doc.data());
-    });
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+    setSearchStatus("searching");
+  };
 
-    setLastBook(books[books.length - 1]);
-    
-    return books;
-  }
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
 
+  const handlePreviousPage = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
+  };
   return (
     <div className="px-3 flex flex-col lg:w-11/12 mx-auto">
       <Head>
@@ -67,7 +106,7 @@ const BookClub = ({ books }: props) => {
         lub
       </p>
 
-      <p className="text-center  leading-[30px] lg:leading-[40px]">  
+      <p className="text-center  leading-[30px] lg:leading-[40px]">
         Do you often get lost in the world of dreams setting off on adventures
         with Harry, Percy or Katniss? <br />
         Do you sometimes imagine yourself living in the enchanted land of
@@ -78,35 +117,88 @@ const BookClub = ({ books }: props) => {
         bookclub for all passionate readers out there. <br />
       </p>
       <div className="my-10 flex  justify-center items-center lg:w-1/3 mx-auto border dark:border-white border-[#2C1810] px-3 py-2 gap-2 rounded-md">
-        Venue: 3rd floor, Central Library 
+        Venue: 3rd floor, Central Library
         <SiTarget className="" />
       </div>
-      
-      <div className="lg:grid lg:grid-cols-2 gap-4">
-        {currentBooks.map((book: Book, index: number) => {
-          return <BookDisplayBox book={book} key={index} />;
-        })}
-      </div>
+      {/* <div className="flex justify-end w-full mb-5">
+        <div className="bg-white text-black flex items-center w-full lg:w-2/5 px-2 py-1 rounded-md">
+          <BsSearch className="text-gray-500" />
+          <input
+            type="text"
+            onChange={handleSearch}
+            value={searchQuery}
+            placeholder="Search books"
+            className="bg-white  px-2 py-1 rounded-md outline-none w-full"
+          />
+        </div>
+      </div> */}
+
+      {/* searched books */}
+      {searchStatus === "searching" ? (
+        <div className="flex justify-center items-center my-8">
+          <LineWobble
+            size={80}
+            lineWeight={5}
+            speed={1.75}
+            color={theme === "dark" ? "white" : "black"}
+          />
+        </div>
+      ) : (
+        <div className="lg:grid lg:grid-cols-2 gap-4">
+          {searchedBooks.map((book: Book, index: number) => {
+            if (book.name.length !== 0) {
+              return <BookDisplayBox book={book} key={index} />;
+            }
+          })}
+        </div>
+      )}
+
+      {searchedBooks.length === 0 && (
+        <div className="lg:grid lg:grid-cols-2 gap-4">
+          {books[currentPage] &&
+            books[currentPage].map((book: Book, index: number) => {
+              if (currentPage === 1 && book.name.length !== 0) {
+                return <BookDisplayBox book={book} key={index} />;
+              } else if (
+                currentPage !== 1 &&
+                index !== 0 &&
+                book.name.length !== 0
+              ) {
+                return <BookDisplayBox book={book} key={index} />;
+              }
+            })}
+        </div>
+      )}
 
       {/* Pagination */}
       <div className="flex justify-center mt-5">
-        {currentPage > 1 && (
-          <button
-            onClick={() => handlePageChange(currentPage - 1)}
-            className="px-4 py-2 mr-2 text-white bg-[#2C1810] dark:bg-[#DA8E63] rounded active:scale-90 trnasition duration-300"
-          >
-            Previous
-          </button>
-        )}
-        {books.length == itemsPerPage  && (
-          <button
-            onClick={() => handlePageChange(currentPage + 1)}
-            className="px-8 py-2 mr-2 text-white bg-[#2C1810] dark:bg-[#DA8E63] rounded active:scale-90 trnasition duration-300"
-          >
-            Next
-          </button>
-        )}
+        <button
+          onClick={handlePreviousPage}
+          disabled={currentPage === 1}
+          className={`px-4 py-2 mr-2 text-white bg-[#2C1810] dark:bg-[#DA8E63] rounded active:scale-90 trnasition duration-300 ${
+            currentPage === 1 ? "cursor-not-allowed" : ""
+          }`}
+        >
+          Previous
+        </button>
+
+        <button
+          onClick={handleNextPage}
+          className={`px-8 py-2 mr-2 text-white bg-[#2C1810] dark:bg-[#DA8E63] rounded active:scale-90 trnasition duration-300 ${
+            typeof books[currentPage] !== "undefined" &&
+            books[currentPage].length < 20
+              ? "cursor-not-allowed"
+              : ""
+          }`}
+          disabled={
+            typeof books[currentPage] !== "undefined" &&
+            books[currentPage].length < 20
+          }
+        >
+          Next
+        </button>
       </div>
+      <ToastContainer />
     </div>
   );
 };
@@ -114,18 +206,16 @@ const BookClub = ({ books }: props) => {
 export default BookClub;
 
 export async function getServerSideProps(context: any) {
-  let books: Book[] = [];
-  const q = query(collection(db2, "books"), limit(20));
+  let serverbooks: Book[] = [];
+  const q = query(collection(db2, "books"), orderBy("name"), limit(20));
   const localbooks = await getDocs(q);
   localbooks.forEach((doc: { id: any; data: () => any }) => {
-    books.push(doc.data());
+    serverbooks.push(doc.data());
   });
-
-  console.log(books.length);
 
   return {
     props: {
-      books,
+      serverbooks,
     },
   };
 }
