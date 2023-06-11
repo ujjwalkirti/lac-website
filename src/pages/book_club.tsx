@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import FirstLetterCapital from "@/components/Landing Page/FirstLetterCapital";
-import { collection, getDocs, query, limit, orderBy } from "firebase/firestore";
+import { collection, getDocs, query, limit, orderBy, where } from "firebase/firestore";
 import { db2 } from "@/Firebase";
 import {
   getBooks,
@@ -14,6 +14,7 @@ import { useTheme } from "next-themes";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BsSearch } from "react-icons/bs";
+import { set } from "react-hook-form";
 
 type props = {
   serverbooks: Book[];
@@ -46,9 +47,33 @@ const BookClub = ({ serverbooks }: props) => {
     }
   };
 
-  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+  const findBooks = async (book: String) => {
+    try {
+      const string = book.split(" ");
+      string.forEach((word, index) => {
+        string[index] = word.charAt(0).toUpperCase() + word.slice(1);
+        book = string.join(" ");
+      });
+      const q = query(collection(db2, "books"), where("name", "==", book));
+      const querySnapshot = await getDocs(q);
+      const books: Book[] = [];
+      querySnapshot.forEach((doc) => {
+        books.push(doc.data() as Book);
+        setSearchedBooks((prev:any)=>[...prev,doc.data()]);
+      });
+
+      if(books.length){
+        setSearchStatus("searched");
+      }
+    } catch (error) {
+      toast.error("Error finding books.");
+    }
+  }
+
+  const handleSearch = async (e: ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
     setSearchStatus("searching");
+    findBooks(e.target.value);
   };
 
   const handleNextPage = () => {
@@ -138,7 +163,7 @@ const BookClub = ({ serverbooks }: props) => {
       )}
 
       {/* Pagination */}
-      <div className="flex justify-center mt-5">
+      {searchedBooks.length == 0 && searchStatus != "searthing" && <div className="flex justify-center mt-5">
         <button
           onClick={handlePreviousPage}
           disabled={currentPage === 1}
@@ -164,7 +189,7 @@ const BookClub = ({ serverbooks }: props) => {
         >
           Next
         </button>
-      </div>
+      </div>}
       <ToastContainer />
     </div>
   );
