@@ -39,7 +39,7 @@ const BookDisplayBox = ({ book }: props) => {
             {book.genres.map((genre, index) => {
               return (
                 <span
-                  className="bg-[#2c1810] px-2 py-1 rounded-md text-center"
+                  className="bg-[#2c1810] text-white px-2 py-1 rounded-md text-center"
                   key={index}
                 >
                   {genre}
