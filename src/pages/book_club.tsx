@@ -4,17 +4,16 @@ import { collection, getDocs, query, limit, orderBy } from "firebase/firestore";
 import { db2 } from "@/Firebase";
 import {
   getBooks,
-  getBooksBasedOnSearchTerms,
   libre_caslon_text,
 } from "@/utils";
 import Head from "next/head";
 import BookDisplayBox from "@/components/Book Club/BookDisplayBox";
 import { SiTarget } from "react-icons/si";
-import { BsSearch } from "react-icons/bs";
 import { LineWobble } from "@uiball/loaders";
 import { useTheme } from "next-themes";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { BsSearch } from "react-icons/bs";
 
 type props = {
   serverbooks: Book[];
@@ -33,39 +32,7 @@ const BookClub = ({ serverbooks }: props) => {
     typeof books[currentPage] === "undefined" && fetchBooks();
   }, [currentPage]);
 
-  useEffect(() => {
-    let timeoutId: string | number | NodeJS.Timeout | undefined;
 
-    const delayedSearch = async () => {
-      // Send the request to Firestore here
-      try {
-        const searchedBooks = await getBooksBasedOnSearchTerms(searchQuery);
-        setSearchedBooks(searchedBooks);
-
-        // Process the fetched books here
-      } catch (error) {
-        toast.error("Sorry, there was some error.");
-        console.log(error);
-        // Handle the error case
-      }
-    };
-
-    if (searchQuery !== "") {
-      // Clear any previous timeouts
-      clearTimeout(timeoutId);
-
-      // Set a new timeout for 500ms
-      timeoutId = setTimeout(delayedSearch, 500);
-    } else {
-      setSearchedBooks([]);
-    }
-    setSearchStatus("not started");
-
-    // Clean up the timeout on component unmount
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [searchQuery]);
 
   const fetchBooks = async () => {
     try {
@@ -120,7 +87,7 @@ const BookClub = ({ serverbooks }: props) => {
         Venue: 3rd floor, Central Library
         <SiTarget className="" />
       </div>
-      {/* <div className="flex justify-end w-full mb-5">
+      <div className="flex justify-end w-full mb-5">
         <div className="bg-white text-black flex items-center w-full lg:w-2/5 px-2 py-1 rounded-md">
           <BsSearch className="text-gray-500" />
           <input
@@ -131,7 +98,7 @@ const BookClub = ({ serverbooks }: props) => {
             className="bg-white  px-2 py-1 rounded-md outline-none w-full"
           />
         </div>
-      </div> */}
+      </div>
 
       {/* searched books */}
       {searchStatus === "searching" ? (
