@@ -1,12 +1,22 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { toast } from "react-toastify";
 import BookDisplayBox from "../Book Club/BookDisplayBox";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import {
+  QuerySnapshot,
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  onSnapshot,
+  query,
+} from "firebase/firestore";
 import { db2, storage2 } from "@/Firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { adminButton } from "@/utils";
 import { inputStyle } from "@/utils";
 import { ImBooks } from "react-icons/im";
+import { AiTwotoneDelete } from "react-icons/ai";
 
 const BookForm = () => {
   const name = useRef<HTMLInputElement | null>(null);
@@ -15,6 +25,7 @@ const BookForm = () => {
   const genres = useRef<HTMLInputElement | null>(null);
 
   const [books, setBooks] = useState<any[]>([]);
+  const [showBooks, setShowBooks] = useState<boolean>(false);
   const [rating, setRating] = useState<number | "">("");
   const [imageFile, setImageFile] = useState(null);
   const [progress, setProgress] = useState(0);
@@ -28,15 +39,19 @@ const BookForm = () => {
     image
 
   */
+  useEffect(() => {
+    const q = query(collection(db2, "books"));
 
-  const fetchBooks = async () => {
-    const querySnapshot = await getDocs(collection(db2, "books"));
-    setBooks([]);
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      setBooks((books) => [...books, doc.data()]);
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      setBooks(
+        querySnapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() }))
+      );
     });
-  };
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     handleUpload();
@@ -186,7 +201,7 @@ const BookForm = () => {
 
         <div>Upload status: {uploadStatus}</div>
         {progress !== 0 && (
-          <div className="h-10 flex justify-start items-center w-full border border-black shadow-md rounded-full bg-white">
+          <div className="h-10 flex justify-start items-center w-full border border-black shadow-md rounded-full bg-gray-300">
             <div
               className={`h-full bg-green-500 rounded-full`}
               style={{ width: `${progress}%` }}
@@ -197,14 +212,39 @@ const BookForm = () => {
           Submit
         </button>
       </form>
-      <button className={adminButton} onClick={fetchBooks}>
-        Show all books!
+      <button
+        className={adminButton}
+        onClick={() => {
+          setShowBooks(!showBooks);
+        }}
+      >
+        {showBooks ? "Hide" : "Show"} all books!
       </button>
-      <div className="px-2 flex flex-col">
-        {books.map((book, index) => {
-          return <BookDisplayBox book={book} key={index} />;
-        })}
-      </div>
+      {showBooks && (
+        <div className="px-2 flex flex-col lg:grid lg:grid-cols-2 lg:w-screen gap-3 lg:px-5">
+          {books.map((book, index) => {
+            return (
+              <div
+                key={index}
+                className="bg-gray-200 flex flex-col px-2 py-1 rounded-md"
+              >
+                <div
+                  className="text-red-600 text-2xl flex items-center mt-1 w-full justify-end cursor-pointer"
+                  onClick={async () => {
+                    await deleteDoc(doc(db2, "books", book.id));
+                    toast.success(
+                      `Book named ${book.data.name} has been deleted successfully!`
+                    );
+                  }}
+                >
+                  <AiTwotoneDelete />
+                </div>
+                <BookDisplayBox book={book.data} />
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };
