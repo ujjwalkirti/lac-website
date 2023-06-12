@@ -20,14 +20,13 @@ const BookDisplayBox = ({ book }: props) => {
     >
       {/* div for image */}
 
-      <div className="relative h-full w-full">
-        <Image
-          src={book.image}
-          alt={"novel image"}
-          fill
-          className=" lg:rounded-l-lg object-cover"
-        />
-      </div>
+      <Image
+        src={book.image}
+        alt={"novel image"}
+        height={300}
+        width={200}
+        className=" lg:rounded-l-lg object-cover mx-auto lg:h-full"
+      />
       {/* genres */}
 
       {/* div for description and name */}

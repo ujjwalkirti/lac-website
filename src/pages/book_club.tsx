@@ -2,10 +2,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import FirstLetterCapital from "@/components/Landing Page/FirstLetterCapital";
 import { collection, getDocs, query, limit, orderBy, where } from "firebase/firestore";
 import { db2 } from "@/Firebase";
-import {
-  getBooks,
-  libre_caslon_text,
-} from "@/utils";
+import { getBooks, libre_caslon_text } from "@/utils";
 import Head from "next/head";
 import BookDisplayBox from "@/components/Book Club/BookDisplayBox";
 import { SiTarget } from "react-icons/si";
@@ -13,7 +10,11 @@ import { LineWobble } from "@uiball/loaders";
 import { useTheme } from "next-themes";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { BsSearch } from "react-icons/bs";
+import {
+  BsChevronDoubleLeft,
+  BsChevronDoubleRight,
+  BsSearch,
+} from "react-icons/bs";
 import { set } from "react-hook-form";
 
 type props = {
@@ -32,8 +33,6 @@ const BookClub = ({ serverbooks }: props) => {
   useEffect(() => {
     typeof books[currentPage] === "undefined" && fetchBooks();
   }, [currentPage]);
-
-
 
   const fetchBooks = async () => {
     try {
@@ -167,16 +166,16 @@ const BookClub = ({ serverbooks }: props) => {
         <button
           onClick={handlePreviousPage}
           disabled={currentPage === 1}
-          className={`px-4 py-2 mr-2 text-white bg-[#2C1810] dark:bg-[#DA8E63] rounded active:scale-90 trnasition duration-300 ${
+          className={`flex items-center justify-center gap-2 px-4 py-2 mr-2 text-white bg-[#2C1810] dark:bg-[#DA8E63] rounded active:scale-90 trnasition duration-300 ${
             currentPage === 1 ? "cursor-not-allowed" : ""
           }`}
         >
-          Previous
+          <BsChevronDoubleLeft /> Previous
         </button>
 
         <button
           onClick={handleNextPage}
-          className={`px-8 py-2 mr-2 text-white bg-[#2C1810] dark:bg-[#DA8E63] rounded active:scale-90 trnasition duration-300 ${
+          className={`flex items-center justify-center gap-2 px-8 py-2 mr-2 text-white bg-[#2C1810] dark:bg-[#DA8E63] rounded active:scale-90 trnasition duration-300 ${
             typeof books[currentPage] !== "undefined" &&
             books[currentPage].length < 20
               ? "cursor-not-allowed"
@@ -187,7 +186,7 @@ const BookClub = ({ serverbooks }: props) => {
             books[currentPage].length < 20
           }
         >
-          Next
+          Next <BsChevronDoubleRight />
         </button>
       </div>}
       <ToastContainer />
