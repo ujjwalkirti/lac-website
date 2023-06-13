@@ -22,13 +22,13 @@ type Book = {
 
 type LAC_Event = {
   [key: string]: string | number | boolean;
-  completed: boolean;
+  completed?: boolean;
   img: string;
   title: string;
   description: string;
   teamMembers: number;
-  date: string;
-  reglink: string;
+  date?: string;
+  reglink?: string;
   type: string;
 };
 

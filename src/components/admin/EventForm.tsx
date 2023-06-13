@@ -1,15 +1,27 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { toast } from "react-toastify";
 import EventBox from "../Events/EventBox";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import {
+  QuerySnapshot,
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  onSnapshot,
+  query,
+  where
+} from "firebase/firestore";
 import { db2, storage2 } from "@/Firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { adminButton } from "@/utils";
 import { inputStyle } from "@/utils";
+import { AiTwotoneDelete } from "react-icons/ai";
 
 const EventForm = () => {
   const date = useRef<HTMLInputElement | null>(null);
   const description = useRef<HTMLTextAreaElement | null>(null);
+  const [showEvents, setShowEvents] = useState<boolean>(false);
   const title = useRef<HTMLInputElement | null>(null);
   const teamMembers = useRef<HTMLInputElement | null>(null);
   const type = useRef<HTMLSelectElement | null>(null);
@@ -27,7 +39,6 @@ const EventForm = () => {
     image
 
   */
-
   const fetchEvents = async () => {
     const querySnapshot = await getDocs(collection(db2, "events"));
     setEvents([]);
@@ -36,6 +47,9 @@ const EventForm = () => {
       setEvents((events) => [...events, doc.data()]);
     });
   };
+
+  fetchEvents();
+
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     handleUpload();
@@ -181,25 +195,53 @@ const EventForm = () => {
           Submit
         </button>
       </form>
-      <button className={adminButton} onClick={fetchEvents}>
-        Show all Events!
+      <button
+        className={adminButton}
+        onClick={() => {
+          setShowEvents(!showEvents);
+        }}
+      >
+        {showEvents ? "Hide" : "Show"} all Events!
       </button>
-      <div className="px-2 flex flex-col">
+      {showEvents && <div className="px-2 flex flex-col lg:grid lg:grid-cols-2 lg:w-screen gap-3 lg:px-5">
         {events.map((event, index) => {
           return (
-            <EventBox
-              key={index}
-              completed={event.completed}
-              date={event.date}
-              description={event.description}
-              img={event.img}
-              teamMembers={event.teamMembers}
-              title={event.title}
-              reglink={event.reglink ? event.reglink : ""}
-            />
+            <div
+                key={index}
+                className="bg-gray-200 flex flex-col px-2 py-1 rounded-md"
+              >
+                <div
+                  className="text-red-600 text-2xl flex items-center mt-1 w-full justify-end cursor-pointer"
+                  onClick={async () => {
+                    const q = query(collection(db2, "events"), where("title", "==", event.title));
+
+                      const querySnapshot = await getDocs(q);
+
+                      querySnapshot.forEach(async (doc) => {
+                        await deleteDoc(doc.ref);
+                      });
+
+                    toast.success(
+                      `Event named ${event.title} has been deleted successfully!`
+                    );
+                  }}
+                >
+                  <AiTwotoneDelete />
+                </div>
+              <EventBox
+                key={index}
+                completed={event.completed}
+                date={event.date}
+                description={event.description}
+                img={event.img}
+                teamMembers={event.teamMembers}
+                title={event.title}
+                reglink={event.reglink ? event.reglink : ""}
+              />
+              </div>
           );
         })}
-      </div>
+      </div>}
     </div>
   );
 };
