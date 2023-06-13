@@ -47,7 +47,7 @@ export default function Home({
         <Page2 featuredBlogs={featuredBlogs} />
         <Page3 />
         <Link
-          className="text-center dark:bg-[#F8F3ED] dark:text-[#2C1810] bg-[#2C1810] text-[#FFFBF7] px-3 py-2 rounded-md flex justify-center items-center gap-3 w-[180px] mx-auto"
+          className="text-center dark:bg-[#F8F3ED] dark:text-[#2C1810] dark:border dark:border-[#f8f3ed] dark:hover:bg-[#2c1810] dark:hover:text-[#f8f3ed] bg-[#2C1810] text-[#FFFBF7] border border-[#2c1810] hover:bg-[#fffbf7] hover:text-[#2c1810] px-3 py-2 rounded-md flex justify-center items-center gap-3 w-[180px] mx-auto  transition-all duration-300"
           href={`/Litfest`}
         >
           Check it out! <AiFillRightCircle className="text-3xl" />

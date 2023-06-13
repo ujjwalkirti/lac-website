@@ -1,6 +1,7 @@
 import React from "react";
 import FirstLetterCapital from "../Landing Page/FirstLetterCapital";
 import Image from "next/image";
+import Link from "next/link";
 
 type props = {
   completed?: boolean;
@@ -70,12 +71,12 @@ const EventBox = ({
         )}
       </div>
       {!completed && reglink && (
-        <a
+        <Link
           href={reglink}
           className="bg-[#dfa437] w-full rounded-lg text-center font-semibold dark:text-[#000000] py-3"
         >
           <button>Register</button>
-        </a>
+        </Link>
       )}
       {completed && (
         <button
