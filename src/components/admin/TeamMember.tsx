@@ -1,7 +1,17 @@
 import React, { useState, useRef } from "react";
 import { toast } from "react-toastify";
 import InformationHolder from "../About us/InformationHolder";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import {
+  QuerySnapshot,
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  onSnapshot,
+  query,
+  where
+} from "firebase/firestore";
 import { db2, storage2 } from "@/Firebase";
 import {
   StorageReference,
@@ -11,6 +21,7 @@ import {
 } from "firebase/storage";
 import { adminButton } from "@/utils";
 import { inputStyle } from "@/utils";
+import { AiTwotoneDelete } from "react-icons/ai";
 
 const TeamMember = () => {
   const position = useRef<HTMLInputElement | null>(null);
@@ -20,9 +31,8 @@ const TeamMember = () => {
   const socials = useRef<HTMLInputElement | null>(null);
 
   const [members, setMembers] = useState<any[]>([]);
-  const [imageFile, setImageFile] = useState<
-    string | number | readonly string[] | undefined
-  >("");
+  const [showMembers, setShowMembers] = useState<boolean>(false);
+  const [imageFile, setImageFile] = useState(null);
   const [progress, setProgress] = useState(0);
   const [uploadStatus, setUploadStatus] = useState("");
   /*
@@ -34,7 +44,7 @@ const TeamMember = () => {
 
   */
 
-  const fetchEvents = async () => {
+  const fetchMembers = async () => {
     const querySnapshot = await getDocs(collection(db2, "members"));
     setMembers([]);
     querySnapshot.forEach((doc) => {
@@ -42,6 +52,9 @@ const TeamMember = () => {
       setMembers((members) => [...members, doc.data()]);
     });
   };
+
+  fetchMembers();
+
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     handleUpload();
@@ -66,7 +79,7 @@ const TeamMember = () => {
         );
       } else {
         //@ts-ignore
-        imageRef = ref(storage, `about_us/faculty advisors/${imageFile.name}`);
+        imageRef = ref(storage2, `about_us/faculty advisors/${imageFile.name}`);
       }
       //@ts-ignore
       const uploadTask = uploadBytesResumable(imageRef, imageFile);
@@ -132,7 +145,6 @@ const TeamMember = () => {
             position.current && (position.current.value = "");
             contact.current && (contact.current.value = "");
             socials.current && (socials.current.value = "");
-            setImageFile("");
             setProgress(0);
             setUploadStatus("");
           });
@@ -171,7 +183,6 @@ const TeamMember = () => {
         <input
           type="file"
           className={inputStyle}
-          value={imageFile}
           onChange={handleFileChange}
           required
         />
@@ -212,12 +223,36 @@ const TeamMember = () => {
           Submit
         </button>
       </form>
-      <button className={adminButton} onClick={fetchEvents}>
-        Show all Members!
+      <button
+        className={adminButton}
+        onClick={() => {
+          setShowMembers(!showMembers);
+        }}
+      >
+        {showMembers ? "Hide" : "Show"} all Members!
       </button>
-      <div className="px-2 flex flex-col">
+      {showMembers && <div className="px-2 flex flex-col lg:grid lg:grid-cols-2 lg:w-screen gap-3 lg:px-5">
         {members.map((member, index) => {
           return (
+            <div
+                key={index}
+                className="bg-gray-200 flex flex-col px-2 py-1 rounded-md"
+              >
+                <div
+                  className="text-red-600 text-2xl flex items-center mt-1 w-full justify-end cursor-pointer"
+                  onClick={async () => {
+                    const q = query(collection(db2, "members"), where("name", "==", member.name));
+                    const querySnapshot = await getDocs(q);
+                    querySnapshot.forEach(async (doc) => {
+                      await deleteDoc(doc.ref);
+                    });
+                    toast.success(
+                      `Member named ${member.name} has been removed successfully!`
+                    );
+                  }}
+                >
+                  <AiTwotoneDelete />
+                </div>
             <InformationHolder
               key={index}
               name={member.name}
@@ -227,9 +262,10 @@ const TeamMember = () => {
               contact={member.contact}
               socials={member.socials}
             />
+            </div>
           );
         })}
-      </div>
+      </div>}
     </div>
   );
 };
