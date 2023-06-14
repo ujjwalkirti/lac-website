@@ -21,7 +21,7 @@ import {
 } from "firebase/storage";
 import { adminButton } from "@/utils";
 import { inputStyle } from "@/utils";
-import { AiTwotoneDelete } from "react-icons/ai";
+import { AiOutlineEdit, AiTwotoneDelete } from "react-icons/ai";
 
 const TeamMember = () => {
   const position = useRef<HTMLInputElement | null>(null);
@@ -32,6 +32,7 @@ const TeamMember = () => {
 
   const [members, setMembers] = useState<any[]>([]);
   const [showMembers, setShowMembers] = useState<boolean>(false);
+  const [showEditForm, setShowEditForm] = useState<boolean>(false);
   const [imageFile, setImageFile] = useState(null);
   const [progress, setProgress] = useState(0);
   const [uploadStatus, setUploadStatus] = useState("");
@@ -238,8 +239,15 @@ const TeamMember = () => {
                 key={index}
                 className="bg-gray-200 flex flex-col px-2 py-1 rounded-md"
               >
+                <div className="flex items-center gap-4 w-full justify-end text-2xl">  
+                  <AiOutlineEdit
+                  onClick={() => {
+                    setShowEditForm(true);
+                  }}
+                  className=" text-green-500 cursor-pointer hover:shadow-lg"
+                />
                 <div
-                  className="text-red-600 text-2xl flex items-center mt-1 w-full justify-end cursor-pointer"
+                  className="text-red-600 text-2xl flex items-center mt-1 justify-end cursor-pointer"
                   onClick={async () => {
                     const q = query(collection(db2, "members"), where("name", "==", member.name));
                     const querySnapshot = await getDocs(q);
@@ -252,16 +260,17 @@ const TeamMember = () => {
                   }}
                 >
                   <AiTwotoneDelete />
+                  </div>
                 </div>
             <InformationHolder
-              key={index}
-              name={member.name}
-              position={member.position}
-              img={member.img}
-              designation={member.designation}
-              contact={member.contact}
-              socials={member.socials}
-            />
+                key={index}
+                name={member.name}
+                position={member.position}
+                img={member.img}
+                designation={member.designation}
+                contact={member.contact}
+                socials={member.socials} department={""}           
+               />
             </div>
           );
         })}

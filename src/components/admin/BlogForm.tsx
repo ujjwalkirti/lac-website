@@ -13,6 +13,8 @@ import {
   addDoc,
   getDocs,
   doc,
+  query,
+  where,
   updateDoc,
   deleteDoc,
 } from "firebase/firestore";
@@ -76,6 +78,8 @@ const BlogForm = () => {
     });
     setBlogs(localblogs);
   }
+
+  fetchAllBlogs();
 
   return (
     <section className="text-[#2c1810] py-5">
@@ -342,9 +346,15 @@ function Blog({ blog, id }: props) {
             <AiOutlineDelete
               onClick={async () => {
                 try {
-                  await deleteDoc(doc(db2, "blogs", id));
+                  const q = query(collection(db2, "blogs"), where("name", "==", blog.name));
+
+                      const querySnapshot = await getDocs(q);
+
+                      querySnapshot.forEach(async (doc) => {
+                        await deleteDoc(doc.ref);
+                  });
                   toast.success(
-                    "Blog Successfully deleted, please reload the page to see the changes!"
+                    "Blog Successfully deleted!"
                   );
                 } catch (error) {
                   if (error) {
