@@ -37,7 +37,7 @@ const ValueImageCard = ({ url, dark_url, images }: props) => {
           height={300}
           width={300}
           src={images[0]}
-          className="rounded-full object-cover h-72 w-72 absolute top-0 left-0 shadow-xl"
+          className="rounded-full object-cover h-72 w-72 absolute top-0 left-0 sm:rounded-md sm:h-80 sm:w-2/3 shadow-xl"
         />
 
         <Image
@@ -45,7 +45,7 @@ const ValueImageCard = ({ url, dark_url, images }: props) => {
           height={300}
           width={300}
           src={images[1]}
-          className="rounded-full object-cover h-64 w-64  absolute bottom-0 right-0 shadow-xl"
+          className="rounded-full object-cover h-64 w-64  absolute bottom-0 right-0 sm:rounded-md sm:w-72 shadow-xl"
         />
       </div>
     </div>

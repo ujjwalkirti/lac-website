@@ -1,3 +1,4 @@
+
 import React from "react";
 import FirstLetterCapital from "../Landing Page/FirstLetterCapital";
 import Image from "next/image";

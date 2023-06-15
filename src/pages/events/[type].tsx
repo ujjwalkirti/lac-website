@@ -50,7 +50,7 @@ const EventsBasedOnTypes = ({ events, type }: props) => {
       >
         {firstLetterCapital(type)} Events
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1   md:grid-cols-2 lg:grid-cols-3">
         {events.map((lac_event: LAC_Event, index: number) => (
           <EventBox
             key={index}

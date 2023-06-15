@@ -1,3 +1,4 @@
+
 import Head from "next/head";
 import Page1 from "@/components/Landing Page/Page1";
 import Page2 from "@/components/Landing Page/Page2";
@@ -107,3 +108,4 @@ export async function getServerSideProps(context: any) {
     },
   };
 }
+

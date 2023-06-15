@@ -2,12 +2,10 @@ import React, { useState, useRef, useEffect } from "react";
 import { toast } from "react-toastify";
 import BookDisplayBox from "../Book Club/BookDisplayBox";
 import {
-  QuerySnapshot,
   addDoc,
   collection,
   deleteDoc,
   doc,
-  getDocs,
   onSnapshot,
   query,
 } from "firebase/firestore";
@@ -40,9 +38,9 @@ const BookForm = () => {
 
   */
   useEffect(() => {
-    const q = query(collection(db2, "books"));
+    const bookQuery = query(collection(db2, "books"));
 
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    const unsubscribe = onSnapshot(bookQuery, (querySnapshot) => {
       setBooks(
         querySnapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() }))
       );
