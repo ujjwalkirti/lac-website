@@ -1,16 +1,13 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef, FormEvent } from "react";
 import { toast } from "react-toastify";
 import InformationHolder from "../About us/InformationHolder";
 import {
-  QuerySnapshot,
   addDoc,
   collection,
   deleteDoc,
   doc,
-  getDocs,
   onSnapshot,
   query,
-  where
 } from "firebase/firestore";
 import { db2, storage2 } from "@/Firebase";
 import {
@@ -21,42 +18,48 @@ import {
 } from "firebase/storage";
 import { adminButton } from "@/utils";
 import { inputStyle } from "@/utils";
-import { AiOutlineEdit, AiTwotoneDelete } from "react-icons/ai";
+import { AiTwotoneDelete } from "react-icons/ai";
+
+const posts = ["Chairperson", "Co-Chairperson", "Secretary", "Joint-Secretary"];
 
 const TeamMember = () => {
-  const position = useRef<HTMLInputElement | null>(null);
-  const designation = useRef<HTMLInputElement | null>(null);
   const name = useRef<HTMLInputElement | null>(null);
+  const position = useRef<HTMLInputElement | null>(null);
+  const department = useRef<HTMLInputElement | null>(null);
+  const designation = useRef<HTMLSelectElement | null>(null);
   const contact = useRef<HTMLInputElement | null>(null);
   const socials = useRef<HTMLInputElement | null>(null);
 
   const [members, setMembers] = useState<any[]>([]);
   const [showMembers, setShowMembers] = useState<boolean>(false);
-  const [showEditForm, setShowEditForm] = useState<boolean>(false);
   const [imageFile, setImageFile] = useState(null);
   const [progress, setProgress] = useState(0);
   const [uploadStatus, setUploadStatus] = useState("");
   /*
-    contact
-    position
     name
-    designation
+    position
+    department
     img
+    designation
+    contact
+    socials
 
   */
 
-  const fetchMembers = async () => {
-    const querySnapshot = await getDocs(collection(db2, "members"));
-    setMembers([]);
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      setMembers((members) => [...members, doc.data()]);
+  useEffect(() => {
+    const teamMemberQuery = query(collection(db2, "members"));
+
+    const unsubscribe = onSnapshot(teamMemberQuery, (querySnapshot) => {
+      setMembers(
+        querySnapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() }))
+      );
     });
-  };
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
-  fetchMembers();
-
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     handleUpload();
   };
@@ -133,17 +136,26 @@ const TeamMember = () => {
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
             const data = {
               name: name.current?.value || "",
-              designation: designation.current?.value || "",
               position: position.current?.value || "",
-              contact: contacts || [],
+              department: department.current?.value || "",
               img: downloadURL,
+              designation: designation.current?.value || "",
+              contact: contacts || [],
               socials: splitLinks || [],
             };
-            const docRef = await addDoc(collection(db2, "members"), data);
+            const docRef = await addDoc(
+              collection(
+                db2,
+                "members",
+                designation.current?.value.toLowerCase() as string
+              ),
+              data
+            );
             toast.success("Member added successfully! LAC for the win! ✌️");
             name.current && (name.current.value = "");
             designation.current && (designation.current.value = "");
             position.current && (position.current.value = "");
+            department.current && (department.current.value = "");
             contact.current && (contact.current.value = "");
             socials.current && (socials.current.value = "");
             setProgress(0);
@@ -156,7 +168,10 @@ const TeamMember = () => {
 
   return (
     <div className="flex flex-col items-center space-y-3">
-      <form className="flex flex-col items-center justify-start space-y-3 w-full mb-5 px-2 py-2 bg-white dark:bg-gray-300 text-black">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col items-center justify-start space-y-3 w-full mb-5 px-2 py-2 bg-white dark:bg-gray-300 text-black"
+      >
         <p className="font-semibold text-3xl flex items-center gap-3">
           Add Member
         </p>
@@ -169,17 +184,17 @@ const TeamMember = () => {
         />
         <input
           type="text"
-          placeholder="Enter designation"
-          required
-          className={inputStyle}
-          ref={designation}
-        />
-        <input
-          type="text"
-          placeholder="enter position"
+          placeholder="enter position like Professor, Assistant Professor, Student etc."
           required
           className={inputStyle}
           ref={position}
+        />
+        <input
+          type="text"
+          placeholder="enter department"
+          required
+          className={inputStyle}
+          ref={department}
         />
         <input
           type="file"
@@ -187,6 +202,13 @@ const TeamMember = () => {
           onChange={handleFileChange}
           required
         />
+        <select ref={designation}>
+          {posts.map((post, index) => (
+            <option key={index} value={post}>
+              {post}
+            </option>
+          ))}
+        </select>
         <div className="w-full">
           <input
             type="text"
@@ -220,7 +242,7 @@ const TeamMember = () => {
             ></div>
           </div>
         )}
-        <button className={adminButton} type="submit" onClick={handleSubmit}>
+        <button className={adminButton} type="submit">
           Submit
         </button>
       </form>
@@ -232,49 +254,33 @@ const TeamMember = () => {
       >
         {showMembers ? "Hide" : "Show"} all Members!
       </button>
-      {showMembers && <div className="px-2 flex flex-col lg:grid lg:grid-cols-2 lg:w-screen gap-3 lg:px-5">
-        {members.map((member, index) => {
-          return (
-            <div
+      {showMembers && (
+        <div className="px-2 flex flex-col lg:grid lg:grid-cols-2 lg:w-screen gap-3 lg:px-5">
+          {members.map((member, index) => {
+            return (
+              <div
                 key={index}
                 className="bg-gray-200 flex flex-col px-2 py-1 rounded-md"
               >
-                <div className="flex items-center gap-4 w-full justify-end text-2xl">  
-                  <AiOutlineEdit
-                  onClick={() => {
-                    setShowEditForm(true);
-                  }}
-                  className=" text-green-500 cursor-pointer hover:shadow-lg"
-                />
-                <div
-                  className="text-red-600 text-2xl flex items-center mt-1 justify-end cursor-pointer"
-                  onClick={async () => {
-                    const q = query(collection(db2, "members"), where("name", "==", member.name));
-                    const querySnapshot = await getDocs(q);
-                    querySnapshot.forEach(async (doc) => {
-                      await deleteDoc(doc.ref);
-                    });
-                    toast.success(
-                      `Member named ${member.name} has been removed successfully!`
-                    );
-                  }}
-                >
-                  <AiTwotoneDelete />
+                <div className="flex items-center gap-4 w-full justify-end text-2xl">
+                  <div
+                    className="text-red-600 text-2xl flex items-center mt-1 justify-end cursor-pointer"
+                    onClick={async () => {
+                      await deleteDoc(doc(db2, "books", member.id));
+                      toast.success(
+                        `Member named ${member.data.name} has been removed successfully!`
+                      );
+                    }}
+                  >
+                    <AiTwotoneDelete />
                   </div>
                 </div>
-            <InformationHolder
-                key={index}
-                name={member.name}
-                position={member.position}
-                img={member.img}
-                designation={member.designation}
-                contact={member.contact}
-                socials={member.socials} department={""}           
-               />
-            </div>
-          );
-        })}
-      </div>}
+                <InformationHolder {...member.data} />
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

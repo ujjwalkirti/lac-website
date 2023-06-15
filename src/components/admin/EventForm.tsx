@@ -2,15 +2,12 @@ import React, { useState, useRef, useEffect } from "react";
 import { toast } from "react-toastify";
 import EventBox from "../Events/EventBox";
 import {
-  QuerySnapshot,
   addDoc,
   collection,
   deleteDoc,
   doc,
-  getDocs,
   onSnapshot,
   query,
-  where
 } from "firebase/firestore";
 import { db2, storage2 } from "@/Firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
@@ -39,16 +36,18 @@ const EventForm = () => {
     image
 
   */
-  const fetchEvents = async () => {
-    const querySnapshot = await getDocs(collection(db2, "events"));
-    setEvents([]);
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      setEvents((events) => [...events, doc.data()]);
-    });
-  };
+  useEffect(() => {
+    const eventQuery = query(collection(db2, "events"));
 
-  fetchEvents();
+    const unsubscribe = onSnapshot(eventQuery, (querySnapshot) => {
+      setEvents(
+        querySnapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() }))
+      );
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -203,23 +202,18 @@ const EventForm = () => {
       >
         {showEvents ? "Hide" : "Show"} all Events!
       </button>
-      {showEvents && <div className="px-2 flex flex-col lg:grid lg:grid-cols-2 lg:w-screen gap-3 lg:px-5">
-        {events.map((event, index) => {
-          return (
-            <div
+      {showEvents && (
+        <div className="px-2 flex flex-col lg:grid lg:grid-cols-2 lg:w-screen gap-3 lg:px-5">
+          {events.map((event, index) => {
+            return (
+              <div
                 key={index}
                 className="bg-gray-200 flex flex-col px-2 py-1 rounded-md"
               >
                 <div
                   className="text-red-600 text-2xl flex items-center mt-1 w-full justify-end cursor-pointer"
                   onClick={async () => {
-                    const q = query(collection(db2, "events"), where("title", "==", event.title));
-
-                      const querySnapshot = await getDocs(q);
-
-                      querySnapshot.forEach(async (doc) => {
-                        await deleteDoc(doc.ref);
-                      });
+                    await deleteDoc(doc(db2, "books", event.id));
 
                     toast.success(
                       `Event named ${event.title} has been deleted successfully!`
@@ -228,20 +222,12 @@ const EventForm = () => {
                 >
                   <AiTwotoneDelete />
                 </div>
-              <EventBox
-                key={index}
-                completed={event.completed}
-                date={event.date}
-                description={event.description}
-                img={event.img}
-                teamMembers={event.teamMembers}
-                title={event.title}
-                reglink={event.reglink ? event.reglink : ""}
-              />
+                <EventBox {...event.data} />
               </div>
-          );
-        })}
-      </div>}
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };
