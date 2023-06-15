@@ -49,3 +49,13 @@ type Litevent = {
   description: string;
   date: string;
 };
+
+type Representatives = {
+  name: string;
+  position: string;
+  department: string;
+  img: string;
+  designation: string;
+  contact: number[];
+  socials: string[];
+};

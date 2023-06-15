@@ -1,6 +1,6 @@
 import EventBox from "@/components/Events/EventBox";
 import PastEvents from "@/components/Events/PastEvents";
-import { db } from "@/Firebase";
+import { db2 } from "@/Firebase";
 import { libre_caslon_text } from "@/utils";
 import { collection, getDocs, query, where } from "@firebase/firestore";
 import Head from "next/head";
@@ -75,7 +75,7 @@ export default EventsBasedOnTypes;
 export async function getServerSideProps(context: any) {
   const type = context.params.type;
   let events: any = [];
-  const q = query(collection(db, "events"), where("type", "==", type));
+  const q = query(collection(db2, "events"), where("type", "==", type));
 
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {

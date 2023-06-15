@@ -1,4 +1,4 @@
-import { db } from "@/Firebase";
+import { db2 } from "@/Firebase";
 import { libre_caslon_text } from "@/utils";
 import { DotSpinner } from "@uiball/loaders";
 import { doc, getDoc } from "firebase/firestore";
@@ -90,7 +90,7 @@ export default SinglBlogById;
 export async function getServerSideProps(context: any) {
   let blog: any = {};
   const id = context.params.id;
-  const docRef = doc(db, "blogs", id);
+  const docRef = doc(db2, "blogs", id);
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {

@@ -3,7 +3,7 @@ import NormalBlog from "@/components/Blogs/NormalBlog";
 import Head from "next/head";
 import React from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { db } from "../Firebase.js";
+import { db2 } from "../Firebase.js";
 import { libre_caslon_text } from "@/utils";
 
 type props = {
@@ -64,7 +64,7 @@ export async function getServerSideProps(context: any) {
   // occupying the 0th index for the most recent featured blog
   blogs.push({});
 
-  const q = query(collection(db, "blogs"), where("isVerified", "==", true));
+  const q = query(collection(db2, "blogs"), where("isVerified", "==", true));
 
   const localblogs = await getDocs(q);
   localblogs.forEach((doc: { id: any; data: () => any }) => {

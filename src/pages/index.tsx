@@ -1,4 +1,3 @@
-
 import Head from "next/head";
 import Page1 from "@/components/Landing Page/Page1";
 import Page2 from "@/components/Landing Page/Page2";
@@ -12,7 +11,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { db } from "@/Firebase";
+import { db2 } from "@/Firebase";
 import Link from "next/link";
 import { AiFillRightCircle } from "react-icons/ai";
 import ThreeValuesOfLACForMobile from "@/components/Landing Page/ThreeValuesOfLACForMobile";
@@ -43,7 +42,6 @@ export default function Home({
           happenedEvent={happenedEvent}
         />
         <ThreeValuesOfLac />
-        {/* Ujjwal is working on the following component. */}
         <ThreeValuesOfLACForMobile />
         <Page2 featuredBlogs={featuredBlogs} />
         <Page3 />
@@ -64,13 +62,13 @@ export async function getServerSideProps(context: any) {
   let featuredBlogs: any[] = [];
   // 1.fetch top 2 events whose completed status is false and one whose completed status is true
   const yetToHappenEventsQuery = query(
-    collection(db, "events"),
+    collection(db2, "events"),
     where("completed", "==", false),
     orderBy("date", "desc"),
     limit(3)
   );
   const happenedEventsQuery = query(
-    collection(db, "events"),
+    collection(db2, "events"),
     where("completed", "==", true),
     orderBy("date", "desc"),
     limit(3)
@@ -90,7 +88,7 @@ export async function getServerSideProps(context: any) {
 
   //2. fetch the 3 featured blogs and return them
   const featuredBlogsQuery = query(
-    collection(db, "blogs"),
+    collection(db2, "blogs"),
     where("isFeatured", "==", true),
     limit(3)
   );
@@ -108,4 +106,3 @@ export async function getServerSideProps(context: any) {
     },
   };
 }
-

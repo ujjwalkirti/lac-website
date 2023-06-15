@@ -1,10 +1,21 @@
+import { db2 } from "@/Firebase";
 import InformationHolder from "@/components/About us/InformationHolder";
 import { libre_caslon_text } from "@/utils";
+import { DocumentData, collection, getDocs } from "firebase/firestore";
+import { GetServerSidePropsContext } from "next";
 import Head from "next/head";
 
 import React from "react";
 
-const AboutUs = () => {
+type props = {
+  members: {
+    chairperson: Representatives;
+    co_chairperson: Representatives[];
+    secretary: Representatives;
+    j_secretary: Representatives[];
+  };
+};
+const AboutUs = ({ members }: props) => {
   return (
     <section className="min-h-[80vh] flex flex-col items-center gap-5 px-2 py-3">
       <Head>
@@ -21,35 +32,13 @@ const AboutUs = () => {
       </p>
       {/* Faculty Advisor */}
       <div className="w-full lg:w-auto">
-        <InformationHolder
-          name="Dr Kalpana C Maheria"
-          position="Professor"
-          department="Chemistry"
-          img="https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/about_us%2Ffaculty%20advisor%2FWhatsApp%20Image%202023-04-20%20at%208.57.00%20PM.jpeg?alt=media&token=e4c9a8af-5e0e-4ed8-8571-9180a34d3e07"
-          designation="Chairperson"
-          socials={[" ", " ", " ", "kcm@chem.svnit.ac.in", " "]}
-        />
+        <InformationHolder {...members.chairperson} />
       </div>
       {/* Chairmans */}
       <div className="flex flex-col lg:flex-row items-center gap-x-5">
-        {/* Chairman 1 */}
-        <InformationHolder
-          name="Dr Sumit Khare"
-          position="Professor"
-          department="Mechanical Engineering"
-          img="https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/about_us%2Ffaculty%20advisor%2FWhatsApp%20Image%202023-04-20%20at%205.55.02%20PM.jpeg?alt=media&token=e23624fd-d118-47fa-b4a3-1431aeedb20a"
-          designation="Co-Chairperson"
-          socials={[" ", " ", " ", "sumitkhare@med.svnit.ac.in", " "]}
-        />
-        {/* Chairman 2 */}
-        <InformationHolder
-          name="Dr Chetan Patel"
-          position="Professor"
-          department="Civil Engineering"
-          img="https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/about_us%2Ffaculty%20advisor%2FWhatsApp%20Image%202023-04-20%20at%206.19.32%20PM.jpeg?alt=media&token=23cbf00b-4465-4a04-8412-1eb19d18e787"
-          designation="Co-Chairperson"
-          socials={[" ", " ", " ", "crp@ced.svnit.ac.in", " "]}
-        />
+        {members.co_chairperson.map((faculty, index) => (
+          <InformationHolder {...faculty} key={index} />
+        ))}
       </div>
       {/* Students in-charge */}
       <p
@@ -63,56 +52,13 @@ const AboutUs = () => {
       <div className="flex flex-col items-center gap-10">
         {/* Secretary */}
         <div className="w-full lg:w-[400px]">
-          <InformationHolder
-            name="Milind Shinkar"
-            position="BTech Final-Year"
-            department="Electrical Engineering"
-            img="https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/about_us%2Fmilind%20shinkar.jpg?alt=media&token=77da6c39-bc10-448a-ab34-ced69607e30c"
-            designation="Secretary"
-            contact={[9429786867, 9429786867]}
-            socials={[
-              " ",
-              "https://www.linkedin.com/in/milind-shinkar",
-              " ",
-              "shinkarmilind98@gmail.com",
-              "https://instagram.com/milind.shinkar?igshid=YmMyMTA2M2Y",
-            ]}
-          />
+          <InformationHolder {...members.secretary} />
         </div>
         {/* 2 Joint Secretaries */}
         <div className="flex flex-col lg:flex-row gap-10">
-          {/* Joint Secretary 1 */}
-          <InformationHolder
-            name="Priyanshi Shah"
-            position="BTech Pre-final Year"
-            department="Computer Science Engineering"
-            img="https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/about_us%2Fpriyanshi%20shah.jpg?alt=media&token=f94fbeb8-7caa-4332-8300-ca9665d6a7d0"
-            designation="Joint Secretary"
-            contact={[9106502325, 9106502325]}
-            socials={[
-              " ",
-              "https://www.linkedin.com/in/priyanshi-shah-54ba30202",
-              " ",
-              "priyanshipshah19@gmail.com",
-              "https://instagram.com/priyanshipshah?igshid=YmMyMTA2M2Y",
-            ]}
-          />
-          {/* Joint Secretary 2 */}
-          <InformationHolder
-            name="Sayantani Dutta"
-            position="BTech Pre-final Year"
-            department="Chemical Engineering"
-            img="https://firebasestorage.googleapis.com/v0/b/lac-website-c4a02.appspot.com/o/about_us%2Fsayantani%20dutta.jpg?alt=media&token=75ce1ef6-aeaf-42e2-9115-c09c0da71b08"
-            designation="Joint Secretary"
-            contact={[9316599256, 9316599256]}
-            socials={[
-              " ",
-              "https://www.linkedin.com/in/sayantanidutta25",
-              " ",
-              "sayantani2507@gmail.com",
-              "https://instagram.com/_sayantani______?igshid=YmMyMTA2M2Y",
-            ]}
-          />
+          {members.j_secretary.map((student, index) => (
+            <InformationHolder {...student} key={index} />
+          ))}
         </div>
       </div>
     </section>
@@ -132,3 +78,34 @@ export default AboutUs;
   }
 
 */
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  var members = {
+    chairperson: {},
+    co_chairperson: [] as DocumentData[],
+    secretary: {},
+    j_secretary: [] as DocumentData[],
+  };
+  const querySnapshot = await getDocs(collection(db2, "members"));
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    switch (doc.id) {
+      case "chairperson":
+        members.chairperson = doc.data();
+        break;
+      case "co-chairperson":
+        members.co_chairperson.push(doc.data());
+        break;
+      case "secretary":
+        members.secretary = doc.data();
+        break;
+      case "joint-secretary":
+        members.j_secretary.push(doc.data());
+    }
+  });
+  return {
+    props: {
+      members,
+    },
+  };
+}
