@@ -1,10 +1,4 @@
-import {
-  adminButton,
-  formats,
-  inputStyle,
-  libre_caslon_text,
-  modules,
-} from "@/utils";
+import { formats, modules } from "@/utils";
 import React, { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import {
@@ -22,6 +16,8 @@ import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
 import { toast } from "react-toastify";
 import BlogDisplayBox from "./BlogDisplayBox";
+import { libre_caslon_text } from "@/local-data/Fonts";
+import { adminButton, inputStyle } from "@/local-data/StyleStrings";
 
 //@ts-ignore
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });

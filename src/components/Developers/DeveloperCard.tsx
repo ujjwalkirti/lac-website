@@ -1,3 +1,4 @@
+import { hoverStyle } from "@/local-data/StyleStrings";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -16,8 +17,14 @@ type props = {
 const DeveloperCard = ({ developer }: props) => {
   const [showDetails, setShowDetails] = useState<boolean>(false);
   return (
-    <div className="dark:bg-[#603726] bg-white rounded-lg shadow-lg mx-auto my-3 flex flex-col items-center justify-start w-[300px] md:w-[270px] relative " onMouseEnter={()=>{setShowDetails(true)}}
-      onMouseLeave={()=>{setShowDetails(false)}}
+    <div
+      className="dark:bg-[#603726] bg-white text-white rounded-lg shadow-lg mx-auto my-3 flex flex-col items-center justify-start w-[300px] md:w-[270px] relative "
+      onMouseEnter={() => {
+        setShowDetails(true);
+      }}
+      onMouseLeave={() => {
+        setShowDetails(false);
+      }}
     >
       <Image
         src={developer.image}
@@ -27,7 +34,7 @@ const DeveloperCard = ({ developer }: props) => {
         className="h-full w-full object-cover rounded-lg"
       />
       {showDetails && (
-        <div className="flex flex-col items-start justify-between py-2 px-2 gap-3 h-full w-full rounded-lg absolute animate-fade-in bg-black bg-opacity-40">
+        <div className="flex flex-col items-start justify-between py-2 px-2 gap-3 h-full w-full rounded-lg absolute animate-fade-in bg-black bg-opacity-60">
           <p className="text-[28px] font-semibold">{developer.name}</p>
           <p className="text-xl">{developer.tag}</p>
           <div className="">
@@ -40,7 +47,7 @@ const DeveloperCard = ({ developer }: props) => {
                 case 0:
                   if (link !== " ") {
                     return (
-                      <Link href={link}>
+                      <Link className={hoverStyle} href={link}>
                         <AiOutlineGithub />
                       </Link>
                     );
@@ -49,7 +56,7 @@ const DeveloperCard = ({ developer }: props) => {
                 case 1:
                   if (link !== " ") {
                     return (
-                      <Link href={link}>
+                      <Link className={hoverStyle} href={link}>
                         <AiFillLinkedin />
                       </Link>
                     );
@@ -58,7 +65,7 @@ const DeveloperCard = ({ developer }: props) => {
                 case 2:
                   if (link !== " ") {
                     return (
-                      <Link href={link}>
+                      <Link className={hoverStyle} href={link}>
                         <AiFillInstagram />
                       </Link>
                     );
@@ -67,7 +74,7 @@ const DeveloperCard = ({ developer }: props) => {
                 case 3:
                   if (link !== " ") {
                     return (
-                      <Link href={link}>
+                      <Link className={hoverStyle} href={link}>
                         <AiOutlineLink />
                       </Link>
                     );
@@ -76,7 +83,7 @@ const DeveloperCard = ({ developer }: props) => {
                 case 4:
                   if (link !== " ") {
                     return (
-                      <Link href={link}>
+                      <Link className={hoverStyle} href={link}>
                         <AiOutlineTwitter />
                       </Link>
                     );
@@ -95,6 +102,8 @@ export default DeveloperCard;
 
 function yearFormatter(year: number) {
   switch (year) {
+    case 0:
+      return "Passout";
     case 1:
       return "1st Year";
     case 2:

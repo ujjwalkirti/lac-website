@@ -4,7 +4,8 @@ import Head from "next/head";
 import React from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db2 } from "../Firebase.js";
-import { libre_caslon_text } from "@/utils";
+import { libre_caslon_text } from "@/local-data/Fonts";
+import { GetServerSidePropsContext } from "next";
 
 type props = {
   blogs: { blog: Blog; id: string }[];
@@ -57,7 +58,7 @@ const Blogs = ({ blogs }: props) => {
 
 export default Blogs;
 
-export async function getServerSideProps(context: any) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   let blogs: any[] = [];
 
   let featuredBlog: any[] = [];

@@ -1,16 +1,14 @@
 import Head from "next/head";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { doc, getDoc } from "firebase/firestore";
 import Image from "next/image";
 
-import { getDownloadURL, getMetadata, listAll, ref } from "firebase/storage";
-import Link from "next/link";
-import { BsArrowDownCircle, BsArrowUpCircle } from "react-icons/bs";
-import { db2, storage2 } from "@/Firebase";
-import { libre_caslon_text } from "@/utils";
+import { db2 } from "@/Firebase";
 import NoticeCard from "@/components/Notice/NoticeCard";
+import { GetServerSidePropsContext } from "next";
+import { libre_caslon_text } from "@/local-data/Fonts";
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   let noticeDates = [];
   const docRef = doc(db2, "notice-upload-dates", "date-array");
   const docSnap = await getDoc(docRef);

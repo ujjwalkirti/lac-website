@@ -1,8 +1,15 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import FirstLetterCapital from "@/components/Landing Page/FirstLetterCapital";
-import { collection, getDocs, query, limit, orderBy, where } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  query,
+  limit,
+  orderBy,
+  where,
+} from "firebase/firestore";
 import { db2 } from "@/Firebase";
-import { getBooks, libre_caslon_text } from "@/utils";
+import { getBooks } from "@/utils";
 import Head from "next/head";
 import BookDisplayBox from "@/components/Book Club/BookDisplayBox";
 import { SiTarget } from "react-icons/si";
@@ -15,7 +22,8 @@ import {
   BsChevronDoubleRight,
   BsSearch,
 } from "react-icons/bs";
-import { set } from "react-hook-form";
+import { libre_caslon_text } from "@/local-data/Fonts";
+import { GetServerSidePropsContext } from "next";
 
 type props = {
   serverbooks: Book[];
@@ -58,16 +66,16 @@ const BookClub = ({ serverbooks }: props) => {
       const books: Book[] = [];
       querySnapshot.forEach((doc) => {
         books.push(doc.data() as Book);
-        setSearchedBooks((prev:any)=>[...prev,doc.data()]);
+        setSearchedBooks((prev: any) => [...prev, doc.data()]);
       });
 
-      if(books.length){
+      if (books.length) {
         setSearchStatus("searched");
       }
     } catch (error) {
       toast.error("Error finding books.");
     }
-  }
+  };
 
   const handleSearch = async (e: ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
@@ -162,33 +170,35 @@ const BookClub = ({ serverbooks }: props) => {
       )}
 
       {/* Pagination */}
-      {searchedBooks.length == 0 && searchStatus != "searthing" && <div className="flex justify-center mt-5">
-        <button
-          onClick={handlePreviousPage}
-          disabled={currentPage === 1}
-          className={`flex items-center justify-center gap-2 px-4 py-2 mr-2 text-white bg-[#2C1810] dark:bg-[#DA8E63] rounded active:scale-90 trnasition duration-300 ${
-            currentPage === 1 ? "cursor-not-allowed" : ""
-          }`}
-        >
-          <BsChevronDoubleLeft /> Previous
-        </button>
+      {searchedBooks.length == 0 && searchStatus != "searthing" && (
+        <div className="flex justify-center mt-5">
+          <button
+            onClick={handlePreviousPage}
+            disabled={currentPage === 1}
+            className={`flex items-center justify-center gap-2 px-4 py-2 mr-2 text-white bg-[#2C1810] dark:bg-[#DA8E63] rounded active:scale-90 trnasition duration-300 ${
+              currentPage === 1 ? "cursor-not-allowed" : ""
+            }`}
+          >
+            <BsChevronDoubleLeft /> Previous
+          </button>
 
-        <button
-          onClick={handleNextPage}
-          className={`flex items-center justify-center gap-2 px-8 py-2 mr-2 text-white bg-[#2C1810] dark:bg-[#DA8E63] rounded active:scale-90 trnasition duration-300 ${
-            typeof books[currentPage] !== "undefined" &&
-            books[currentPage].length < 20
-              ? "cursor-not-allowed"
-              : ""
-          }`}
-          disabled={
-            typeof books[currentPage] !== "undefined" &&
-            books[currentPage].length < 20
-          }
-        >
-          Next <BsChevronDoubleRight />
-        </button>
-      </div>}
+          <button
+            onClick={handleNextPage}
+            className={`flex items-center justify-center gap-2 px-8 py-2 mr-2 text-white bg-[#2C1810] dark:bg-[#DA8E63] rounded active:scale-90 trnasition duration-300 ${
+              typeof books[currentPage] !== "undefined" &&
+              books[currentPage].length < 20
+                ? "cursor-not-allowed"
+                : ""
+            }`}
+            disabled={
+              typeof books[currentPage] !== "undefined" &&
+              books[currentPage].length < 20
+            }
+          >
+            Next <BsChevronDoubleRight />
+          </button>
+        </div>
+      )}
       <ToastContainer />
     </div>
   );
@@ -196,7 +206,7 @@ const BookClub = ({ serverbooks }: props) => {
 
 export default BookClub;
 
-export async function getServerSideProps(context: any) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   let serverbooks: Book[] = [];
   const q = query(collection(db2, "books"), orderBy("name"), limit(20));
   const localbooks = await getDocs(q);

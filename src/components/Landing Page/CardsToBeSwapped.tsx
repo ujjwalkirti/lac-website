@@ -1,8 +1,7 @@
-import { libre_caslon_text, valuesOfLAC } from "@/utils";
-import { useTheme } from "next-themes";
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import ValueImageCard from "./ValueImageCard";
+import { valuesOfLAC } from "@/local-data/ValuesOfLAC";
+import { libre_caslon_text } from "@/local-data/Fonts";
 
 const valueUrl = [
   {

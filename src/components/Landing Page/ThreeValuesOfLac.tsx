@@ -1,9 +1,10 @@
-import { libre_caslon_text, valuesOfLAC } from "@/utils";
 import Image from "next/image";
 
 import React from "react";
 
 import Link from "next/link";
+import { valuesOfLAC } from "@/local-data/ValuesOfLAC";
+import { libre_caslon_text } from "@/local-data/Fonts";
 
 const ThreeValuesOfLac = () => {
   return (

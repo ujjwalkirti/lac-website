@@ -16,9 +16,8 @@ import {
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
-import { adminButton } from "@/utils";
-import { inputStyle } from "@/utils";
 import { AiTwotoneDelete } from "react-icons/ai";
+import { adminButton, inputStyle } from "@/local-data/StyleStrings";
 
 const posts = ["Chairperson", "Co-Chairperson", "Secretary", "Joint-Secretary"];
 

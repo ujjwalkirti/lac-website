@@ -1,4 +1,3 @@
-import { monsterrat } from "@/utils";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,6 +13,7 @@ import { GiHamburgerMenu, GiSparkles } from "react-icons/gi";
 import { MdOutlineClose } from "react-icons/md";
 import { RiTeamLine } from "react-icons/ri";
 import { HiHome } from "react-icons/hi";
+import { monsterrat } from "@/local-data/Fonts";
 
 const options = [
   { name: "EVENTS", url: "/events" },

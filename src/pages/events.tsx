@@ -1,9 +1,10 @@
 import EventBox from "@/components/Events/EventBox";
-import { libre_caslon_text } from "@/utils";
 import { collection, getDocs, query } from "firebase/firestore";
 import { db2 } from "@/Firebase";
 import Head from "next/head";
 import React from "react";
+import { libre_caslon_text } from "@/local-data/Fonts";
+import { GetServerSidePropsContext } from "next";
 
 type props = {
   events: LAC_Event[];
@@ -37,7 +38,7 @@ const Events = ({ events }: props) => {
 
 export default Events;
 
-export async function getServerSideProps(context: any) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   let events: any[] = [];
   const qe = query(collection(db2, "events"));
   const localEvents = await getDocs(qe);

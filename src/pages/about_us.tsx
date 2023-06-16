@@ -1,6 +1,7 @@
 import { db2 } from "@/Firebase";
 import InformationHolder from "@/components/About us/InformationHolder";
-import { libre_caslon_text } from "@/utils";
+import { libre_caslon_text } from "@/local-data/Fonts";
+import { members } from "@/local-data/Members";
 import { DocumentData, collection, getDocs } from "firebase/firestore";
 import { GetServerSidePropsContext } from "next";
 import Head from "next/head";
@@ -15,7 +16,7 @@ type props = {
     j_secretary: Representatives[];
   };
 };
-const AboutUs = ({ members }: props) => {
+const AboutUs = () => {
   return (
     <section className="min-h-[80vh] flex flex-col items-center gap-5 px-2 py-3">
       <Head>
@@ -79,33 +80,33 @@ export default AboutUs;
 
 */
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  var members = {
-    chairperson: {},
-    co_chairperson: [] as DocumentData[],
-    secretary: {},
-    j_secretary: [] as DocumentData[],
-  };
-  const querySnapshot = await getDocs(collection(db2, "members"));
-  querySnapshot.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
-    switch (doc.id) {
-      case "chairperson":
-        members.chairperson = doc.data();
-        break;
-      case "co-chairperson":
-        members.co_chairperson.push(doc.data());
-        break;
-      case "secretary":
-        members.secretary = doc.data();
-        break;
-      case "joint-secretary":
-        members.j_secretary.push(doc.data());
-    }
-  });
-  return {
-    props: {
-      members,
-    },
-  };
-}
+// export async function getServerSideProps(context: GetServerSidePropsContext) {
+//   var members = {
+//     chairperson: {},
+//     co_chairperson: [] as DocumentData[],
+//     secretary: {},
+//     j_secretary: [] as DocumentData[],
+//   };
+//   const querySnapshot = await getDocs(collection(db2, "members"));
+//   querySnapshot.forEach((doc) => {
+//     // doc.data() is never undefined for query doc snapshots
+//     switch (doc.id) {
+//       case "chairperson":
+//         members.chairperson = doc.data();
+//         break;
+//       case "co-chairperson":
+//         members.co_chairperson.push(doc.data());
+//         break;
+//       case "secretary":
+//         members.secretary = doc.data();
+//         break;
+//       case "joint-secretary":
+//         members.j_secretary.push(doc.data());
+//     }
+//   });
+//   return {
+//     props: {
+//       members,
+//     },
+//   };
+// }

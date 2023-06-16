@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 
 const Page3 = () => {
@@ -28,7 +27,6 @@ const Page3 = () => {
           className="rounded-md"
         />
       </div>
-      
     </div>
   );
 };

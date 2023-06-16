@@ -7,8 +7,9 @@ import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { toast } from "react-toastify";
 import TimeAgo from "react-timeago";
 import Image from "next/image";
-import { formats, inputStyle, modules } from "@/utils";
+import { formats, modules } from "@/utils";
 import dynamic from "next/dynamic";
+import { inputStyle } from "@/local-data/StyleStrings";
 type props = {
   blog: Blog;
   id: string;

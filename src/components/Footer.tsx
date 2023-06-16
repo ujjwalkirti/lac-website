@@ -1,4 +1,4 @@
-import { libre_caslon_text } from "@/utils";
+import { libre_caslon_text } from "@/local-data/Fonts";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";

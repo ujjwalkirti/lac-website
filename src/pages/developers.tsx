@@ -1,10 +1,11 @@
 import { db2 } from "@/Firebase";
 import DeveloperCard from "@/components/Developers/DeveloperCard";
-import { libre_caslon_text } from "@/utils";
 import { collection, getDocs } from "firebase/firestore";
 import Head from "next/head";
 import React from "react";
 import SuggestionsFromUsers from "@/components/Developers/SuggestionsFromUsers";
+import { libre_caslon_text } from "@/local-data/Fonts";
+import { GetServerSidePropsContext } from "next";
 
 type props = {
   developers: Developer[];
@@ -12,7 +13,7 @@ type props = {
 };
 const Developers = ({ developers, designers }: props) => {
   return (
-    <section className="min-h-[55vh] flex flex-col items-center px-2 lg:w-11/12 mx-auto">
+    <section className="min-h-[55vh] flex flex-col items-center px-2 lg:w-11/12 mx-auto ">
       <Head>
         <title>Developers 💻 & Designers 🎨</title>
       </Head>
@@ -29,7 +30,7 @@ const Developers = ({ developers, designers }: props) => {
           <DeveloperCard developer={developers[0]} />
         )}
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mx-auto px-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto px-3">
         {/* for other developers */}
 
         {developers.map((developer, index) => {
@@ -57,7 +58,7 @@ const Developers = ({ developers, designers }: props) => {
 
 export default Developers;
 
-export async function getServerSideProps(context: any) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   let developers: any[] = [];
   let designers: any[] = [];
   developers.push({});

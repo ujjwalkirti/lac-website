@@ -1,4 +1,4 @@
-import { monsterrat } from "@/utils";
+import { monsterrat } from "@/local-data/Fonts";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -46,6 +46,7 @@ const BookDisplayBox = ({ book }: props) => {
               );
             })}
           </div>
+          {/* @ts-ignore */}
           <Rating
             initialRating={book.rating}
             start={0}

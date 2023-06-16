@@ -15,6 +15,7 @@ import { db2 } from "@/Firebase";
 import Link from "next/link";
 import { AiFillRightCircle } from "react-icons/ai";
 import ThreeValuesOfLACForMobile from "@/components/Landing Page/ThreeValuesOfLACForMobile";
+import { GetServerSidePropsContext } from "next";
 
 type props = {
   yetToHappenEvents: LAC_Event[];
@@ -56,7 +57,7 @@ export default function Home({
   );
 }
 
-export async function getServerSideProps(context: any) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   let yetToHappenEvents: any[] = [];
   let happenedEvent: any[] = [];
   let featuredBlogs: any[] = [];

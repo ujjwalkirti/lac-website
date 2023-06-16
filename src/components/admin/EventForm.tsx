@@ -11,9 +11,8 @@ import {
 } from "firebase/firestore";
 import { db2, storage2 } from "@/Firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { adminButton } from "@/utils";
-import { inputStyle } from "@/utils";
 import { AiTwotoneDelete } from "react-icons/ai";
+import { adminButton, inputStyle } from "@/local-data/StyleStrings";
 
 const EventForm = () => {
   const date = useRef<HTMLInputElement | null>(null);

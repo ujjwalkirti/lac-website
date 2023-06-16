@@ -1,5 +1,4 @@
 import { db2 } from "@/Firebase";
-import { libre_caslon_text } from "@/utils";
 import { DotSpinner } from "@uiball/loaders";
 import { doc, getDoc } from "firebase/firestore";
 import Head from "next/head";
@@ -7,6 +6,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { BiArrowToTop } from "react-icons/bi";
+import { libre_caslon_text } from "@/local-data/Fonts";
 
 type props = {
   blog: Blog;

@@ -1,5 +1,4 @@
 import React from "react";
-import FirstLetterCapital from "../Landing Page/FirstLetterCapital";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -80,8 +79,10 @@ const EventBox = ({
       )}
       {completed && (
         <button
-          className="bg-[#e3bc74] w-full rounded-lg text-center dark:text-[#858383] py-3 "
-          disabled
+          className={`bg-[#e3bc74] w-full rounded-lg text-center dark:text-[#858383] py-3 ${
+            completed ? "cursor-not-allowed" : ""
+          }`}
+          disabled={completed}
         >
           Registerations Closed
         </button>
