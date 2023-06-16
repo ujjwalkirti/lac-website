@@ -2,16 +2,12 @@ import { Libre_Caslon_Text, Montserrat } from "next/font/google";
 import { db2 } from "./Firebase";
 import {
   DocumentData,
-  QuerySnapshot,
   collection,
   getDocs,
   limit,
   orderBy,
   query,
-  startAfter,
   startAt,
-  where,
-  endAt,
 } from "firebase/firestore";
 
 const inputStyle =
@@ -144,8 +140,6 @@ const getBooks = async (
     throw new Error("Error fetching books");
   }
 };
-
-
 
 export {
   inputStyle,

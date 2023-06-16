@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import TimeAgo from "react-timeago";
 import Image from "next/image";
 import { formats, inputStyle, modules } from "@/utils";
+import dynamic from "next/dynamic";
 type props = {
   blog: Blog;
   id: string;
