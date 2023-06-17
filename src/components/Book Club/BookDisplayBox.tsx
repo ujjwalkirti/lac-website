@@ -25,7 +25,7 @@ const BookDisplayBox = ({ book }: props) => {
         alt={"novel image"}
         height={300}
         width={200}
-        className=" lg:rounded-l-lg object-cover mx-auto lg:h-full"
+        className=" lg:rounded-l-lg object-fit mx-auto lg:h-full"
       />
       {/* genres */}
 

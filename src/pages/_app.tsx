@@ -47,7 +47,7 @@ export default function App({
               monsterrat.className
             }
           >
-            <Navbar />
+            <Navbar/>
             <Component {...pageProps} />
             <Footer />
             <Analytics />

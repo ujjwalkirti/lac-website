@@ -50,7 +50,7 @@ const Navbar = () => {
   return (
     <section
       className={
-        "flex justify-between items-center w-11/12 mx-auto pt-4 lg:pt-[12px] font-medium " +
+        "flex justify-between items-center bg-transparent w-11/12 mx-auto pt-4 lg:pt-[12px] font-medium" +
         monsterrat.className
       }
     >
