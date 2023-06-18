@@ -69,7 +69,7 @@ const Footer = () => {
       <Link className="hover:underline mb-4  text-center" href={`/developers`}>
         Developers 💻 & Designers 🎨
       </Link>
-      <div className="flex flex-col lg:flex-row justify-between items-center mb-[20px] w-full gap-5">
+      <div className="flex flex-col lg:flex-row justify-between items-center mb-[20px] w-10/12 gap-5">
         <p>CopyRight 2023 LAC, All Rights Reserved</p>
         <div className="flex space-x-8 text-[36px]">
           <Link

@@ -201,7 +201,7 @@ const BookClub = ({ serverbooks }: props) => {
             {theme === "light" && (
               <div className="book-club-image-gradient-right absolute top-0 right-0 h-full w-[87%] z-10"></div>
             )}
-            <p className="z-20 pl-2 mr-3 md:mx-12 lg:mx-20 lg:text-[23px] sm:text-lg bg-transparent">
+            <p className="z-20 pl-2 mr-1 ml-8 md:mx-12 lg:mx-20 lg:text-[23px] sm:text-lg bg-transparent">
               repellat, alias excepturi autem id tempora amet necessitatibus
               ipsa laboriosam cumque tempore. Inventore.
             </p>
@@ -217,7 +217,7 @@ const BookClub = ({ serverbooks }: props) => {
               }`}
             />
           </div>
-          <p className="text-center px-2 text-[20px] mb-[55px]">
+          <p className="text-center px-2 pt-10 text-[20px] mb-[55px]">
             Well, don’t you worry! We’ve got you covered. LAC has it’s very own
             book club for all the passionate readers out there.
           </p>
