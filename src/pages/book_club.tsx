@@ -112,7 +112,7 @@ const BookClub = ({ serverbooks }: props) => {
           className=" h-[60vh] lg:h-[70vh] relative"
           style={{
             backgroundImage: `url(${
-              theme === "dark" ? "/book_club_dark.png" : "/book_club.png"
+              theme === "dark" ? "/book_club_Dark.png" : "/book_club.png"
             })`,
             backgroundOrigin: "content-box",
             backgroundPosition: "left center",
