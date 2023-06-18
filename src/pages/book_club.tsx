@@ -25,10 +25,6 @@ import { libre_caslon_text } from "@/local-data/Fonts";
 import { GetServerSidePropsContext } from "next";
 import { MdLocationOn } from "react-icons/md";
 import Image from "next/image";
-import img1 from "../../public/img1.png";
-import img1Dark from "../../public/img1Dark.png";
-import img2 from "../../public/img2.png";
-import img2Dark from "../../public/img2Dark.png";
 
 type props = {
   serverbooks: Book[];
@@ -181,7 +177,7 @@ const BookClub = ({ serverbooks }: props) => {
               alt="Image"
               height={300}
               width={300}
-              className={`z-20 md:ml-20 lg:ml-32 lg:w-72 rounded-full ${
+              className={`z-20 md:ml-20 lg:ml-32 lg:w-72 w-56 ml-2 rounded-full ${
                 theme === "dark" ? "h-64 w-64 rounded-full -ml-6" : "w-48"
               }`}
             />
@@ -214,7 +210,7 @@ const BookClub = ({ serverbooks }: props) => {
               alt="Image"
               height={300}
               width={300}
-              className={`z-20  md:ml-20 lg:ml-32 lg:w-72  ${
+              className={`z-20 w-56 mr-3 sm:mr-0 md:ml-20 lg:ml-32 lg:w-72  ${
                 theme === "dark"
                   ? "h-72 w-72 rounded-full -mr-12 lg:mr-12"
                   : "w-48"
