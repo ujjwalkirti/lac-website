@@ -18,7 +18,7 @@ type props = {
 };
 const AboutUs = () => {
   return (
-    <section className="min-h-[80vh] flex flex-col items-center gap-5 px-2 py-3">
+    <section className="min-h-[80vh] flex flex-col items-center gap-5 px-2 py-3 pt-20">
       <Head>
         <title>About Us</title>
       </Head>

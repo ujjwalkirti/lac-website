@@ -50,8 +50,7 @@ const Navbar = () => {
   return (
     <section
       className={
-        "flex justify-between items-center bg-transparent w-11/12 mx-auto pt-4 lg:pt-[12px] font-medium" +
-        monsterrat.className
+        "flex justify-between items-center bg-transparent w-full lg:w-11/12 mx-auto pt-4 lg:pt-[12px] px-3 font-medium absolute top-0 left-0 right-0 z-30"
       }
     >
       <GiHamburgerMenu

@@ -36,7 +36,7 @@ export default function Home({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <section className="px-4 lg:w-11/12 mx-auto">
+      <section className="px-4 lg:w-11/12 mx-auto pt-20">
         <Page1
           yetToHappenEventsCount={yetToHappenEvents.length}
           yetToHappenEvents={yetToHappenEvents}

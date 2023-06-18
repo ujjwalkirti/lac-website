@@ -14,7 +14,7 @@ type props = {
 
 const Litfest = ({ litevents }: props) => {
   return (
-    <div className="w-screen md:w-10/12 mx-auto">
+    <div className="w-screen md:w-10/12 mx-auto pt-20">
       <Head>
         <title>LitFest SVNIT, Surat</title>
       </Head>

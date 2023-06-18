@@ -2,6 +2,7 @@ import { libre_caslon_text } from "@/local-data/Fonts";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 import {
   AiFillFacebook,
@@ -13,8 +14,14 @@ import { SiGmail } from "react-icons/si";
 const Footer = () => {
   const { theme } = useTheme();
 
+  const router = useRouter();
+
   return (
-    <section className="w-11/12 mx-auto flex flex-col items-center">
+    <section
+      className={` mx-auto flex flex-col items-center ${
+        router.pathname === "/book_club" ? "bg-[#F8F3ED] dark:bg-[#26102c]" : ""
+      }`}
+    >
       <div className="h-[72px] w-[72px] relative mt-[51px]">
         <Image
           className="rounded-full"

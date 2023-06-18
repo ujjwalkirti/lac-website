@@ -34,7 +34,7 @@ type props = {
 
 export default function Notice({ noticeDates }: props) {
   return (
-    <div>
+    <div className="pt-20">
       <Head>
         <title>Notice and Announcements</title>
         <link rel="icon" href="/favicon.ico" />

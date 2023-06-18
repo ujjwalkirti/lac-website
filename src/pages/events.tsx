@@ -12,7 +12,7 @@ type props = {
 
 const Events = ({ events }: props) => {
   return (
-    <section className="min-h-screen flex flex-col items-center gap-5 px-2 py-5 mx-5 my-auto">
+    <section className="min-h-screen flex flex-col items-center gap-5 px-2 py-5 pt-16 mx-5 my-auto">
       <Head>
         <title>Events</title>
       </Head>

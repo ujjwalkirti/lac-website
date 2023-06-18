@@ -2,7 +2,7 @@ import React from 'react'
 
 const Memories = () => {
   return (
-    <div>Memories</div>
+    <div className='pt-20'>Memories</div>
   )
 }
 
