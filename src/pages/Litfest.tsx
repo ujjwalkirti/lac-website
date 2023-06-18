@@ -1,11 +1,12 @@
 import Event from "@/components/Litfest/Event";
 import React from "react";
 import Timeline from "@/components/Litfest/Timeline";
-import { libre_caslon_text } from "@/utils";
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "@/Firebase";
 import Head from "next/head";
 import CarouselLit from "@/components/Litfest/CarouselLit";
+import { GetServerSidePropsContext } from "next";
+import { libre_caslon_text } from "@/local-data/Fonts";
 
 type props = {
   litevents: Litevent[];
@@ -13,7 +14,7 @@ type props = {
 
 const Litfest = ({ litevents }: props) => {
   return (
-    <div className="w-screen md:w-10/12 mx-auto">
+    <div className="w-screen md:w-10/12 mx-auto pt-20">
       <Head>
         <title>LitFest SVNIT, Surat</title>
       </Head>
@@ -47,9 +48,8 @@ const Litfest = ({ litevents }: props) => {
             <strong>debate</strong> and <strong>squid games</strong>, from the{" "}
             <strong>quiz</strong> to the <strong>Talk</strong>, and from Aditya
             Kulshreshth aka <strong>Kullubaazi</strong> to{" "}
-            <strong>Strings and Stories</strong>{" "}
-            performing for us, LitFest'23 was truly a dream that turned into
-            reality.
+            <strong>Strings and Stories</strong> performing for us, LitFest'23
+            was truly a dream that turned into reality.
           </p>
           <CarouselLit events={litevents} />
         </div>
@@ -81,7 +81,7 @@ const Litfest = ({ litevents }: props) => {
 
 export default Litfest;
 
-export async function getServerSideProps(context: any) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   let litevents: any[] = [];
   const q = query(collection(db, "litevents"));
   const localevents = await getDocs(q);

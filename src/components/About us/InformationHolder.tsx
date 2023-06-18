@@ -1,6 +1,4 @@
-
 import React from "react";
-import FirstLetterCapital from "../Landing Page/FirstLetterCapital";
 import Image from "next/image";
 import { IoMdCall } from "react-icons/io";
 import {
@@ -16,7 +14,7 @@ import { SiGmail } from "react-icons/si";
 type props = {
   name: string;
   position: string;
-  department:string
+  department: string;
   img: string;
   message?: string;
   designation: string;

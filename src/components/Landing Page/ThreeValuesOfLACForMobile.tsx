@@ -1,4 +1,3 @@
-import { libre_caslon_text } from "@/utils";
 import React, { useState } from "react";
 import CardsToBeSwapped from "./CardsToBeSwapped";
 
@@ -11,7 +10,6 @@ const ThreeValuesOfLACForMobile = () => {
           showValues ? "flex-col" : ""
         }`}
       >
-        
         <div className=" flex flex-col items-center space-y-4 my-4">
           {/* <p className={"text-3xl text-center " + libre_caslon_text.className}>
             Values of <span className="text-[#DA8E63] text-5xl font-bold ml-3">LAC</span>

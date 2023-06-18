@@ -2,10 +2,10 @@ import React from "react";
 
 // import required modules
 
-import { libre_caslon_text } from "@/utils";
 import { CgLivePhoto } from "react-icons/cg";
 import Image from "next/image";
 import Link from "next/link";
+import { libre_caslon_text } from "@/local-data/Fonts";
 
 type props = {
   yetToHappenEvents: LAC_Event[];
@@ -24,7 +24,7 @@ export default function EventsSwiper({
       <div className={" transition-all duration-200 "}>
         {" "}
         <div className="relative w-[80vw] h-full">
-          <div className="absolute top-3 right-3 z-20 bg-[#2C1810] text-white dark:bg-white dark:text-[#2C1810] rounded-md animate-pulse px-3 py-1 rounded-md font-semibold flex items-center gap-3">
+          <div className="absolute top-3 right-3 z-20 bg-[#2C1810] text-white dark:bg-white dark:text-[#2C1810] rounded-md animate-pulse px-3 py-1 font-semibold flex items-center gap-3">
             <CgLivePhoto />
             <p className="">
               {yetToHappenEventsCount === 0
@@ -62,7 +62,7 @@ export default function EventsSwiper({
       {/* div for the next latest upcoming event */}
       {yetToHappenEvents.length === 2 && (
         <div className=" transition-all duration-200 relative">
-          <div className="absolute top-3 right-3 z-20 bg-[#2C1810] text-white dark:bg-white dark:text-[#2C1810] rounded-md animate-pulse px-3 py-1 rounded-md font-semibold flex items-center gap-3">
+          <div className="absolute top-3 right-3 z-20 bg-[#2C1810] text-white dark:bg-white dark:text-[#2C1810] rounded-md animate-pulse px-3 py-1 font-semibold flex items-center gap-3">
             <CgLivePhoto />
             <p className="">
               {yetToHappenEventsCount === 0
@@ -105,7 +105,7 @@ export default function EventsSwiper({
       )}
       {/* div for latest event which just happened */}
       <div className=" transition-all duration-200 relative">
-        <div className="absolute top-3 right-3 z-20 bg-[#2C1810] text-white dark:bg-white dark:text-[#2C1810] rounded-md animate-pulse px-3 py-1 rounded-md font-semibold flex items-center gap-3">
+        <div className="absolute top-3 right-3 z-20 bg-[#2C1810] text-white dark:bg-white dark:text-[#2C1810] rounded-md animate-pulse px-3 py-1  font-semibold flex items-center gap-3">
           <CgLivePhoto />
           <p className="">Past</p>
         </div>{" "}

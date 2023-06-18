@@ -1,12 +1,12 @@
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FiArrowRight } from "react-icons/fi";
 import BookClubIndicator from "./BookClubIndicator";
 import FirstLetterCapital from "./FirstLetterCapital";
 import { CgLivePhoto } from "react-icons/cg";
-import { libre_caslon_text, monsterrat } from "@/utils";
 import Image from "next/image";
 import EventsSwiper from "./EventsSwiper";
+import { libre_caslon_text, monsterrat } from "@/local-data/Fonts";
 
 type props = {
   yetToHappenEvents: LAC_Event[];

@@ -1,5 +1,4 @@
-import { db } from "@/Firebase";
-import { libre_caslon_text } from "@/utils";
+import { db2 } from "@/Firebase";
 import { DotSpinner } from "@uiball/loaders";
 import { doc, getDoc } from "firebase/firestore";
 import Head from "next/head";
@@ -7,6 +6,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { BiArrowToTop } from "react-icons/bi";
+import { libre_caslon_text } from "@/local-data/Fonts";
 
 type props = {
   blog: Blog;
@@ -90,7 +90,7 @@ export default SinglBlogById;
 export async function getServerSideProps(context: any) {
   let blog: any = {};
   const id = context.params.id;
-  const docRef = doc(db, "blogs", id);
+  const docRef = doc(db2, "blogs", id);
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {

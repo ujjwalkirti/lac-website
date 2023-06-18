@@ -2,8 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.book-club-gradient{
+  background: linear-gradient(180deg, #F8F3ED 8.73%, rgba(248, 243, 237, 0) 89.09%);
+}
+
+.book-club-image-gradient-left{
+  background: linear-gradient(90deg, #FFE1BC -7.59%, rgba(255, 225, 188, 0) 87.85%);
+    filter: blur(16px);
+}
+
+
+
+.book-club-image-gradient-right{
+  background: linear-gradient(90deg, #FFE1BC -7.59%, rgba(255, 225, 188, 0) 87.85%);
+    filter: blur(16px);
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.book-club-text-gradient{
+  background: linear-gradient(90deg, rgba(218, 142, 99, 0) 1.35%, rgba(218, 142, 99, 0.451613) 19.06%, #DA8E63 49.79%, rgba(218, 142, 99, 0.460581) 83.65%, rgba(218, 142, 99, 0) 100%);
+}
+
 @layer base {
     html {
       @apply scroll-smooth;
     }
 }
+

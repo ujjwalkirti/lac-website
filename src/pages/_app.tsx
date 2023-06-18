@@ -6,10 +6,10 @@ import Navbar from "@/components/Navbar";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Loader from "@/components/Loader";
-import { monsterrat } from "@/utils";
 import "@/styles/animations.css";
 import dynamic from "next/dynamic";
 import { Analytics } from "@vercel/analytics/react";
+import { monsterrat } from "@/local-data/Fonts";
 
 const Footer = dynamic(() => import("../components/Footer"));
 
@@ -47,7 +47,7 @@ export default function App({
               monsterrat.className
             }
           >
-            <Navbar />
+            <Navbar/>
             <Component {...pageProps} />
             <Footer />
             <Analytics />

@@ -1,4 +1,4 @@
-import { libre_caslon_text, monsterrat } from "@/utils";
+import { libre_caslon_text, monsterrat } from "@/local-data/Fonts";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";

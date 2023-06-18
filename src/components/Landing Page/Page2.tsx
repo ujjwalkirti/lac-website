@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import FirstLetterCapital from "./FirstLetterCapital";
-import { libre_caslon_text } from "@/utils";
+import { libre_caslon_text } from "@/local-data/Fonts";
 
 type props = {
   featuredBlogs: { blog: Blog; id: string }[];
@@ -75,7 +75,7 @@ const Page2 = ({ featuredBlogs }: props) => {
               }`}
               height={200}
               width={150}
-              className="min-h-[26vh] lg:h-full w-full lg:w-1/3"
+              className="h-[26vh] lg:h-full w-full lg:w-1/3 object-cover"
               alt="Featured blog of LAC"
             />
             <div className="flex flex-col items-end">
@@ -98,7 +98,7 @@ const Page2 = ({ featuredBlogs }: props) => {
           {/* 3rd featured blog */}
           <Link
             href={`/blogs/read/${featuredBlogs[2].id}`}
-            className="lg:min-h-[32vh] w-full px-2 lg:px-6 py-2 lg:py-6 rounded-lg shadow-xl flex flex-col lg:flex-row lg:justify-between space-y-6 lg:space-x-6 lg:hover:scale-y-105 transition transform duration-300 ease-out bg-white text-[#2C1810] dark:bg-[#603726] dark:text-[#FFFBF7]"
+            className=" lg:min-h-[32vh] w-full px-2 lg:px-6 py-2 lg:py-6 rounded-lg shadow-xl flex flex-col lg:flex-row lg:justify-between space-y-6 lg:space-x-6 lg:hover:scale-y-105 transition transform duration-300 ease-out bg-white text-[#2C1810] dark:bg-[#603726] dark:text-[#FFFBF7]"
           >
             <Image
               src={`${
@@ -108,7 +108,7 @@ const Page2 = ({ featuredBlogs }: props) => {
               }`}
               height={200}
               width={150}
-              className="min-h-[26vh] lg:min-h-full w-full lg:w-1/3"
+              className="h-[26vh] lg:min-h-full w-full lg:w-1/3 object-cover"
               alt="Featured blog of LAC"
             />
             <div className="">

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import FirstLetterCapital from "./FirstLetterCapital";
-import { libre_caslon_text } from "@/utils";
+import { libre_caslon_text } from "@/local-data/Fonts";
 
 const BookClubIndicator = () => {
   return (
@@ -21,8 +21,9 @@ const BookClubIndicator = () => {
         <div className="w-[70%] lg:w-4/5">
           {" "}
           <p className="font-[400] text-[14px] lg:text-[15px] leading-[17px] lg:leading-[18.29px] text-left mb-4  text-[#8d4b31]">
-            For all the passionate readers out there, <br className="hidden lg:flex"/>LAC has its very own
-            Book-Club to satisfy all your bookish needs.
+            For all the passionate readers out there,{" "}
+            <br className="hidden lg:flex" />
+            LAC has its very own Book-Club to satisfy all your bookish needs.
           </p>
           <Link
             href={`/book_club`}

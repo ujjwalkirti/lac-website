@@ -1,4 +1,3 @@
-import { monsterrat } from "@/utils";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,6 +13,7 @@ import { GiHamburgerMenu, GiSparkles } from "react-icons/gi";
 import { MdOutlineClose } from "react-icons/md";
 import { RiTeamLine } from "react-icons/ri";
 import { HiHome } from "react-icons/hi";
+import { monsterrat } from "@/local-data/Fonts";
 
 const options = [
   { name: "EVENTS", url: "/events" },
@@ -50,8 +50,7 @@ const Navbar = () => {
   return (
     <section
       className={
-        "flex justify-between items-center w-11/12 mx-auto pt-4 lg:pt-[12px] font-medium " +
-        monsterrat.className
+        "flex justify-between items-center bg-transparent w-full lg:w-11/12 mx-auto pt-4 lg:pt-[12px] px-3 font-medium absolute top-0 left-0 right-0 z-30"
       }
     >
       <GiHamburgerMenu

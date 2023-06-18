@@ -11,10 +11,9 @@ import {
 } from "firebase/firestore";
 import { db2, storage2 } from "@/Firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { adminButton } from "@/utils";
-import { inputStyle } from "@/utils";
 import { ImBooks } from "react-icons/im";
 import { AiTwotoneDelete } from "react-icons/ai";
+import { adminButton, inputStyle } from "@/local-data/StyleStrings";
 
 const BookForm = () => {
   const name = useRef<HTMLInputElement | null>(null);

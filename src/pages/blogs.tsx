@@ -3,8 +3,9 @@ import NormalBlog from "@/components/Blogs/NormalBlog";
 import Head from "next/head";
 import React from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { db } from "../Firebase.js";
-import { libre_caslon_text } from "@/utils";
+import { db2 } from "../Firebase.js";
+import { libre_caslon_text } from "@/local-data/Fonts";
+import { GetServerSidePropsContext } from "next";
 
 type props = {
   blogs: { blog: Blog; id: string }[];
@@ -12,11 +13,11 @@ type props = {
 
 const Blogs = ({ blogs }: props) => {
   return (
-    <section className="lg:w-11/12 mx-auto">
+    <section className="lg:w-11/12 mx-auto pt-20">
       <Head>
         <title>LAC - Blogs</title>
       </Head>
-      <div className="min-h-screen px-3 lg:px-8">
+      <div className="min-h-screen px-3  lg:px-8">
         <p
           className={
             "font-[600] text-[62px] text-center lg:text-left lg:text-[76px] mt-[18px] mb-[27px] lg:mb-0 " +
@@ -57,14 +58,14 @@ const Blogs = ({ blogs }: props) => {
 
 export default Blogs;
 
-export async function getServerSideProps(context: any) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   let blogs: any[] = [];
 
   let featuredBlog: any[] = [];
   // occupying the 0th index for the most recent featured blog
   blogs.push({});
 
-  const q = query(collection(db, "blogs"), where("isVerified", "==", true));
+  const q = query(collection(db2, "blogs"), where("isVerified", "==", true));
 
   const localblogs = await getDocs(q);
   localblogs.forEach((doc: { id: any; data: () => any }) => {

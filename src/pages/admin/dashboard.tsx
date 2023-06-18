@@ -7,9 +7,10 @@ import BlogForm from "@/components/admin/BlogForm";
 import BookForm from "@/components/admin/BookForm";
 import EventForm from "@/components/admin/EventForm";
 import TeamMember from "@/components/admin/TeamMember";
-import { adminButton } from "@/utils";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { GetServerSidePropsContext } from "next";
+import { adminButton } from "@/local-data/StyleStrings";
 
 type props = {
   auth_users: DocumentData[];
@@ -104,14 +105,14 @@ const Dashboard = ({ auth_users }: props) => {
           {renderFormAccordingToChoice(choice)}
         </div>
       </section>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };
 
 export default Dashboard;
 
-export async function getServerSideProps(context: any) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   const querySnapshot = await getDocs(collection(db2, "auth-users"));
 
   let auth_users: DocumentData[] = [];
