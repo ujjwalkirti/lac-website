@@ -23,7 +23,7 @@ const NormalBlog = ({ blog, id }: props) => {
               : blog.illustration
           }`}
           fill
-          className="object-cover"
+          className="object-cover rounded-t-lg"
           alt="blogs image"
         />
       </div>

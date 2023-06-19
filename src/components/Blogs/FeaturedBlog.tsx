@@ -23,7 +23,7 @@ const FeaturedBlog = ({ blog, id }: props) => {
               : blog.illustration
           }`}
           fill
-          className="object-cover"
+          className="object-cover rounded-l-lg"
           alt="blogs image"
         />
 
