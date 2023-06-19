@@ -32,7 +32,7 @@ const Dashboard = ({ auth_users }: props) => {
 
   if (!session) {
     return (
-      <div className="h-screen w-screen flex flex-col space-y-4 items-center justify-center">
+      <div className="h-screen w-screen flex flex-col space-y-4 items-center justify-center pt-20">
         <Head>
           <title>Admin Dashboard</title>
         </Head>
@@ -50,7 +50,7 @@ const Dashboard = ({ auth_users }: props) => {
   }
   if (!validated) {
     return (
-      <div className="h-screen w-screen flex flex-col space-y-4 items-center justify-center">
+      <div className="h-screen w-screen flex flex-col space-y-4 items-center justify-center pt-20">
         <Head>
           <title>Admin Dashboard</title>
         </Head>
@@ -59,7 +59,7 @@ const Dashboard = ({ auth_users }: props) => {
     );
   }
   return (
-    <div>
+    <div className="pt-20">
       <Head>
         <title>Admin Dashboard</title>
       </Head>
