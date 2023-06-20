@@ -36,7 +36,7 @@ const SinglBlogById = ({ blog }: props) => {
     return <DotSpinner size={40} speed={0.9} color="purple" />;
   }
   return (
-    <section className="min-h-[30vh] px-2 flex flex-col items-center">
+    <section className="min-h-[30vh] px-2 flex flex-col items-center pt-24">
       <Head>
         <title>{blog.name}</title>
       </Head>

@@ -40,7 +40,7 @@ const InformationHolder = ({
           src={img}
           fill
           alt="Images of people from LAC,SVNIT"
-          className="object-cover"
+          className="object-cover rounded-l-lg"
         />
       </div>
       <div className=" w-full lg:w-[200px] flex flex-col justify-between items-center px-2">
