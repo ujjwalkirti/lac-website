@@ -212,7 +212,7 @@ const EventForm = () => {
                 <div
                   className="text-red-600 text-2xl flex items-center mt-1 w-full justify-end cursor-pointer"
                   onClick={async () => {
-                    await deleteDoc(doc(db2, "books", event.id));
+                    await deleteDoc(doc(db2, "events", event.id));
 
                     toast.success(
                       `Event named ${event.title} has been deleted successfully!`

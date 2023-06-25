@@ -139,7 +139,6 @@ function renderFormAccordingToChoice(choice: string) {
     case "members":
       return <TeamMember />;
       break;
-
     default:
       break;
   }
