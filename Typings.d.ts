@@ -56,6 +56,7 @@ type Representatives = {
   department: string;
   img: string;
   designation: string;
-  contact: number[];
+  coreCommitteeYear?: string;
+  contact?: number[];
   socials: string[];
 };

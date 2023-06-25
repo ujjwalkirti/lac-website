@@ -29,6 +29,7 @@ const TeamMember = () => {
   const designation = useRef<HTMLSelectElement | null>(null);
   const contact = useRef<HTMLInputElement | null>(null);
   const socials = useRef<HTMLInputElement | null>(null);
+  const year = useRef<HTMLInputElement | null>(null);
 
   const [members, setMembers] = useState<any[]>([]);
   const [showMembers, setShowMembers] = useState<boolean>(false);
@@ -142,24 +143,26 @@ const TeamMember = () => {
               designation: designation.current?.value || "",
               contact: contacts || [],
               socials: splitLinks || [],
+              coreCommitteeYear: year,
             };
-            await setDoc(
-              doc(
-                db2,
-                "members",
-                designation.current?.value.toLowerCase() as string
-              ),
-              data
-            );
-            toast.success(`Member added successfully! LAC for the win! ✌️`);
-            name.current && (name.current.value = "");
-            designation.current && (designation.current.value = "");
-            position.current && (position.current.value = "");
-            department.current && (department.current.value = "");
-            contact.current && (contact.current.value = "");
-            socials.current && (socials.current.value = "");
-            setProgress(0);
-            setUploadStatus("");
+            addDoc(collection(db2, "members"), data)
+              .then((docRef) => {
+                toast.success(
+                  `Member added successfully with id: ${docRef.id}! LAC for the win! ✌️`
+                );
+                name.current && (name.current.value = "");
+                designation.current && (designation.current.value = "");
+                position.current && (position.current.value = "");
+                department.current && (department.current.value = "");
+                contact.current && (contact.current.value = "");
+                socials.current && (socials.current.value = "");
+                year.current && (year.current.value = "");
+                setProgress(0);
+                setUploadStatus("");
+              })
+              .catch((err) =>
+                toast.error("Something went wrong, Please try again!")
+              );
           });
         }
       );
@@ -202,13 +205,24 @@ const TeamMember = () => {
           onChange={handleFileChange}
           required
         />
-        <select ref={designation}>
+        <p className="text-left w-full">Choose the designation:</p>
+        <select ref={designation} className={inputStyle}>
           {posts.map((post, index) => (
-            <option key={index} value={post}>
+            <option key={index} value={post} className={inputStyle}>
               {post}
             </option>
           ))}
         </select>
+        <div className="w-full">
+          <input
+            type="text"
+            className={inputStyle}
+            required
+            placeholder="Mention the session for which the member was in core committee"
+            ref={year}
+          />
+          <p className="w-full">Ex: for year 2023, it will be 2023-24.</p>
+        </div>
         <div className="w-full">
           <input
             type="text"
