@@ -8,6 +8,7 @@ import {
   doc,
   onSnapshot,
   query,
+  setDoc,
 } from "firebase/firestore";
 import { db2, storage2 } from "@/Firebase";
 import {
@@ -142,15 +143,15 @@ const TeamMember = () => {
               contact: contacts || [],
               socials: splitLinks || [],
             };
-            const docRef = await addDoc(
-              collection(
+            await setDoc(
+              doc(
                 db2,
                 "members",
                 designation.current?.value.toLowerCase() as string
               ),
               data
             );
-            toast.success("Member added successfully! LAC for the win! ✌️");
+            toast.success(`Member added successfully! LAC for the win! ✌️`);
             name.current && (name.current.value = "");
             designation.current && (designation.current.value = "");
             position.current && (position.current.value = "");
@@ -265,7 +266,7 @@ const TeamMember = () => {
                   <div
                     className="text-red-600 text-2xl flex items-center mt-1 justify-end cursor-pointer"
                     onClick={async () => {
-                      await deleteDoc(doc(db2, "books", member.id));
+                      await deleteDoc(doc(db2, "members", member.id));
                       toast.success(
                         `Member named ${member.data.name} has been removed successfully!`
                       );
