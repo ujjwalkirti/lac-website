@@ -143,7 +143,7 @@ const TeamMember = () => {
               designation: designation.current?.value || "",
               contact: contacts || [],
               socials: splitLinks || [],
-              coreCommitteeYear: year,
+              coreCommitteeYear: year.current?.value,
             };
             addDoc(collection(db2, "members"), data)
               .then((docRef) => {
