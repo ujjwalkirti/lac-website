@@ -148,7 +148,7 @@ const TeamMember = () => {
             addDoc(collection(db2, "members"), data)
               .then((docRef) => {
                 toast.success(
-                  `Member added successfully with id: ${docRef.id}! LAC for the win! ✌️`
+                  `Member added successfully with name: ${data.name}! LAC for the win! ✌️`
                 );
                 name.current && (name.current.value = "");
                 designation.current && (designation.current.value = "");
