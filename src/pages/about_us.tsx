@@ -130,7 +130,7 @@ const AboutUs = () => {
           <InformationHolder {...secretary} />
         </div>
         {/* 2 Joint Secretaries */}
-        <div className="grid grid-cols-2 lg:flex-row gap-10">
+        <div className="grid md:grid-cols-2 gird-cols-1 lg:flex-row gap-10">
           {j_secretary.map((student, index) => (
             <InformationHolder {...student} key={index} />
           ))}
