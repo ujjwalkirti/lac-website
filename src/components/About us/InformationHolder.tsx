@@ -10,7 +10,6 @@ import {
 } from "react-icons/ai";
 import Link from "next/link";
 import { SiGmail } from "react-icons/si";
-import { isNumericLiteral } from "typescript";
 
 type props = {
   name: string;
