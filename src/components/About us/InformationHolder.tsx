@@ -40,7 +40,7 @@ const InformationHolder = ({
           src={img}
           fill
           alt={`${name}'s image`}
-          className="object-cover rounded-l-lg"
+          className="object-cover rounded-t-lg md:rounded-l-lg md:rounded-r-none"
         />
       </div>
       <div className=" w-full lg:w-[200px] flex flex-col justify-between items-center px-2">
@@ -50,7 +50,7 @@ const InformationHolder = ({
           <p className="text-[18px] text-center ">{department}</p>
         </div>
         <p className="text-center">({designation})</p>
-        {contact && !isNaN(contact[0]) && (
+        {contact && !isNaN(contact[0]) && contact[0]!==null && (
           <div className="flex flex-col items-center justify-between mt-4 px-1 w-full space-y-4">
             <p className="flex items-center justify-center text-xl gap-3 shadow-xl border dark:bg-[#9A7B4F] dark:text-white w-2/3 md:w-full mx-auto px-1 py-2 rounded-md">
               <IoMdCall />
@@ -114,7 +114,7 @@ const InformationHolder = ({
                 break;
             }
           })}
-          {contact && !isNaN(contact[1]) && (
+          {contact && !isNaN(contact[1]) && contact[1]!==null && (
             <Link
               href={`https://wa.me/91${contact[1]}`}
               className="dark:text-white  mx-auto"
