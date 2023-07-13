@@ -65,7 +65,7 @@ const AboutUs = ({ members }: props) => {
         Faculty Advisors
       </p>
       {/* Faculty Advisor */}
-      <div className="w-full lg:w-auto">
+      <div>
         <InformationHolder {...chairperson} />
       </div>
       {/* Chairmans */}
@@ -88,7 +88,6 @@ const AboutUs = ({ members }: props) => {
         className={inputStyle}
         style={{ width: "130px" }}
         onChange={(e) => {
-          console.log(e.target.value);
           getMembersBasedOnYear(e.target.value)
             .then((results) => {
               let co_chairpersons: Representatives[] = [];
@@ -138,7 +137,7 @@ const AboutUs = ({ members }: props) => {
           <InformationHolder {...secretary} />
         </div>
         {/* 2 Joint Secretaries */}
-        <div className="grid md:grid-cols-2 gird-cols-1 lg:flex-row gap-10">
+        <div className="grid lg:grid-cols-2 gird-cols-1 lg:flex-row gap-10">
           {j_secretary.map((student, index) => (
             <InformationHolder {...student} key={index} />
           ))}
