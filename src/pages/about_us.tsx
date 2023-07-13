@@ -1,7 +1,6 @@
 import { db2 } from "@/Firebase";
 import InformationHolder from "@/components/About us/InformationHolder";
 import { libre_caslon_text } from "@/local-data/Fonts";
-import { members } from "@/local-data/Members";
 import { inputStyle } from "@/local-data/StyleStrings";
 import {
   DocumentData,
@@ -13,10 +12,10 @@ import {
 import { GetServerSidePropsContext } from "next";
 import Head from "next/head";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { toast } from "react-toastify";
 
-const years = ["2020-21", "2021-22", "2022-23", "2023-24"];
+const years = ["2023-24", "2022-23", "2021-22", "2020-21"];
 
 async function getMembersBasedOnYear(year: string) {
   const queries = query(
@@ -35,7 +34,7 @@ type props = {
     j_secretary: Representatives[];
   };
 };
-const AboutUs = () => {
+const AboutUs = ({ members }: props) => {
   const [chairperson, setChairperson] = useState<Representatives>(
     members.chairperson
   );
@@ -50,46 +49,11 @@ const AboutUs = () => {
   );
 
   const year = useRef<HTMLSelectElement | null>(null);
-  useEffect(() => {
-    if (year !== null && year.current) {
-      getMembersBasedOnYear(year.current.value)
-        .then((results) => {
-          results.forEach((doc) => {
-            const person = doc.data();
-            switch (person.designation.toLowerCase()) {
-              case "chairperson":
-                //@ts-ignore
-                setChairperson(doc.data());
-                break;
-              case "co-chairperson":
-                //@ts-ignore
-                setCo_chairperson((co_chairperson) => [
-                  ...co_chairperson,
-                  doc.data(),
-                ]);
-                break;
-              case "secretary":
-                //@ts-ignore
-                setSecretary(doc.data());
-                break;
-              case "joint-secretary":
-                //@ts-ignore
-                setJ_secretary((j_secretary) => [...j_secretary, doc.data()]);
-                break;
-            }
-          });
-        })
-        .catch((err) => {
-          toast.error(
-            "Couldnot fetch the data for the year " + year.current?.value
-          );
-        });
-    }
-  }, [year]);
+
   return (
     <section className="min-h-[80vh] flex flex-col items-center gap-5 px-2 py-3 pt-20">
       <Head>
-        <title>About Us</title>
+        -<title>About Us</title>
       </Head>
       <p className={"text-[60px] " + libre_caslon_text.className}>About Us</p>
       <p
@@ -119,9 +83,53 @@ const AboutUs = () => {
       >
         Student Representatives
       </p>
-      <select ref={year} className={inputStyle} style={{ width: "130px" }}>
+      <select
+        ref={year}
+        className={inputStyle}
+        style={{ width: "130px" }}
+        onChange={(e) => {
+          console.log(e.target.value);
+          getMembersBasedOnYear(e.target.value)
+            .then((results) => {
+              let co_chairpersons: Representatives[] = [];
+              let joint_secretaries: Representatives[] = [];
+              results.forEach((doc) => {
+                const person = doc.data();
+                switch (person.designation.toLowerCase()) {
+                  case "chairperson":
+                    //@ts-ignore
+                    setChairperson(person);
+                    break;
+                  case "co-chairperson":
+                    //@ts-ignore
+                    co_chairpersons.push(person);
+                    break;
+                  case "secretary":
+                    //@ts-ignore
+                    setSecretary(person);
+                    break;
+                  case "joint-secretary":
+                    //@ts-ignore
+                    joint_secretaries.push(person);
+                    break;
+                }
+              });
+              co_chairpersons.length !== 0 &&
+                setCo_chairperson(co_chairpersons);
+              joint_secretaries.length !== 0 &&
+                setJ_secretary(joint_secretaries);
+            })
+            .catch((err) => {
+              toast.error(
+                "Couldnot fetch the data for the year " + year.current?.value
+              );
+            });
+        }}
+      >
         {years.map((year, index) => (
-          <option key={index}>{year}</option>
+          <option value={year} key={index}>
+            {year}
+          </option>
         ))}
       </select>
       <div className="flex flex-col items-center gap-10">
@@ -147,44 +155,45 @@ export default AboutUs;
   Faculty Advisor
   Chairman + Co-Chairman
   {
-    student in-charge: 
+    student in-charge:
       1. Secretary
       2. 3 - Joint Secretary
   }
 
 */
 
-// export async function getServerSideProps(context: GetServerSidePropsContext) {
-//   var members = {
-//     chairperson: {},
-//     co_chairperson: [] as DocumentData[],
-//     secretary: {},
-//     j_secretary: [] as DocumentData[],
-//   };
-// const queries = query(
-//   collection(db2, "members"),
-//   where("coreCommitteeYear", "==", "2023-24")
-// );
-//   const querySnapshot = await getDocs(queries);
-//   querySnapshot.forEach((doc) => {
-//     // doc.data() is never undefined for query doc snapshots
-//     switch (doc.id) {
-//       case "chairperson":
-//         members.chairperson = doc.data();
-//         break;
-//       case "co-chairperson":
-//         members.co_chairperson.push(doc.data());
-//         break;
-//       case "secretary":
-//         members.secretary = doc.data();
-//         break;
-//       case "joint-secretary":
-//         members.j_secretary.push(doc.data());
-//     }
-//   });
-//   return {
-//     props: {
-//       members,
-//     },
-//   };
-// }
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  var members = {
+    chairperson: {},
+    co_chairperson: [] as DocumentData[],
+    secretary: {},
+    j_secretary: [] as DocumentData[],
+  };
+  const queries = query(
+    collection(db2, "members"),
+    where("coreCommitteeYear", "==", "2023-24")
+  );
+  const querySnapshot = await getDocs(queries);
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    const person = doc.data();
+    switch (person.designation.toLowerCase()) {
+      case "chairperson":
+        members.chairperson = doc.data();
+        break;
+      case "co-chairperson":
+        members.co_chairperson.push(doc.data());
+        break;
+      case "secretary":
+        members.secretary = doc.data();
+        break;
+      case "joint-secretary":
+        members.j_secretary.push(doc.data());
+    }
+  });
+  return {
+    props: {
+      members,
+    },
+  };
+}

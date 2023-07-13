@@ -39,7 +39,7 @@ const InformationHolder = ({
         <Image
           src={img}
           fill
-          alt="Images of people from LAC,SVNIT"
+          alt={`${name}'s image`}
           className="object-cover rounded-l-lg"
         />
       </div>
@@ -47,15 +47,15 @@ const InformationHolder = ({
         <p className="text-[30px] text-center font-semibold">{name}</p>
         <div className="">
           <p className="text-[18px] text-center ">{position},</p>
-          <p className="text-[18px] text-center ">Dept of {department}</p>
+          <p className="text-[18px] text-center ">{department}</p>
         </div>
         <p className="text-center">({designation})</p>
-        {contact && (
+        {contact && !isNaN(contact[0]) && (
           <div className="flex flex-col items-center justify-between mt-4 px-1 w-full space-y-4">
-            { !Number.isNaN(contact[0]) &&  <p className="flex items-center justify-center text-xl gap-3 shadow-xl border dark:bg-[#9A7B4F] dark:text-white w-2/3 md:w-full mx-auto px-1 py-2 rounded-md">
+            <p className="flex items-center justify-center text-xl gap-3 shadow-xl border dark:bg-[#9A7B4F] dark:text-white w-2/3 md:w-full mx-auto px-1 py-2 rounded-md">
               <IoMdCall />
               {contact[0]}
-            </p>}
+            </p>
           </div>
         )}
         <div className="flex flex-row justify-center gap-10 text-[40px] md:gap-2 md:text-[30px] px-3 my-4">
@@ -114,7 +114,7 @@ const InformationHolder = ({
                 break;
             }
           })}
-          {contact && !Number.isNaN(contact[1]) &&  (
+          {contact && !isNaN(contact[1]) && (
             <Link
               href={`https://wa.me/91${contact[1]}`}
               className="dark:text-white  mx-auto"
