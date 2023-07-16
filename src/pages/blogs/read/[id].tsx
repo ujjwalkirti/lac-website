@@ -8,12 +8,14 @@ import { BiArrowToTop } from "react-icons/bi";
 import { libre_caslon_text } from "@/local-data/Fonts";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useTheme } from "next-themes";
 
 type Props = {
   blog: Blog;
 };
 
 const SingleBlogById = ({ blog }: Props) => {
+  const { theme } = useTheme();
   const divRef = React.useRef<HTMLDivElement>(null);
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
@@ -36,12 +38,27 @@ const SingleBlogById = ({ blog }: Props) => {
 
   if (!mounted) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen">
-        <h1 className="text-5xl font-bold text-red-500 my-10">404 - Blog Not Found</h1>
-        <p className="text-lg my-4">Oops! The Blog you are looking for does not exist.</p>
-        <button className="bg-[#DA8E63] px-2 py-1 rounded-md mx-auto my-3 lg:mt-10 flex items-center justify-center gap-4 hover:shadow-lg text-white dark:text-[#2C1810] font-bold">
-          <Link href="/blogs">Go To Blogs</Link>
-        </button>
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-x-5 h-screen px-2">
+        <Head>
+          <title>404: The blog was not found!</title>
+        </Head>
+        <div className="text-center">
+          <h1 className="text-3xl lg:text-5xl font-bold text-red-500 my-10">
+            404 - Blog Not Found
+          </h1>
+          <p className="text-lg my-4">
+            Oops! The Blog you are looking for does not exist.
+          </p>
+          <button className="bg-[#DA8E63] px-2 py-1 rounded-md mx-auto my-3 lg:mt-10 flex items-center justify-center gap-4 hover:shadow-lg text-white dark:text-[#2C1810] font-bold">
+            <Link href="/blogs">Go To Blogs</Link>
+          </button>
+        </div>
+        <Image
+          src={"/404-light.svg"}
+          alt="SVG depicting that resource you are searching not found, 404!"
+          height={400}
+          width={400}
+        />
       </div>
     );
   }
@@ -54,7 +71,8 @@ const SingleBlogById = ({ blog }: Props) => {
       <p
         ref={divRef}
         className={
-          "text-3xl lg:text-[60px] font-semibold text-center my-5 " + libre_caslon_text.className
+          "text-3xl lg:text-[60px] font-semibold text-center my-5 " +
+          libre_caslon_text.className
         }
       >
         {blog.name}

@@ -1,7 +1,7 @@
 import EventBox from "@/components/Events/EventBox";
 import PastEvents from "@/components/Events/PastEvents";
 import { db2 } from "@/Firebase";
-import { libre_caslon_text } from "@/utils";
+import { libre_caslon_text } from "@/local-data/Fonts";
 import { collection, getDocs, query, where } from "@firebase/firestore";
 import Head from "next/head";
 import React from "react";
@@ -18,7 +18,7 @@ function firstLetterCapital(word: string) {
 const EventsBasedOnTypes = ({ events, type }: props) => {
   if (events.length === 0) {
     return (
-      <div className="lg:w-11/12 mx-auto flex flex-col items-center">
+      <div className="lg:w-11/12 mx-auto flex flex-col items-center pt-20">
         <Head>
           <title>{firstLetterCapital(type) + " Events"}</title>
         </Head>
