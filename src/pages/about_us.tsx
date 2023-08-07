@@ -133,11 +133,11 @@ const AboutUs = ({ members }: props) => {
       </select>
       <div className="flex flex-col items-center gap-10">
         {/* Secretary */}
-        <div className="w-full lg:w-[400px]">
+        <div className="w-full">
           <InformationHolder {...secretary} />
         </div>
         {/* 2 Joint Secretaries */}
-        <div className="grid lg:grid-cols-2 gird-cols-1 lg:flex-row gap-5">
+        <div className="grid lg:grid-cols-2 gird-cols-1 lg:flex justify-center lg:flex-row lg:flex-wrap gap-5">
           {j_secretary.map((student, index) => (
             <InformationHolder {...student} key={index} />
           ))}
